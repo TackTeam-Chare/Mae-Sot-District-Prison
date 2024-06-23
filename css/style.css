@@ -1,0 +1,169 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
+
+/* General reset and font setup */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans Thai', sans-serif;
+}
+
+body {
+  text-align: center;
+  background-color: rgb(148, 16, 16);
+}
+
+.textbox {
+  border: 3px solid #ffffff;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 25pt;
+  width: 100%;
+  margin-top: 10px;
+  box-shadow: -5px 11px 42px 11px rgba(0, 0, 0, 0.35);
+}
+
+.textbox:focus {
+  box-shadow: -5px 11px 42px 11px rgba(255, 9, 9, 0.35) inset;
+}
+
+.click {
+  height: 60px;
+  font-size: 25pt;
+  border: 3px solid #ffffff;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: #a33434;
+  color: #000000;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.click:hover {
+  background-color: red;
+  color: #e97171;
+  box-shadow: -8px 2px 53px 0px rgba(185, 29, 29, 0.55);
+}
+
+.card {
+  background-color: rgb(179, 78, 78);
+  border-radius: 2px;
+  display: inline-block;
+  height: 300px;
+  width: 300px;
+  margin: 1rem;
+  padding: 25px;
+}
+
+h1, h3 {
+  color: #000000;
+}
+
+/* Media queries for responsiveness */
+@media only screen and (max-width: 768px) {
+  .card {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .site-title {
+    font-size: 25px;
+  }
+}
+
+/* Additional styles for specific elements */
+.fulllogo {
+  height: 30%;
+  width: 30%;
+  float: left;
+}
+
+.all-browsers {
+  margin: 0;
+  padding: 5px;
+  background-color: rgb(179, 78, 78);
+  text-align: left;
+}
+
+.all-browsers > h1, .browser {
+  margin: 10px;
+  padding: 5px;
+  background: white;
+}
+
+.browser > h2, p {
+  margin: 4px;
+  font-size: 90%;
+}
+
+.card-text, .text-infoe, .text-truncate, .card-title, .text-info {
+  color: #ffffff;
+}
+
+.city {
+  margin: 10px;
+  padding: 10px;
+  max-width: 100%;
+  height: 500px;
+}
+
+.x, .x1, .x2, .x3 {
+  width: 300px;
+  height: 300px;
+  margin: 5px;
+}
+
+.sd {
+  width: 500px;
+  height: 250px;
+  margin: 0 auto;
+}
+
+.sd article a figure {
+  width: 20%;
+  height: 350px;
+  float: left;
+}
+
+.sd article figure {
+  position: relative;
+  width: 300%;
+  margin: 0;
+  left: 0;
+  animation: krutom 20s infinite linear;
+}
+
+@keyframes krutom {
+  0% {
+    left: 0%;
+  }
+  15% {
+    left: 0%;
+  }
+  20% {
+    left: -100%;
+  }
+  35% {
+    left: -100%;
+  }
+  40% {
+    left: -200%;
+  }
+  60% {
+    left: -200%;
+  }
+  65% {
+    left: -300%;
+  }
+  80% {
+    left: -300%;
+  }
+  85% {
+    left: -400%;
+  }
+  100% {
+    left: -400%;
+  }
+}
