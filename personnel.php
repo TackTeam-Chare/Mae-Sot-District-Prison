@@ -10,68 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        @font-face {
-            font-family: 'thaisanslite_r1';
-            src: url('font/thaisanslite_r1.woff2') format('woff2'),
-                url('font/thaisanslite_r1.woff') format('woff'),
-                url('font/thaisanslite_r1.ttf') format('truetype');
-        }
-        body {
-            text-align: center;
-            background-color: #941010;
-            font-family: 'thaisanslite_r1', sans-serif;
-        }
-        .navbar-brand img {
-            height: 80px;
-            width: 80px;
-        }
-        .navbar-nav .nav-link {
-            font-size: 18px;
-        }
-        .main-content {
-            padding: 20px;
-            color: #fff;
-        }
-        .btn-outline-info {
-            color: #fff;
-            border-color: #fff;
-        }
-        .btn-outline-info:hover {
-            color: #941010;
-            background-color: #fff;
-            border-color: #fff;
-        }
-        .card {
-            background-color: #B34E4E;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 10px;
-            color: #fff;
-        }
-        .container-fluid {
-            background-color: #F8F9FA;
-            padding: 20px;
-        }
-        .container-fluid h4, .container-fluid p, .container-fluid a {
-            color: #000;
-        }
-        .container-fluid a:hover {
-            text-decoration: underline;
-        }
-        @media (max-width: 480px) {
-            .navbar-brand img {
-                height: 50px;
-                width: 50px;
-            }
-            .navbar-nav .nav-link {
-                font-size: 14px;
-            }
-        }
-    </style>
+
 </head>
 <body>
 <?php include('./layout/navbar.php'); ?>

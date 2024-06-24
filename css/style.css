@@ -108,12 +108,6 @@ h1, h3 {
   height: 500px;
 }
 
-.x, .x1, .x2, .x3 {
-  width: 300px;
-  height: 300px;
-  margin: 5px;
-}
-
 .sd {
   width: 500px;
   height: 250px;
@@ -174,20 +168,71 @@ h1, h3 {
   transition: transform 0.2s;
 }
 
+
+
+
+.card-title {
+  margin-top: 15px; 
+  color: #ffffff; 
+}
+
+
+.card {
+  background-color: rgb(179, 78, 78);
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 1rem;
+  width: 300px; /* Default width */
+  transition: transform 0.2s;
+}
+
 .card:hover {
   transform: scale(1.05);
 }
 
 .card-img-top {
-  height: 250px; 
+  height: 250px;
   object-fit: cover; 
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-.card-title {
-  font-size: 1.1rem;
-  margin-top: 15px; 
+
+
+.card-text {
   color: #ffffff; 
 }
 
+.card-body {
+  padding: 20px;
+}
+
+.btn-primary {
+  background-color: #a33434;
+  border: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: red; 
+  color: #e97171;
+  box-shadow: -8px 2px 53px 0px rgba(185, 29, 29, 0.55);
+}
+
+
+@media only screen and (max-width: 768px) {
+  .card {
+      width: 100%;
+      max-width: 400px; 
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .card-title {
+      font-size: 1rem; 
+  }
+}
