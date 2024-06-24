@@ -50,10 +50,7 @@
 <body>
   <?php include('./layout/navbar.php'); ?>
   <h1 class="mission-title"><span>ภารกิจและอำนาจหน้าที่</span></h1>
-
-  <br>
-  <img class="img-fluid mb-4" src="img/phpiWvmR0.png" height="400" width="600">
-  <br>
+  <img class="img-fluid" src="img/phpiWvmR0.png" >
   <br>
   <article class="content">
     <h2><span>ภารกิจและอำนาจหน้าที่ของกรมราชทัณฑ์</span></h2>

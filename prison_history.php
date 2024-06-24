@@ -50,7 +50,7 @@
   <?php include('./layout/navbar.php'); ?>
   <h1 class="mission-title"><span>ประวัติเรือนจำ</span></h1>
   <br>
-  <img class="city x" src="img/phpiWvmR0.png">
+  <img class="img-fluid" src="img/phpiWvmR0.png">
   <br>
   <br>
   <article class="content">
