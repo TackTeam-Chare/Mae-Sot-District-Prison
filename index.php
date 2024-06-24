@@ -188,7 +188,7 @@
                                         <span style="color: aliceblue;">ข่าวกิจกรรม</span>
                                     </span>
                                     <span class="float-right d-none d-md-inline-block">
-                                        <a href="หน้าข่าวสาร.html" class="btn btn-sm btn-outline-info" data-pjax="" data-pjax-state="">
+                                        <a href="press_release.php" class="btn btn-sm btn-outline-info" data-pjax="" data-pjax-state="">
                                             <span style="color: aliceblue;">อ่านเพิ่มเติม »
                                         </a>
                                     </span>
@@ -330,22 +330,8 @@
                                         </div>
                                     </a>
                                 </div>
-                                <!-- <div class="col-12 col-lg-6 mb-3 aos-init aos-animate" data-aos="fade-up"> <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax="" data-pjax-state=""> 
-                          <img src="img/พ่นยาคลอรีนและแอลกอฮอล์ 9 มีนาคม 2565.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;"> 
-                          <div class="card-body"> 
-                            <h5 class="card-title text-info text-truncate"><span style="color: aliceblue;">พ่นยาคลอรีนและแอลกอฮอล์</span></h5> 
-                            <h6 class="card-subtitle mb-2 text-muted"><span style="color: aliceblue;">9 มี.ค. 2565</span></h6> <p class="card-text text-truncate">
-                              <span style="color: aliceblue;">ข้อมูลการพ่นยาคลอรีนและแอลกอฮอล์</span></p> </div> </a> </div> <div class="col-12 col-lg-6 mb-3 aos-init" data-aos="fade-up"> 
-                                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax="" data-pjax-state=""> 
-                                  <img src="img/พ่นยาคลอรีนและแอลกอฮอล์ 6 มีนาคม 2565.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;"> 
-                                  <div class="card-body"> <h5 class="card-title text-info text-truncate"><span style="color: aliceblue;">พ่นยาคลอรีนและแอลกอฮอล์</span></h5> 
-                                    <h6 class="card-subtitle mb-2 text-muted"><span style="color: aliceblue;">6 มี.ค. 2565</span></h6> <p class="card-text text-truncate">
-                                      <span style="color: aliceblue;">ข้อมูลการพ่นยาคลอรีนและแอลกอฮอล์</span></p> </div> </a> </div> <div class="col-12 col-lg-6 mb-3 aos-init" data-aos="fade-up"> 
-                                        <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax="" data-pjax-state=""> <img src="img/ตรวจค้นบุคคล-สิ่งของเข้าออกเรือนจำ 6 มีนาค.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;"> <div class="card-body"> <h5 class="card-title text-info text-truncate"><span style="color: aliceblue;">ตรวจค้นบุคคล-สิ่งของเข้าออกเรือนจำ</span></h5> <h6 class="card-subtitle mb-2 text-muted"><span style="color: aliceblue;">6 มี.ค. 2565</span></h6> <p class="card-text text-truncate"><span style="color: aliceblue;">ข้อมูล ตรวจค้นบุคคล-สิ่งของเข้าออกเรือนจำ</span></p> 
-                                        </div> </a> </div> 
-                                      </div> 
-                                       -->
-                                <a href="หน้าข่าวสาร.html" class="btn btn-sm btn-block btn-info mb-2 d-md-none aos-init aos-animate" data-aos="fade-right" data-pjax="" data-pjax-state="">อ่านเพิ่มเติม »</a>
+                  
+                                <a href="press_release.php" class="btn btn-sm btn-block btn-info mb-2 d-md-none aos-init aos-animate" data-aos="fade-right" data-pjax="" data-pjax-state="">อ่านเพิ่มเติม »</a>
                                 <article class="all-browsers">
                                     <h2>
                                         <span style="color:#ffffff;">ข่าวจัดซื้อ-จัดจ้าง
