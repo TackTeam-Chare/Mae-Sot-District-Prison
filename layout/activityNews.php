@@ -32,7 +32,7 @@
 
         .card-subtitle {
             font-size: 0.875rem;
-            color: white;
+            color: white; 
             font-weight: bold;
         }
 
@@ -40,97 +40,92 @@
             font-size: 1rem;
             flex-grow: 1;
         }
+        .row-cols-6 {
+            gap: 20px;
+
+        }
+        .container {
+            margin-left: auto;
+
+            margin-right: auto;
+
+            max-width: 100%;
+        }
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 
 <body>
-    <article class="container">
+<article class="container">
         <h1 class="top23 text-center" style="color: rgb(255, 255, 255);">ข่าวกิจกรรม</h1>
         <br>
-        <div class="row g-3">
-            <!-- First Column -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax=""
-                    data-pjax-state="">
-                    <img src="img/พ่นยาคลอรีนและแอลกอฮอล์ 9 มีนาคม 2565.jpg"
-                        class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
+        <div class="row row-cols-1 row-cols-md-6 g-3 justify-content-center align-items-center">
+      
+            <div class="col mb-3 aos-init">
+                <a class="card text-reset text-decoration-none rounded-15" href="new.php">
+                    <img src="img/พัฒนาคุณภาพ.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
                     <div class="card-body">
-                        <h5 class="card-title badge bg-primary text-wrap">พ่นยาคลอรีนและแอลกอฮอล์</h5>
-                        <h6 class="card-subtitle mb-2 ">9 มี.ค. 2565</h6>
-                        <p class="card-text">ข้อมูลการพ่นยาคลอรีนและแอลกอฮอล์</p>
+                        <h5 class="card-title badge bg-primary text-wrap">การยกระดับฝึกอาชีพ การพัฒนาการตลาดให้กับสินค้า และพัฒนาคุณภาพชีวิตผู้พ้นโทษ</h5>
+                        <h6 class="card-subtitle mb-2 ">7 ก.พ. 2565</h6>
+                        <p class="card-text">โครงการส่งเสริมทักษะอาชีพผู้ต้องขังด้านการเลี้ยงสุนัขเพื่อพัฒนาพฤตินิสัยผู้ต้องขัง</p>
                     </div>
                 </a>
             </div>
-
-            <!-- Repeat Second Column -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax=""
-                    data-pjax-state="">
-                    <img src="img/พ่นยาคลอรีนและแอลกอฮอล์ 9 มีนาคม 2565.jpg"
-                        class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
+            <div class="col mb-3 aos-init">
+                <a class="card text-reset text-decoration-none rounded-15" href="new.php">
+                    <img src="img/พัฒนาคุณภาพ.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
                     <div class="card-body">
-                        <h5 class="card-title badge bg-primary text-wrap">พ่นยาคลอรีนและแอลกอฮอล์</h5>
-                        <h6 class="card-subtitle mb-2 ">9 มี.ค. 2565</h6>
-                        <p class="card-text">ข้อมูลการพ่นยาคลอรีนและแอลกอฮอล์</p>
+                        <h5 class="card-title badge bg-primary text-wrap">การยกระดับฝึกอาชีพ การพัฒนาการตลาดให้กับสินค้า และพัฒนาคุณภาพชีวิตผู้พ้นโทษ</h5>
+                        <h6 class="card-subtitle mb-2 ">7 ก.พ. 2565</h6>
+                        <p class="card-text">โครงการส่งเสริมทักษะอาชีพผู้ต้องขังด้านการเลี้ยงสุนัขเพื่อพัฒนาพฤตินิสัยผู้ต้องขัง</p>
                     </div>
                 </a>
             </div>
-
-            <!-- Repeat Third Column -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax=""
-                    data-pjax-state="">
-                    <img src="img/พ่นยาคลอรีนและแอลกอฮอล์ 9 มีนาคม 2565.jpg"
-                        class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
+            <div class="col mb-3 aos-init">
+                <a class="card text-reset text-decoration-none rounded-15" href="new.php">
+                    <img src="img/พัฒนาคุณภาพ.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
                     <div class="card-body">
-                        <h5 class="card-title badge bg-primary text-wrap">พ่นยาคลอรีนและแอลกอฮอล์</h5>
-                        <h6 class="card-subtitle mb-2 ">9 มี.ค. 2565</h6>
-                        <p class="card-text">ข้อมูลการพ่นยาคลอรีนและแอลกอฮอล์</p>
+                        <h5 class="card-title badge bg-primary text-wrap">การยกระดับฝึกอาชีพ การพัฒนาการตลาดให้กับสินค้า และพัฒนาคุณภาพชีวิตผู้พ้นโทษ</h5>
+                        <h6 class="card-subtitle mb-2 ">7 ก.พ. 2565</h6>
+                        <p class="card-text">โครงการส่งเสริมทักษะอาชีพผู้ต้องขังด้านการเลี้ยงสุนัขเพื่อพัฒนาพฤตินิสัยผู้ต้องขัง</p>
                     </div>
                 </a>
             </div>
-
-            <!-- Fourth Column -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax=""
-                    data-pjax-state="">
-                    <img src="img/พ่นยาคลอรีนและแอลกอฮอล์ 9 มีนาคม 2565.jpg"
-                        class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
+            <div class="col mb-3 aos-init">
+                <a class="card text-reset text-decoration-none rounded-15" href="new.php">
+                    <img src="img/พัฒนาคุณภาพ.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
                     <div class="card-body">
-                        <h5 class="card-title badge bg-primary text-wrap">พ่นยาคลอรีนและแอลกอฮอล์</h5>
-                        <h6 class="card-subtitle mb-2 ">9 มี.ค. 2565</h6>
-                        <p class="card-text">ข้อมูลการพ่นยาคลอรีนและแอลกอฮอล์</p>
+                        <h5 class="card-title badge bg-primary text-wrap">การยกระดับฝึกอาชีพ การพัฒนาการตลาดให้กับสินค้า และพัฒนาคุณภาพชีวิตผู้พ้นโทษ</h5>
+                        <h6 class="card-subtitle mb-2 ">7 ก.พ. 2565</h6>
+                        <p class="card-text">โครงการส่งเสริมทักษะอาชีพผู้ต้องขังด้านการเลี้ยงสุนัขเพื่อพัฒนาพฤตินิสัยผู้ต้องขัง</p>
                     </div>
                 </a>
             </div>
-
-            <!-- Fifth Column -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax=""
-                    data-pjax-state="">
-                    <img src="img/พ่นยาคลอรีนและแอลกอฮอล์ 9 มีนาคม 2565.jpg"
-                        class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
+            <div class="col mb-3 aos-init">
+                <a class="card text-reset text-decoration-none rounded-15" href="new.php">
+                    <img src="img/พัฒนาคุณภาพ.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
                     <div class="card-body">
-                        <h5 class="card-title badge bg-primary text-wrap">พ่นยาคลอรีนและแอลกอฮอล์</h5>
-                        <h6 class="card-subtitle mb-2 ">9 มี.ค. 2565</h6>
-                        <p class="card-text">ข้อมูลการพ่นยาคลอรีนและแอลกอฮอล์</p>
+                        <h5 class="card-title badge bg-primary text-wrap">การยกระดับฝึกอาชีพ การพัฒนาการตลาดให้กับสินค้า และพัฒนาคุณภาพชีวิตผู้พ้นโทษ</h5>
+                        <h6 class="card-subtitle mb-2 ">7 ก.พ. 2565</h6>
+                        <p class="card-text">โครงการส่งเสริมทักษะอาชีพผู้ต้องขังด้านการเลี้ยงสุนัขเพื่อพัฒนาพฤตินิสัยผู้ต้องขัง</p>
                     </div>
                 </a>
             </div>
-
-            <!-- Sixth Column -->
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax=""
-                    data-pjax-state="">
-                    <img src="img/พ่นยาคลอรีนและแอลกอฮอล์ 9 มีนาคม 2565.jpg"
-                        class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
+            <div class="col mb-3 aos-init">
+                <a class="card text-reset text-decoration-none rounded-15" href="new.php">
+                    <img src="img/พัฒนาคุณภาพ.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
                     <div class="card-body">
-                        <h5 class="card-title badge bg-primary text-wrap">พ่นยาคลอรีนและแอลกอฮอล์</h5>
-                        <h6 class="card-subtitle mb-2 ">9 มี.ค. 2565</h6>
-                        <p class="card-text">ข้อมูลการพ่นยาคลอรีนและแอลกอฮอล์</p>
+                        <h5 class="card-title badge bg-primary text-wrap">การยกระดับฝึกอาชีพ การพัฒนาการตลาดให้กับสินค้า และพัฒนาคุณภาพชีวิตผู้พ้นโทษ</h5>
+                        <h6 class="card-subtitle mb-2 ">7 ก.พ. 2565</h6>
+                        <p class="card-text">โครงการส่งเสริมทักษะอาชีพผู้ต้องขังด้านการเลี้ยงสุนัขเพื่อพัฒนาพฤตินิสัยผู้ต้องขัง</p>
                     </div>
                 </a>
             </div>
+     
         </div>
     </article>
 </body>
