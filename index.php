@@ -203,7 +203,6 @@
     <h2 class="h2" style="color: white; font-weight: bold;">ยินดีต้อนรับสู่เว็บไซต์เรือนจำอำเภอแม่สอด</h2>
     <p style="color: white;">ยินดีต้อนรับสู่เว็บไซต์ของเรือนจำอำเภอแม่สอด ท่านสามารถเรียนรู้ข้อมูลเพิ่มเติมได้จากเว็บไซต์นี้</p>
 </div>
-
                     <div class="row">
                         <div class="col-md-6 mb-4">
                             <div class="card h-100">
@@ -250,40 +249,66 @@
                             </div>
                         </div>
                     </div>
-                            <article class="all-browsers">
-                                <h2>
-                                    <span style="color:#ffffff;">ข่าวจัดซื้อ-จัดจ้าง
-                                </h2>
-                                <article class="browser">
-                                    <h2>กำลังปรับปรุง</h2>
-                                    <p>กำลังปรับปรุง</p>
-                                </article>
-                                <article class="browser">
-                                    <h2>กำลังปรับปรุง</h2>
-                                    <p>กำลังปรับปรุง</p>
-                                </article>
-                                <article class="browser">
-                                    <h2>กำลังปรับปรุง</h2>
-                                    <p>กำลังปรับปรุง</p>
-                                </article>
-                            </article>
-                            <article class="all-browsers">
-                                <h2>
-                                    <span style="color:#ffffff;">ข่าวประชาสัมพันธ์
-                                </h2>
-                                <article class="browser">
-                                    <h2>กำลังปรับปรุง</h2>
-                                    <p>กำลังปรับปรุง</p>
-                                </article>
-                                <article class="browser">
-                                    <h2>กำลังปรับปรุง</h2>
-                                    <p>กำลังปรับปรุง</p>
-                                </article>
-                                <article class="browser">
-                                    <h2>กำลังปรับปรุง</h2>
-                                    <p>กำลังปรับปรุง</p>
-                                </article>
-                            </article>
+                    <article class="all-browsers">
+    <h2 style="color: #ffffff;">ข่าวจัดซื้อ-จัดจ้าง</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">กำลังปรับปรุง</h5>
+                    <p class="card-text">กำลังปรับปรุง</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">กำลังปรับปรุง</h5>
+                    <p class="card-text">กำลังปรับปรุง</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">กำลังปรับปรุง</h5>
+                    <p class="card-text">กำลังปรับปรุง</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<article class="all-browsers">
+    <h2 style="color: #ffffff;">ข่าวประชาสัมพันธ์</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">กำลังปรับปรุง</h5>
+                    <p class="card-text">กำลังปรับปรุง</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">กำลังปรับปรุง</h5>
+                    <p class="card-text">กำลังปรับปรุง</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">กำลังปรับปรุง</h5>
+                    <p class="card-text">กำลังปรับปรุง</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
                         </div>
                     </div>
                 </div>
