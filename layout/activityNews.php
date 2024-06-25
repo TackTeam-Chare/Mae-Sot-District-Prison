@@ -6,7 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ข่าวกิจกรรม</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        .card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
 
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-body {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.875rem;
+            color: white; 
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+        .row-cols-6 {
+            gap: 20px;
+
+        }
+        .container {
+            margin-left: auto;
+
+            margin-right: auto;
+
+            max-width: 100%;
+        }
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body>
