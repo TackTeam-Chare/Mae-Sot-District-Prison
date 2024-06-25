@@ -10,6 +10,65 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/style.css" type="text/css">
+        <style>
+        .unique-animation-container {
+            background-color: rgb(175, 61, 61);
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Hide the overflow to enable smooth scrolling */
+        }
+
+        .unique-animation-article {
+            display: flex;
+            animation: alternateScroll 20s linear infinite; /* Alternating scrolling animation */
+            align-items: center;
+        }
+
+        .unique-animation-article a {
+            margin: 0 10px;
+        }
+
+        .unique-animation-article img {
+            max-height: 80px;
+            transition: transform 0.3s;
+        }
+
+        .unique-animation-article img:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .unique-animation-container {
+                height: auto;
+                padding: 10px 0;
+            }
+
+            .unique-animation-article img {
+                max-height: 50px;
+                margin: 0 5px;
+            }
+        }
+
+        @keyframes alternateScroll {
+            0% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(calc(-50%));
+            }
+            50% {
+                transform: translateX(calc(-100%));
+            }
+            75% {
+                transform: translateX(calc(-50%));
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
     </head>
     <body>
     <?php include('./layout/navbar.php'); ?>
@@ -78,91 +137,26 @@
                                             <a>
                                                 <br>
                                                 <br>
-                                                <h4 class="widget-title">
-                                                    <span style="color: aliceblue;">LINK กระบวนการยุติธรรม</span>
-                                                </h4>
-                                                <div class="textwidget">
-                                                    <ul>
-                                                        <li class="p1">
-                                                            <a href="https://www.moj.go.th/">
-                                                                <span style="color: aliceblue;">กระทรวงยุติธรรม</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="p1">
-                                                            <a href="http://www.correct.go.th/">
-                                                                <span style="color: aliceblue;">กรมราชทัณฑ์</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="p1">
-                                                            <a href="http://www.led.go.th/">
-                                                                <span style="color: aliceblue;">กรมบังคับคดี</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="p1">
-                                                            <a href="https://www.probation.go.th/">
-                                                                <span style="color: aliceblue;">กรมคุมประพฤติ</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="p1">
-                                                            <a href="https://www.rlpd.go.th/">
-                                                                <span style="color: aliceblue;">กรมคุ้มครองสิทธิและเสรีภาพ</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="p1">
-                                                            <a href="http://www.djop.go.th/home">
-                                                                <span style="color: aliceblue;">กรมพิพิจและคุ้มครองเด็ก</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="p1">
-                                                            <a href="https://www.oja.go.th/TH/">
-                                                                <span style="color:aliceblue;">สำนักงานกิจการยุติธรรม</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <br>
-                                                <br>
-                                                <h3 class="widget-title">
-                                                    <span style="color: aliceblue;">Link ที่เกี่ยวข้อง</span>
-                                                </h3>
-                                                <ul>
-                                                    <li class="p1">
-                                                        <a href="http://web.tak.go.th/">
-                                                            <span style="color: aliceblue;">จังหวัดตาก</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="p1">
-                                                        <a href="https://mesc.coj.go.th/th/page/item/index/id/1">
-                                                            <span style="color: aliceblue;">ศาลจังหวัดแม่สอด</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="p1">
-                                                        <a href="http://www.tak.ago.go.th/maesod-lawaid/index.php/2018-06-04-09-25-41">
-                                                            <span style="color: aliceblue;">สำนักงานอัยการจังหวัดตาก(สาขาแม่สอด)</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="p1">
-                                                        <a href="http://maesot.tak.police.go.th/">
-                                                            <span style="color: aliceblue;">ตำรวจภูธรอำเภอแม่สอด</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="p1">
-                                                        <a href="https://www.dsd.go.th/Tak">
-                                                            <span style="color: aliceblue;">ศูนย์พัฒนาฝีมือแรงงาน จ.ตาก</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="p1">
-                                                        <a href="https://www.maepalocal.go.th/home">
-                                                            <span style="color: aliceblue;">องค์การบริหารส่วนอำเภอแม่สอด</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="p1">
-                                                        <a href="https://www.nakhonmaesotcity.go.th/web/">
-                                                            <span style="color: aliceblue;">เทศบาลนครแม่สอด</span>
-                                                        </a>
-                                                    </li>
-                                                    <br>
-                                                </ul>
+                                                <h4 style="color: aliceblue;">LINK กระบวนการยุติธรรม</h4>
+                                <ul class="list-unstyled">
+                                    <li><a href="https://www.moj.go.th/" style="color: aliceblue;">กระทรวงยุติธรรม</a></li>
+                                    <li><a href="http://www.correct.go.th/" style="color: aliceblue;">กรมราชทัณฑ์</a></li>
+                                    <li><a href="http://www.led.go.th/" style="color: aliceblue;">กรมบังคับคดี</a></li>
+                                    <li><a href="https://www.probation.go.th/" style="color: aliceblue;">กรมคุมประพฤติ</a></li>
+                                    <li><a href="https://www.rlpd.go.th/" style="color: aliceblue;">กรมคุ้มครองสิทธิและเสรีภาพ</a></li>
+                                    <li><a href="http://www.djop.go.th/home" style="color: aliceblue;">กรมพิพิจและคุ้มครองเด็ก</a></li>
+                                    <li><a href="https://www.oja.go.th/TH/" style="color:aliceblue;">สำนักงานกิจการยุติธรรม</a></li>
+                                </ul>
+                                <h4 style="color: aliceblue;">Link ที่เกี่ยวข้อง</h4>
+                                <ul class="list-unstyled">
+                                    <li><a href="http://web.tak.go.th/" style="color: aliceblue;">จังหวัดตาก</a></li>
+                                    <li><a href="https://mesc.coj.go.th/th/page/item/index/id/1" style="color: aliceblue;">ศาลจังหวัดแม่สอด</a></li>
+                                    <li><a href="http://www.tak.ago.go.th/maesod-lawaid/index.php/2018-06-04-09-25-41" style="color: aliceblue;">สำนักงานอัยการจังหวัดตาก(สาขาแม่สอด)</a></li>
+                                    <li><a href="http://maesot.tak.police.go.th/" style="color: aliceblue;">ตำรวจภูธรอำเภอแม่สอด</a></li>
+                                    <li><a href="https://www.dsd.go.th/Tak" style="color: aliceblue;">ศูนย์พัฒนาฝีมือแรงงาน จ.ตาก</a></li>
+                                    <li><a href="https://www.maepalocal.go.th/home" style="color: aliceblue;">องค์การบริหารส่วนอำเภอแม่สอด</a></li>
+                                    <li><a href="https://www.nakhonmaesotcity.go.th/web/" style="color: aliceblue;">เทศบาลนครแม่สอด</a></li>
+                                </ul>
                                                 <h4>
                                                     <span style="color: aliceblue;">ยอดผู้ต้องขัง</span>
                                                 </h4>
@@ -377,7 +371,10 @@
             </h1>
             <hr style="height: 5px;" color="aliceblue">
         </article>
-     <?php include('./layout/animation.php'); ?>
+        <div class="unique-animation-container">
+        <?php include('./layout/animation.php'); ?>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <?php include('./layout/footer.php'); ?>
     </body>
 </html>
