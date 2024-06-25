@@ -13,37 +13,55 @@ body {
   background-color: rgb(148, 16, 16);
 }
 
-.textbox {
-  border: 3px solid #ffffff;
-  height: 50px;
-  border-radius: 10px;
-  font-size: 25pt;
-  width: 100%;
-  margin-top: 10px;
-  box-shadow: -5px 11px 42px 11px rgba(0, 0, 0, 0.35);
+.card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.textbox:focus {
-  box-shadow: -5px 11px 42px 11px rgba(255, 9, 9, 0.35) inset;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.click {
-  height: 60px;
-  font-size: 25pt;
-  border: 3px solid #ffffff;
-  border-radius: 10px;
-  margin-top: 10px;
-  background-color: #a33434;
-  color: #000000;
-  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+.card-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
-.click:hover {
-  background-color: red;
-  color: #e97171;
-  box-shadow: -8px 2px 53px 0px rgba(185, 29, 29, 0.55);
+.card-title {
+  font-size: 1.25rem;
 }
 
+.card-subtitle {
+  font-size: 0.875rem;
+  color: white; 
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1rem;
+  flex-grow: 1;
+}
+.row-cols-6 {
+  gap: 20px;
+
+}
+.container {
+  margin-left: auto;
+
+  margin-right: auto;
+
+  max-width: 100%;
+}
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .card {
   background-color: rgb(179, 78, 78);
   border-radius: 2px;
