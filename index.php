@@ -198,142 +198,58 @@
                             <br>
                             <hr class="bg-info my-4" style="height:3px;">
                         </div>
-                        <div class="row justify-content-center">
-                            <div class="col-12 col-lg-6 mb-3 aos-init aos-animate" data-aos="fade-up">
-                                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax="" data-pjax-state="">
-                                    <img src="img/new10.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-info text-truncate">
-                                            <span style="color: aliceblue;">ผบ.ตรวจเยี่ยมรจ.ห้วยหินฝน </span>
-                                        </h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">
-                                            <span style="color: aliceblue;">31 ม.ค. 67</span>
-                                        </h6>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-lg-6 mb-3 aos-init aos-animate" data-aos="fade-up">
-                                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax="" data-pjax-state="">
-                                    <img src="img/new11.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-info text-truncate">
-                                            <span style="color: aliceblue;">ตรวจความเรียบร้อย </span>
-                                        </h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">
-                                            <span style="color: aliceblue;">8 ก.พ.67 </span>
-                                        </h6>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-lg-6 mb-3 aos-init aos-animate" data-aos="fade-up">
-                                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax="" data-pjax-state="">
-                                    <img src="img/new12.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-info text-truncate">
-                                            <span style="color: aliceblue;">ฝึกผู้ต้องขัง </span>
-                                        </h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">
-                                            <span style="color: aliceblue;">8 ก.พ.67 </span>
-                                        </h6>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-lg-6 mb-3 aos-init aos-animate" data-aos="fade-up">
-                                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax="" data-pjax-state="">
-                                    <img src="img/new13.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-info text-truncate">
-                                            <span style="color: aliceblue;">คัดกรองผู้ต้องขังใหม่ </span>
-                                        </h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">
-                                            <span style="color: aliceblue;">8 ก.พ.67 </span>
-                                        </h6>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-lg-6 mb-3 aos-init aos-animate" data-aos="fade-up">
-                                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax="" data-pjax-state="">
-                                    <img src="img/new14.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-info text-truncate">
-                                            <span style="color: aliceblue;">สอบนักธรรม </span>
-                                        </h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">
-                                            <span style="color: aliceblue;">8 ก.พ.67 </span>
-                                        </h6>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-lg-6 mb-3 aos-init aos-animate" data-aos="fade-up">
-                                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax="" data-pjax-state="">
-                                    <img src="img/new15.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-info text-truncate">
-                                            <span style="color: aliceblue;">อบรมประชุมเช้า </span>
-                                        </h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">
-                                            <span style="color: aliceblue;">8 ก.พ.67 </span>
-                                        </h6>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-lg-6 mb-3 aos-init aos-animate" data-aos="fade-up">
-                                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax="" data-pjax-state="">
-                                    <img src="img/new16.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-info text-truncate">
-                                            <span style="color: aliceblue;">เยี่ยมญาติ </span>
-                                        </h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">
-                                            <span style="color: aliceblue;">9 ก.พ.67</span>
-                                        </h6>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-lg-6 mb-3 aos-init aos-animate" data-aos="fade-up">
-                                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax="" data-pjax-state="">
-                                    <img src="img/new17.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-info text-truncate">
-                                            <span style="color: aliceblue;">จู่โจมประจำวันวันที่ </span>
-                                        </h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">
-                                            <span style="color: aliceblue;">11 ก.พ.67 </span>
-                                        </h6>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-lg-6 mb-3 aos-init aos-animate" data-aos="fade-up">
-                                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax="" data-pjax-state="">
-                                    <img src="img/new18.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-info text-truncate">
-                                            <span style="color: aliceblue;">บรรยายธรรมโดยผู้นำศาสนาคริสต์ </span>
-                                        </h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">
-                                            <span style="color: aliceblue;">12 ก.พ.67 </span>
-                                        </h6>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-lg-6 mb-3 aos-init aos-animate" data-aos="fade-up">
-                                <a class="card text-reset text-decoration-none rounded-15" href="new.php" data-pjax="" data-pjax-state="">
-                                    <img src="img/new19.jpg" class="card-img-top img-autofit rounded-15" alt="news" style="height:200px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-info text-truncate">
-                                            <span style="color: aliceblue;">เข้าแถว </span>
-                                        </h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">
-                                            <span style="color: aliceblue;">12 ก.พ.67</span>
-                                        </h6>
-                                        <p class="card-text text-truncate">
-                                            <span style="color: aliceblue;">ข้อมูลการตรวจค้น</span>
-                                        </p>
-                                    </div>
-                                </a>
-                            </div>
+                        <div class="col-12 col-md-8 col-lg-9 order-md-1">
+                        <div class="mb-4">
+    <h2 class="h2" style="color: white; font-weight: bold;">ยินดีต้อนรับสู่เว็บไซต์เรือนจำอำเภอแม่สอด</h2>
+    <p style="color: white;">ยินดีต้อนรับสู่เว็บไซต์ของเรือนจำอำเภอแม่สอด ท่านสามารถเรียนรู้ข้อมูลเพิ่มเติมได้จากเว็บไซต์นี้</p>
+</div>
 
-                            <a href="press_release.php" class="btn btn-sm btn-block btn-info mb-2 d-md-none aos-init aos-animate" data-aos="fade-right" data-pjax="" data-pjax-state="">อ่านเพิ่มเติม »</a>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <img src="img/new10.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">ข่าวประชาสัมพันธ์</h5>
+                                    <p class="card-text">รับสมัครพนักงานคุมเยาวชนและผู้เข้าคุก จำนวน 7 ตำแหน่ง ด่วน</p>
+                                    <a href="new.php" class="btn btn-primary">อ่านข่าว</a>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <img src="img/new10.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">ปฏิทินกิจกรรม</h5>
+                                    <p class="card-text">กิจกรรมต่าง ๆ ของเรือนจำอำเภอแม่สอด ประจำเดือนมกราคม 2567</p>
+                                    <a href="new.php" class="btn btn-primary">ดูปฏิทิน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <img src="img/new10.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">ข่าวประชาสัมพันธ์</h5>
+                                    <p class="card-text">รับสมัครพนักงานคุมเยาวชนและผู้เข้าคุก จำนวน 7 ตำแหน่ง ด่วน</p>
+                                    <a href="new.php" class="btn btn-primary">อ่านข่าว</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <img src="img/new10.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">ปฏิทินกิจกรรม</h5>
+                                    <p class="card-text">กิจกรรมต่าง ๆ ของเรือนจำอำเภอแม่สอด ประจำเดือนมกราคม 2567</p>
+                                    <a href="new.php" class="btn btn-primary">ดูปฏิทิน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                             <article class="all-browsers">
                                 <h2>
                                     <span style="color:#ffffff;">ข่าวจัดซื้อ-จัดจ้าง
