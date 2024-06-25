@@ -54,6 +54,8 @@ body {
   padding: 25px;
 }
 
+
+
 h1, h3 {
   color: #000000;
 }
@@ -72,12 +74,6 @@ h1, h3 {
   }
 }
 
-/* Additional styles for specific elements */
-.fulllogo {
-  height: 30%;
-  width: 30%;
-  float: left;
-}
 
 .all-browsers {
   margin: 0;
@@ -101,73 +97,6 @@ h1, h3 {
   color: #ffffff;
 }
 
-.city {
-  margin: 10px;
-  padding: 10px;
-  max-width: 100%;
-  height: 500px;
-}
-
-.sd {
-  width: 500px;
-  height: 250px;
-  margin: 0 auto;
-}
-
-.sd article a figure {
-  width: 20%;
-  height: 350px;
-  float: left;
-}
-
-.sd article figure {
-  position: relative;
-  width: 300%;
-  margin: 0;
-  left: 0;
-  animation: krutom 20s infinite linear;
-}
-
-@keyframes krutom {
-  0% {
-    left: 0%;
-  }
-  15% {
-    left: 0%;
-  }
-  20% {
-    left: -100%;
-  }
-  35% {
-    left: -100%;
-  }
-  40% {
-    left: -200%;
-  }
-  60% {
-    left: -200%;
-  }
-  65% {
-    left: -300%;
-  }
-  80% {
-    left: -300%;
-  }
-  85% {
-    left: -400%;
-  }
-  100% {
-    left: -400%;
-  }
-}
-
-.card {
-  background-color: rgb(179, 78, 78);
-  border-radius: 5px; 
-  height: 100%;
-  transition: transform 0.2s;
-}
-
 
 
 
@@ -176,15 +105,6 @@ h1, h3 {
   color: #ffffff; 
 }
 
-
-.card {
-  background-color: rgb(179, 78, 78);
-  border-radius: 5px;
-  overflow: hidden;
-  margin: 1rem;
-  width: 300px; /* Default width */
-  transition: transform 0.2s;
-}
 
 .card:hover {
   transform: scale(1.05);
@@ -196,8 +116,6 @@ h1, h3 {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
-
-
 
 .card-text {
   color: #ffffff; 
