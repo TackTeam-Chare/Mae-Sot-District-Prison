@@ -109,75 +109,76 @@
     </div>
     <main class="min-vh-100">
         <div class="container py-3 py-md-5" style="min-height:80vh;">
-            <div class="row mb-5">
-                <div class="col-12 col-md-4 col-lg-3 order-md-12">
-                    <div id="director" class="mb-5 md-mb-0">
-                        <div class="mt-2 aos-init aos-animate" data-aos="flip-down">
-                            <h2 class="mb-0">
-                                <span class="float-left">
-                                    <i class="fas fa-star fa-sm fa-fw"></i>
-                                    <span style="color: aliceblue;">ผู้บัญชาการ</span>
-                                </span>
-                            </h2>
+        <div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div id="director" class="mb-5 md-mb-0">
+                <div class="mt-2 aos-init aos-animate" data-aos="flip-down">
+                    <h2 class="mb-0">
+                        <span class="float-left">
+                            <i class="fas fa-star fa-sm fa-fw"></i>
+                            <span style="color: aliceblue;">ผู้บัญชาการ</span>
+                        </span>
+                    </h2>
+                    <br>
+                    <hr class="bg-info my-4" style="height:3px;">
+                </div>
+                <div class="row justify-content-center aos-init aos-animate" data-aos="fade-up">
+                    <div class="col-12 col-md-12 text-center">
+                        <img src="img/boss.jpg" style="max-height: 200px; max-width:240px;" class="img-fluid img-thumbnail mx-auto">
+                    </div>
+                    <div class="col-12 col-md-12 text-center mt-4 mt-md-4">
+                        <p class="font-weight-bold mb-0" style="font-size:110%;">
+                            <span style="color: aliceblue;">นายศุภชัย ศรีกอง</span>
+                        </p>
+                        <p class="text-muted">
+                            <span style="color: aliceblue;">ผู้บัญชาการเรือนจำอำเภอแม่สอด</span>
+                        </p>
+                        <aside id="text-9" class="widget widget_text clearfix">
                             <br>
-                            <hr class="bg-info my-4" style="height:3px;">
-                        </div>
-                        <div class="row justify-content-center aos-init aos-animate" data-aos="fade-up">
-                            <div class="col-12 col-md-12 text-center">
-                                <img src="img/boss.jpg" style="max-height: 200px; max-width:240px;" class="img-fluid img-thumbnail mx-auto">
-                            </div>
-                            <div class="col-12 col-md-12 text-center mt-4 mt-md-4">
-                                <p class="font-weight-bold mb-0" style="font-size:110%;">
-                                    <span style="color: aliceblue;">นายศุภชัย ศรีกอง</span>
-                                </p>
-                                <p class="text-muted">
-                                    <span style="color: aliceblue;">ผู้บัญชาการเรือนจำอำเภอแม่สอด
-                                </p>
-                                <aside id="text-9" class="widget widget_text clearfix">
-                                    <br>
-                                    <h4>
-                                        <span style="color: aliceblue;">เรือนจำชั่วคราวห้วยหินฝน
-                                        </span>
-                                    </h4>
-                                    <br>
-                                    <a href="https://www.facebook.com/%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%A7%E0%B8%84%E0%B8%A3%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%AB%E0%B8%B4%E0%B8%99%E0%B8%9D%E0%B8%99-138969522037726/">
-                                        <img src="img/เรือนจำห้วย.jpg" height="150" width="255">
-                                        <a>
-                                            <br>
-                                            <br>
-                                            <h4 style="color: aliceblue;">LINK กระบวนการยุติธรรม</h4>
-                                            <ul class="list-unstyled">
-                                                <li><a href="https://www.moj.go.th/" style="color: aliceblue;">กระทรวงยุติธรรม</a></li>
-                                                <li><a href="http://www.correct.go.th/" style="color: aliceblue;">กรมราชทัณฑ์</a></li>
-                                                <li><a href="http://www.led.go.th/" style="color: aliceblue;">กรมบังคับคดี</a></li>
-                                                <li><a href="https://www.probation.go.th/" style="color: aliceblue;">กรมคุมประพฤติ</a></li>
-                                                <li><a href="https://www.rlpd.go.th/" style="color: aliceblue;">กรมคุ้มครองสิทธิและเสรีภาพ</a></li>
-                                                <li><a href="http://www.djop.go.th/home" style="color: aliceblue;">กรมพิพิจและคุ้มครองเด็ก</a></li>
-                                                <li><a href="https://www.oja.go.th/TH/" style="color:aliceblue;">สำนักงานกิจการยุติธรรม</a></li>
-                                            </ul>
-                                            <h4 style="color: aliceblue;">Link ที่เกี่ยวข้อง</h4>
-                                            <ul class="list-unstyled">
-                                                <li><a href="http://web.tak.go.th/" style="color: aliceblue;">จังหวัดตาก</a></li>
-                                                <li><a href="https://mesc.coj.go.th/th/page/item/index/id/1" style="color: aliceblue;">ศาลจังหวัดแม่สอด</a></li>
-                                                <li><a href="http://www.tak.ago.go.th/maesod-lawaid/index.php/2018-06-04-09-25-41" style="color: aliceblue;">สำนักงานอัยการจังหวัดตาก(สาขาแม่สอด)</a></li>
-                                                <li><a href="http://maesot.tak.police.go.th/" style="color: aliceblue;">ตำรวจภูธรอำเภอแม่สอด</a></li>
-                                                <li><a href="https://www.dsd.go.th/Tak" style="color: aliceblue;">ศูนย์พัฒนาฝีมือแรงงาน จ.ตาก</a></li>
-                                                <li><a href="https://www.maepalocal.go.th/home" style="color: aliceblue;">องค์การบริหารส่วนอำเภอแม่สอด</a></li>
-                                                <li><a href="https://www.nakhonmaesotcity.go.th/web/" style="color: aliceblue;">เทศบาลนครแม่สอด</a></li>
-                                            </ul>
-                                            <h4>
-                                                <span style="color: aliceblue;">ยอดผู้ต้องขัง</span>
-                                            </h4>
-                                            <br>
-                                            <img src="img/ยอดผู้ต้องขัง.png" height="150" width="255">
-                                            <br>
-                                            <br>
-                                            <br>
-                                </aside>
-                            </div>
-                        </div>
+                            <h4>
+                                <span style="color: aliceblue;">เรือนจำชั่วคราวห้วยหินฝน</span>
+                            </h4>
+                            <br>
+                            <a href="https://www.facebook.com/%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%A7%E0%B8%84%E0%B8%A3%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%AB%E0%B8%B4%E0%B8%99%E0%B8%9D%E0%B8%99-138969522037726/">
+                                <img src="img/เรือนจำห้วย.jpg" height="150" width="255">
+                            </a>
+                            <br>
+                            <br>
+                            <h4 style="color: aliceblue;">LINK กระบวนการยุติธรรม</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="https://www.moj.go.th/" style="color: aliceblue;">กระทรวงยุติธรรม</a></li>
+                                <li><a href="http://www.correct.go.th/" style="color: aliceblue;">กรมราชทัณฑ์</a></li>
+                                <li><a href="http://www.led.go.th/" style="color: aliceblue;">กรมบังคับคดี</a></li>
+                                <li><a href="https://www.probation.go.th/" style="color: aliceblue;">กรมคุมประพฤติ</a></li>
+                                <li><a href="https://www.rlpd.go.th/" style="color: aliceblue;">กรมคุ้มครองสิทธิและเสรีภาพ</a></li>
+                                <li><a href="http://www.djop.go.th/home" style="color: aliceblue;">กรมพิพิจและคุ้มครองเด็ก</a></li>
+                                <li><a href="https://www.oja.go.th/TH/" style="color:aliceblue;">สำนักงานกิจการยุติธรรม</a></li>
+                            </ul>
+                            <h4 style="color: aliceblue;">Link ที่เกี่ยวข้อง</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="http://web.tak.go.th/" style="color: aliceblue;">จังหวัดตาก</a></li>
+                                <li><a href="https://mesc.coj.go.th/th/page/item/index/id/1" style="color: aliceblue;">ศาลจังหวัดแม่สอด</a></li>
+                                <li><a href="http://www.tak.ago.go.th/maesod-lawaid/index.php/2018-06-04-09-25-41" style="color: aliceblue;">สำนักงานอัยการจังหวัดตาก(สาขาแม่สอด)</a></li>
+                                <li><a href="http://maesot.tak.police.go.th/" style="color: aliceblue;">ตำรวจภูธรอำเภอแม่สอด</a></li>
+                                <li><a href="https://www.dsd.go.th/Tak" style="color: aliceblue;">ศูนย์พัฒนาฝีมือแรงงาน จ.ตาก</a></li>
+                                <li><a href="https://www.maepalocal.go.th/home" style="color: aliceblue;">องค์การบริหารส่วนอำเภอแม่สอด</a></li>
+                                <li><a href="https://www.nakhonmaesotcity.go.th/web/" style="color: aliceblue;">เทศบาลนครแม่สอด</a></li>
+                            </ul>
+                            <h4>
+                                <span style="color: aliceblue;">ยอดผู้ต้องขัง</span>
+                            </h4>
+                            <br>
+                            <img src="img/ยอดผู้ต้องขัง.png" height="150" width="255">
+                            <br>
+                            <br>
+                            <br>
+                        </aside>
                     </div>
                 </div>
+            </div>
+        </div>
+    
                 <div class="col-12 col-md-8 col-lg-9">
                     <div>
                         <img class="d-block img-fluid" src="img/slide8.jpg">
@@ -248,7 +249,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <article class="all-browsers">
     <h2 style="color: #ffffff;">ข่าวจัดซื้อ-จัดจ้าง</h2>
     <div class="row">
