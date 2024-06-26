@@ -19,13 +19,11 @@
         justify-content: center;
         align-items: center;
         overflow: hidden;
-        /* Hide the overflow to enable smooth scrolling */
     }
 
     .unique-animation-article {
         display: flex;
         animation: alternateScroll 20s linear infinite;
-        /* Alternating scrolling animation */
         align-items: center;
     }
 
@@ -122,7 +120,7 @@
                                     </span>
                                 </h2>
                                 <br>
-                                <hr class="bg-info my-4" style="height:3px;">
+                                <hr class="bg-white my-4" style="height: 3px;">
                             </div>
                             <div class="row justify-content-center aos-init aos-animate" data-aos="fade-up">
                                 <div class="col-12 col-md-12 text-center">
@@ -216,7 +214,7 @@
                                     </span>
                                 </h2>
                                 <br>
-                                <hr class="bg-info my-4" style="height:3px;">
+                                <hr class="bg-white my-4" style="height: 3px;">
                             </div>
                             <div class="col-12 col-md-8 col-lg-9 order-md-1">
                                 <div class="mb-4">
