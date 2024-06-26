@@ -12,7 +12,7 @@
 <body>
 <?php include('./layout/navbar.php'); ?>
   <div class="container mt-5">
-    <h1 class="text-center mb-4" style="color: aliceblue;">ระเบียบการเยี่ยมญาติ</h1>
+    <h1 class="text-center mb-4" style="color: aliceblue;    font-weight: bold;">ระเบียบการเยี่ยมญาติ</h1>
     <div class="row justify-content-center">
       <div class="col-md-8">
         <img class="img-fluid mb-3" src="img/ขั้นตอนการเยี่ยมยาติ.jpg" alt="ขั้นตอนการเยี่ยมยาติ">

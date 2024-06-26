@@ -10,10 +10,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    h1{
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
     </head>
     <body>
     <?php include('./layout/navbar.php'); ?>
-        <h1><span style="color: rgb(255, 255, 255);">ข่าวประชาสัมพันธ์</h1>
+        <h1 ><span style="color: rgb(255, 255, 255); ">ข่าวประชาสัมพันธ์</h1>
+        <hr class="bg-white my-4" style="height: 3px;">
           <br>
         <img src="img/จู่โจมตรวจค้นประจำวัน 6 มีนาคม  2565.jpg">
         <br>

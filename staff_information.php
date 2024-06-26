@@ -10,10 +10,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    h2{
+      margin-top: 20px;
+    }
+  </style>
     </head>
     <body>
     <?php include('./layout/navbar.php'); ?>
-        <h2><span style="color: aliceblue;">แผนผังฝ่ายการศึกษา</h2>
+        <h2 ><span style="color: aliceblue;">แผนผังฝ่ายการศึกษา</h2>
+        <hr class="bg-white my-4" style="height: 3px;">
           <img class="img-fluid mb-3" src="img/แก้ไขฝ่ายการศึกษา.jpg" height="700" width="900">
           <br>
           <br>
