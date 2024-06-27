@@ -37,7 +37,6 @@
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-      cursor: pointer; /* เพิ่ม cursor เป็น pointer เมื่อเมาส์ชี้ไปที่ card-body */
     }
 
     .card-title {
@@ -128,9 +127,10 @@
       $('.card-body').click(function() {
         var name = $(this).data('name');
         var position = $(this).data('position');
+        var imgSrc = $(this).prev('.card-img-top').css('background-image').replace('url("', '').replace('")', '');
 
         $('#staffModalLabel').text('ข้อมูล: ' + name);
-        $('#staffModalBody').html('<p><strong>ตำแหน่ง:</strong> ' + position + '</p>');
+        $('#staffModalBody').html('<img src="' + imgSrc + '" class="img-fluid mb-3" style="max-width: 100%; height: auto;" /><p><strong>ตำแหน่ง:</strong> ' + position + '</p>');
 
         $('#staffModal').modal('show');
       });
