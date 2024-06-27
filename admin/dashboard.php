@@ -23,7 +23,7 @@ include_once('./inc/config.php');
          <h3>ข่าวประชาสัมพันธ์์</h3>
          </div>
          <div class="button">
-            <button><a href="./addevent.php">Add</a></button>
+            <button><a href="./add_news.php">Add</a></button>
          </div>
         </div>
         <?php
@@ -34,9 +34,11 @@ include_once('./inc/config.php');
                 <div class="model--field"><?php echo $result['id'] ?></div>
                 <div class="model--field"><?php echo $result['title'] ?></div>
                 <div class="model--field"><?php echo $result['content'] ?></div>
+                
                 <div class="model--field">
-                    <button class="list--manage_item">edit</button>
+                    <button class="list--manage_item" type="submit" name="news_update"><a href="./update_news.php?id=<?php echo $result['id']?>">edit</a></button>
                 </div>
+                </form>
                 <div class="model--field">
                     <button class="list--manage_item">delete</button>
                 </div>

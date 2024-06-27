@@ -10,7 +10,7 @@ if (isset($_POST['news_insert'])) {
 
     if ($msg) {
         echo "<script>alert('บันทึกข้อมูลสำเร็จ');</script>";
-        echo "<script type='text/javascript'> document.location = './addnews.php'; </script>";
+        echo "<script type='text/javascript'> document.location = './dashboard.php'; </script>";
     }
 }
 
@@ -28,31 +28,26 @@ if (isset($_POST["event_insert"])) {
         echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
     } else {
-        echo "File is not an image.";
+        echo "ต้องใช้ไฟลนิดรูปภาพ.";
         $uploadOk = 0;
     }
 
-    // Check if file already exists
-    if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
-        $uploadOk = 0;
-    }
 
     // Check file size
     if ($_FILES["image_file"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
+        echo "ไฟล์มีขนาดใหญ่เกินไป , ไฟล์ต้องมีขนาดไม่เกิน 50mb.";
         $uploadOk = 0;
     }
 
     // Allow certain file formats
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        echo "อนุญาติเพียงไฟลนิด JPG, JPEG, PNG เเละ GIF.";
         $uploadOk = 0;
     }
 
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
+        echo "ไม่สามารถอัพโหลดได้.";
     // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["image_file"]["tmp_name"], $target_file)) {
@@ -63,9 +58,32 @@ if (isset($_POST["event_insert"])) {
             $stmt->execute();
             $stmt->close();
             $con->close();
+            echo "<script>alert('บันทึกข้อมูลสำเร็จ');</script>";
+            echo "<script type='text/javascript'> document.location = './dashboard.php'; </script>";
         } else {
-            echo "Sorry, there was an error uploading your file.";
+            echo "ผิดพลาดในการบันทึกผล.";
         }
     }
 }
+
+
+if (isset($_POST['news_update'])) {
+    $id = $_POST['id'];
+    echo $id;
+    $title = $_POST['title'];
+    $content = $_POST['content'];    
+    $sql = "UPDATE news SET title='".$title."',content='".$content."' WHERE id=".$id.';';
+    if (mysqli_query($con, $sql)) {
+  
+        echo "<script>alert('บันทึกข้อมูลสำเร็จ');</script>";
+        echo "<script type='text/javascript'> document.location = './dashboard.php'; </script>";
+      } else {
+        echo "ผิดพลาดในการบันทึกผล: " . mysqli_error($con);
+      }
+      
+      mysqli_close($con);
+    
+}
+
+
 ?>

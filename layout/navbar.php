@@ -58,7 +58,7 @@
                 </li>
                 
                 <li class="nav-item @@contact">
-                    <a class="nav-link" href="./admin/adminverify.php">ระบบผู้ดูเเล</a>
+                    <a class="nav-link" href="./admin/admin_verify.php">ระบบผู้ดูเเล</a>
                 </li>
             </ul>
         </div>
