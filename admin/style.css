@@ -2,6 +2,8 @@ h1{
     text-align: center;
 }
 
+
+
 .container{
     display:flex;
     flex-direction: column;
@@ -20,6 +22,11 @@ align-items: center;
     margin-bottom: 10px;
     background-color:darkgray;
     border-radius: 5px 5px;
+}
+
+
+.model--items img{
+    border-radius: 20%;
 }
 
 

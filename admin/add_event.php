@@ -24,7 +24,7 @@
 
 <div class="form--input">
 <label for="title">ภาพกิจกรรม</label>
-<input type="file" name="image_file" accept="image/*" placeholder="ใส่บทความเนื้อหาข่าวสาร">
+<input type="file" name="image_file" accept="image/*">
 </input>
 </div>
 

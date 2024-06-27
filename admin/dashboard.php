@@ -46,6 +46,36 @@ include_once('./inc/config.php');
 
         <?php } ?>
                     </div>
-</body>
+
+                    <div class="container">      
+        <div class="model--title">
+         <div>
+         <h3>กิจจกรรม</h3>
+         </div>
+         <div class="button">
+            <button><a href="./add_event.php">Add</a></button>
+         </div>
+        </div>
+        <?php
+        $query = mysqli_query($con, "select * from events where 1");
+        while ($result = mysqli_fetch_array($query)) { ?>
+
+            <div class="model--items">
+                <div class="model--field"><?php echo $result['id'] ?></div>
+                <div class="model--field"><?php echo $result['title'] ?></div>
+                <div class="model--field"><?php echo $result['content'] ?></div>
+                <img src="../uploads/<?php echo $result['image_path']?>"  alt="news" style="height:200px;"><div class="model--field">
+                    <button class="list--manage_item" type="submit" name="news_update"><a href="./update_event.php?id=<?php echo $result['id']?>">edit</a></button>
+                </div>
+                </form>
+                <div class="model--field">
+                    <button class="list--manage_item">delete</button>
+                </div>
+            </div>
+
+        <?php } ?>
+                    </div>
+
+                </body>
 
 </html>
