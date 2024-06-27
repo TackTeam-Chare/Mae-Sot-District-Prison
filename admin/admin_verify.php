@@ -39,7 +39,6 @@ if (isset($_POST['login'])) {
             height: 100vh;
             margin: 0;
         }
-
         .card {
             width: 100%;
             max-width: 400px;
@@ -47,7 +46,6 @@ if (isset($_POST['login'])) {
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
         .btn-primary {
             background-color: #007bff;
             border: none;
