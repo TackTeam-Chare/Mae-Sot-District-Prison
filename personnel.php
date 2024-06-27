@@ -17,7 +17,6 @@
 <body>
     <?php include('./layout/navbar.php'); ?>
     <?php include('./layout/information_personal.php'); ?>
-   
     <?php include('./layout/footer.php'); ?>
 </body>
 
