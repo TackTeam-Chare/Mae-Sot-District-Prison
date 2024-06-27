@@ -1,4 +1,13 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
 
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Noto Sans Thai', sans-serif;
+    }
+</style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Admin</a>
@@ -17,7 +26,9 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="../../admin/add_event.php">เพิ่มกิจกรรม</a></li>
                         <li><a class="dropdown-item" href="../../admin/add_news.php">เพิ่มข่าว</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                     </ul>
                 </li>
             </ul>
