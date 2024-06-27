@@ -149,6 +149,31 @@ if (isset($_POST["event_update"])) {
         }
     }
 }
+if (isset($_POST['news_delete'])) {
+    $id = $_POST['id'];
+
+
+    // Check connection
+    if ($con->connect_error) {
+        die("Connection failed: " . $con->connect_error);
+    }
+
+    // sql to delete a record
+    $sql = "DELETE FROM news WHERE id = ?";
+
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute() === TRUE) {
+        echo "<script>alert('ลบข้อมูลสำเร็จ ".$id."');</script>";
+        echo "<script type='text/javascript'> document.location = './dashboard.php'; </script>";
+    } else {
+        echo "ลบข้อมูลไม่สำเร็จ: " . $con->error;
+    }
+
+    $stmt->close();
+    $con->close();
+}
 
 
 ?>

@@ -38,10 +38,13 @@ include_once('./inc/config.php');
                 <div class="model--field">
                     <button class="list--manage_item" type="submit" name="news_update"><a href="./update_news.php?id=<?php echo $result['id']?>">edit</a></button>
                 </div>
-                </form>
+                <form action="./crud.php" method="POST">
                 <div class="model--field">
-                    <button class="list--manage_item">delete</button>
+                    <input type="text" name='id' hidden value=<?php echo $result['id']?>>
+                    <button class="list--manage_item" type="submit" name="news_delete">delete</button>
                 </div>
+                </form>
+                
             </div>
 
         <?php } ?>
