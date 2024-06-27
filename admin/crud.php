@@ -17,7 +17,7 @@ if (isset($_POST['news_insert'])) {
 if (isset($_POST["event_insert"])) {
     $title = $_POST["title"];
     $content = $_POST["content"];
-    $target_dir = "uploads/";
+    $target_dir = "../uploads/";
     $target_file = $target_dir . basename($_FILES["image_file"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));

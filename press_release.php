@@ -1,3 +1,7 @@
+<?php
+include_once('./admin/inc/config.php');
+?>
+
 <!doctype html>
 <html>
 
@@ -30,35 +34,27 @@
             <h2>
                 <span style="color:#ffffff;">ข่าวประชาสัมพันธ์
             </h2>
+            <?php
+        $query = mysqli_query($con, "select * from news where 1 order by id desc");
+        while ($result = mysqli_fetch_array($query)) { ?>
             <article class="browser">
-                <h2>กำลังปรับปรุง</h2>
-                <p>กำลังปรับปรุง</p>
+                <h2><?php echo $result['title'] . ''; ?></h2>
+                <p><?php echo $result['content'] . ''; ?></p>
             </article>
-            <article class="browser">
-                <h2>กำลังปรับปรุง</h2>
-                <p>กำลังปรับปรุง</p>
-            </article>
-            <article class="browser">
-                <h2>กำลังปรับปรุง</h2>
-                <p>กำลังปรับปรุง</p>
-            </article>
+        <?php } ?>
         </article>
         <article class="all-browsers">
             <h2>
                 <span style="color:#ffffff;">ข่าวจัดซื้อ-จัดจ้าง
             </h2>
+            <?php
+        $query = mysqli_query($con, "select * from procurements where 1 order by id desc");
+        while ($result = mysqli_fetch_array($query)) { ?>
             <article class="browser">
-                <h2>กำลังปรับปรุง</h2>
-                <p>กำลังปรับปรุง</p>
+                <h2><?php echo $result['title'] . ''; ?></h2>
+                <p><?php echo $result['content'] . ''; ?></p>
             </article>
-            <article class="browser">
-                <h2>กำลังปรับปรุง</h2>
-                <p>กำลังปรับปรุง</p>
-            </article>
-            <article class="browser">
-                <h2>กำลังปรับปรุง</h2>
-                <p>กำลังปรับปรุง</p>
-            </article>
+        <?php } ?>
         </article>
     </section>
     

@@ -12,7 +12,7 @@
         <div class="navbar-collapse collapse" id="navbarNav" style="color: #000;">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown active">
-                    <a class="nav-link " href="../index.php">
+                    <a class="nav-link " href="./index.php">
                         หน้าแรก
 
                         <span>
@@ -55,6 +55,10 @@
                 </li>
                 <li class="nav-item @@contact">
                     <a class="nav-link" href="contact.php">ติดต่อ</a>
+                </li>
+                
+                <li class="nav-item @@contact">
+                    <a class="nav-link" href="./admin/adminverify.php">ระบบผู้ดูเเล</a>
                 </li>
             </ul>
         </div>
