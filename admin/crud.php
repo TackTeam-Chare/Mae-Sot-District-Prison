@@ -33,11 +33,11 @@ if (isset($_POST["event_insert"])) {
     }
 
 
-    // Check file size
-    if ($_FILES["image_file"]["size"] > 500000) {
-        echo "ไฟล์มีขนาดใหญ่เกินไป , ไฟล์ต้องมีขนาดไม่เกิน 50mb.";
-        $uploadOk = 0;
-    }
+    // // Check file size
+    // if ($_FILES["image_file"]["size"] > 5000000) {
+    //     echo "ไฟล์มีขนาดใหญ่เกินไป , ไฟล์ต้องมีขนาดไม่เกิน 50mb.";
+    //     $uploadOk = 0;
+    // }
 
     // Allow certain file formats
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
@@ -89,7 +89,8 @@ if (isset($_POST["event_update"])) {
     $content = $_POST["content"];
     $target_dir = "../uploads/";
 
-    $target_file = $target_dir . basename($_FILES["image_file"]["name"]);
+    $target_file = $target_dir.time() . basename($_FILES["image_file"]["name"]);
+    echo $target_file;
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -112,7 +113,7 @@ if (isset($_POST["event_update"])) {
     }
 
     // Check file size
-    if ($_FILES["image_file"]["size"] > 500000) {
+    if ($_FILES["image_file"]["size"] > 5000000) {
         echo "ไฟล์มีขนาดใหญ่เกินไป, ไฟล์ต้องมีขนาดไม่เกิน 50MB.";
         $uploadOk = 0;
     }
