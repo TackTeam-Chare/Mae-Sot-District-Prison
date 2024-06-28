@@ -60,7 +60,7 @@ button.btn-primary:hover {
             <button class="btn btn-secondary"><a href="./dashboard.php" class="text-white text-decoration-none">กลับ</a></button>
         </div>
         <form method="POST" action="./crud.php">
-            <input type="number" hidden name="id" value="<?php echo $id; ?>">
+            <input type="number" hidden name="id" value="<?php echo $_GET['id']; ?>">
             <div class="mb-3">
                 <label for="title" class="form-label">หัวเรื่อง</label>
                 <input type="text" class="form-control" placeholder="หัวข่าว" name="title" required>

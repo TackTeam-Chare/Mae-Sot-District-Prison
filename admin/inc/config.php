@@ -1,15 +1,12 @@
 <?php
 define('DB_SERVER','localhost');
-define('DB_USER','root');
-define('DB_PASS','');
-define('DB_NAME', 'db');
+define('DB_USER','user_3500');
+define('DB_PASS' ,'Arnumat@4185');
+define('DB_NAME', 'loginsystem');
+$con = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
 
-// เชื่อมต่อกับ MySQL
-$con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-
-// ตรวจสอบการเชื่อมต่อ
-if (mysqli_connect_errno()) {
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    exit();
-}
-?>
+// Check connection
+if (mysqli_connect_errno())
+{
+echo "Failed to connect to MySQL: " . mysqli_connect_error();
+ }

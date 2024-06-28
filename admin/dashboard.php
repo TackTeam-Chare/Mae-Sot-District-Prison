@@ -1,5 +1,11 @@
 <?php
 include_once('./inc/config.php');
+
+session_start();
+if (!isset($_SESSION['login'])) {
+    header('location: login.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +58,12 @@ include_once('./inc/config.php');
                             <p class="card-text"><?php echo $result['content']; ?></p>
                             <div class="d-flex justify-content-end">
                                 <a href="./update_news.php?id=<?php echo $result['id']; ?>" class="btn btn-warning me-2">Edit</a>
-                                <button class="btn btn-danger">Delete</button>
+                                <form action="./crud.php" method="POST">
+                <div class="model--field">
+                    <input type="text" name='id' hidden value=<?php echo $result['id']?>>
+                    <button class="btn btn-danger" type="submit" name="news_delete">Delete</button>
+                </div>
+                </form>
                             </div>
                         </div>
                     </div>
@@ -75,7 +86,12 @@ include_once('./inc/config.php');
                             <img src="../uploads/<?php echo $result['image_path']; ?>" alt="event image" class="img-fluid mb-3" style="max-height: 200px;">
                             <div class="d-flex justify-content-end">
                                 <a href="./update_event.php?id=<?php echo $result['id']; ?>" class="btn btn-warning me-2">Edit</a>
-                                <button class="btn btn-danger">Delete</button>
+                                <form action="./crud.php" method="POST">
+                <div class="model--field">
+                    <input type="text" name='id' hidden value=<?php echo $result['id']?>>
+                    <button class="btn btn-danger" type="submit" name="event_delete">delete</button>
+                </div>
+                </form>
                             </div>
                         </div>
                     </div>

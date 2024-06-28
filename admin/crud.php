@@ -33,11 +33,11 @@ if (isset($_POST["event_insert"])) {
     }
 
 
-    // Check file size
-    if ($_FILES["image_file"]["size"] > 500000) {
-        echo "ไฟล์มีขนาดใหญ่เกินไป , ไฟล์ต้องมีขนาดไม่เกิน 50mb.";
-        $uploadOk = 0;
-    }
+    // // Check file size
+    // if ($_FILES["image_file"]["size"] > 5000000) {
+    //     echo "ไฟล์มีขนาดใหญ่เกินไป , ไฟล์ต้องมีขนาดไม่เกิน 50mb.";
+    //     $uploadOk = 0;
+    // }
 
     // Allow certain file formats
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
@@ -48,10 +48,10 @@ if (isset($_POST["event_insert"])) {
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "ไม่สามารถอัพโหลดได้.";
-    // if everything is ok, try to upload file
+        // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["image_file"]["tmp_name"], $target_file)) {
-            echo "The file ". htmlspecialchars(basename($_FILES["image_file"]["name"])). " has been uploaded.";
+            echo "The file " . htmlspecialchars(basename($_FILES["image_file"]["name"])) . " has been uploaded.";
 
             $stmt = $con->prepare("INSERT INTO events(title, content, image_path) VALUES (?, ?, ?)");
             $stmt->bind_param("sss", $title, $content, $target_file);
@@ -70,16 +70,16 @@ if (isset($_POST["event_insert"])) {
 if (isset($_POST['news_update'])) {
     $id = $_POST['id'];
     $title = $_POST['title'];
-    $content = $_POST['content'];    
-    $sql = "UPDATE news SET title='".$title."',content='".$content."' WHERE id=".$id.';';
+    $content = $_POST['content'];
+    $sql = "UPDATE news SET title='" . $title . "',content='" . $content . "' WHERE id=" . $id . ';';
     if (mysqli_query($con, $sql)) {
-  
+
         echo "<script>alert('บันทึกข้อมูลสำเร็จ');</script>";
         echo "<script type='text/javascript'> document.location = './dashboard.php'; </script>";
-      } else {
+    } else {
         echo "ผิดพลาดในการบันทึกผล: " . mysqli_error($con);
-      }
-      mysqli_close($con);
+    }
+    mysqli_close($con);
 }
 
 
@@ -88,8 +88,9 @@ if (isset($_POST["event_update"])) {
     $title = $_POST["title"];
     $content = $_POST["content"];
     $target_dir = "../uploads/";
-    
-    $target_file = $target_dir . basename($_FILES["image_file"]["name"]);
+
+    $target_file = $target_dir.time() . basename($_FILES["image_file"]["name"]);
+    echo $target_file;
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -112,7 +113,7 @@ if (isset($_POST["event_update"])) {
     }
 
     // Check file size
-    if ($_FILES["image_file"]["size"] > 500000) {
+    if ($_FILES["image_file"]["size"] > 5000000) {
         echo "ไฟล์มีขนาดใหญ่เกินไป, ไฟล์ต้องมีขนาดไม่เกิน 50MB.";
         $uploadOk = 0;
     }
@@ -126,10 +127,10 @@ if (isset($_POST["event_update"])) {
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "ไม่สามารถอัพโหลดได้.";
-    // if everything is ok, try to upload file
+        // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["image_file"]["tmp_name"], $target_file)) {
-            echo "The file ". htmlspecialchars(basename($_FILES["image_file"]["name"])). " has been uploaded.";
+            echo "The file " . htmlspecialchars(basename($_FILES["image_file"]["name"])) . " has been uploaded.";
 
             // Delete the old image file if it exists
             if (!empty($old_image_path) && file_exists($old_image_path)) {
@@ -149,6 +150,66 @@ if (isset($_POST["event_update"])) {
         }
     }
 }
+if (isset($_POST['news_delete'])) {
+    $id = $_POST['id'];
 
 
-?>
+    // Check connection
+    if ($con->connect_error) {
+        die("Connection failed: " . $con->connect_error);
+    }
+
+    // sql to delete a record
+    $sql = "DELETE FROM news WHERE id = ?";
+
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute() === TRUE) {
+        echo "<script>alert('ลบข้อมูลสำเร็จ " . $id . "');</script>";
+        echo "<script type='text/javascript'> document.location = './dashboard.php'; </script>";
+    } else {
+        echo "ลบข้อมูลไม่สำเร็จ: " . $con->error;
+    }
+
+    $stmt->close();
+    $con->close();
+}
+
+if (isset($_POST["event_delete"])) {
+    $id = $_POST["id"]; // Assum;
+    $target_dir = "../uploads/";
+
+    $target_file = $target_dir . basename($_FILES["image_file"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    // Retrieve the old image path
+    $stmt = $con->prepare("SELECT image_path FROM events WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->bind_result($old_image_path);
+    $stmt->fetch();
+    $stmt->close();
+
+    // Delete the old image file if it exists
+    if (!empty($old_image_path) && file_exists($old_image_path)) {
+        unlink($old_image_path);
+    }
+
+    // sql to delete a record
+    $sql = "DELETE FROM events WHERE id = ?";
+
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute() === TRUE) {
+        echo "<script>alert('ลบข้อมูลสำเร็จ " . $id . "');</script>";
+        echo "<script type='text/javascript'> document.location = './dashboard.php'; </script>";
+    } else {
+        echo "ลบข้อมูลไม่สำเร็จ: " . $con->error;
+    }
+
+    $stmt->close();
+    $con->close();
+}
