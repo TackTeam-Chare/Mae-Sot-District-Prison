@@ -1,12 +1,12 @@
-<?php session_start();
+<?php
+session_start();
 include_once('./inc/config.php');
-// Code for login 
 
-
+// Code for inserting news
 if (isset($_POST['news_insert'])) {
-    $title = $_POST['title'];
-    $content = $_POST["content"];
-    $msg = mysqli_query($con, "INSERT INTO news(title,content) VALUES ('$title','$content');");
+    $title = mysqli_real_escape_string($con, $_POST['title']);
+    $content = mysqli_real_escape_string($con, $_POST["content"]);
+    $msg = mysqli_query($con, "INSERT INTO news(title,content) VALUES ('$title','$content')");
 
     if ($msg) {
         echo "<script>alert('บันทึกข้อมูลสำเร็จ');</script>";
@@ -14,9 +14,10 @@ if (isset($_POST['news_insert'])) {
     }
 }
 
+// Code for inserting events
 if (isset($_POST["event_insert"])) {
-    $title = $_POST["title"];
-    $content = $_POST["content"];
+    $title = mysqli_real_escape_string($con, $_POST["title"]);
+    $content = mysqli_real_escape_string($con, $_POST["content"]);
     $target_dir = "../uploads/";
     $target_file = $target_dir . basename($_FILES["image_file"]["name"]);
     $uploadOk = 1;
@@ -32,23 +33,21 @@ if (isset($_POST["event_insert"])) {
         $uploadOk = 0;
     }
 
-
     // Check file size
     if ($_FILES["image_file"]["size"] > 500000) {
-        echo "ไฟล์มีขนาดใหญ่เกินไป , ไฟล์ต้องมีขนาดไม่เกิน 50mb.";
+        echo "ไฟล์มีขนาดใหญ่เกินไป, ไฟล์ต้องมีขนาดไม่เกิน 50MB.";
         $uploadOk = 0;
     }
 
     // Allow certain file formats
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-        echo "อนุญาติเพียงไฟลนิด JPG, JPEG, PNG เเละ GIF.";
+    if (!in_array($imageFileType, ['jpg', 'png', 'jpeg', 'gif'])) {
+        echo "อนุญาติเพียงไฟล์ประเภท JPG, JPEG, PNG และ GIF.";
         $uploadOk = 0;
     }
 
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "ไม่สามารถอัพโหลดได้.";
-    // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["image_file"]["tmp_name"], $target_file)) {
             echo "The file ". htmlspecialchars(basename($_FILES["image_file"]["name"])). " has been uploaded.";
@@ -57,7 +56,6 @@ if (isset($_POST["event_insert"])) {
             $stmt->bind_param("sss", $title, $content, $target_file);
             $stmt->execute();
             $stmt->close();
-            $con->close();
             echo "<script>alert('บันทึกข้อมูลสำเร็จ');</script>";
             echo "<script type='text/javascript'> document.location = './dashboard.php'; </script>";
         } else {
@@ -66,29 +64,26 @@ if (isset($_POST["event_insert"])) {
     }
 }
 
-
+// Code for updating news
 if (isset($_POST['news_update'])) {
-    $id = $_POST['id'];
-    $title = $_POST['title'];
-    $content = $_POST['content'];    
-    $sql = "UPDATE news SET title='".$title."',content='".$content."' WHERE id=".$id.';';
+    $id = mysqli_real_escape_string($con, $_POST['id']);
+    $title = mysqli_real_escape_string($con, $_POST['title']);
+    $content = mysqli_real_escape_string($con, $_POST['content']);
+    $sql = "UPDATE news SET title='$title', content='$content' WHERE id=$id";
     if (mysqli_query($con, $sql)) {
-  
         echo "<script>alert('บันทึกข้อมูลสำเร็จ');</script>";
         echo "<script type='text/javascript'> document.location = './dashboard.php'; </script>";
-      } else {
+    } else {
         echo "ผิดพลาดในการบันทึกผล: " . mysqli_error($con);
-      }
-      mysqli_close($con);
+    }
 }
 
-
+// Code for updating events
 if (isset($_POST["event_update"])) {
-    $id = $_POST["id"]; // Assuming you have the event ID from the form
-    $title = $_POST["title"];
-    $content = $_POST["content"];
+    $id = mysqli_real_escape_string($con, $_POST["id"]);
+    $title = mysqli_real_escape_string($con, $_POST["title"]);
+    $content = mysqli_real_escape_string($con, $_POST["content"]);
     $target_dir = "../uploads/";
-    
     $target_file = $target_dir . basename($_FILES["image_file"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -118,7 +113,7 @@ if (isset($_POST["event_update"])) {
     }
 
     // Allow certain file formats
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+    if (!in_array($imageFileType, ['jpg', 'png', 'jpeg', 'gif'])) {
         echo "อนุญาติเพียงไฟล์ประเภท JPG, JPEG, PNG และ GIF.";
         $uploadOk = 0;
     }
@@ -126,29 +121,24 @@ if (isset($_POST["event_update"])) {
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "ไม่สามารถอัพโหลดได้.";
-    // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["image_file"]["tmp_name"], $target_file)) {
             echo "The file ". htmlspecialchars(basename($_FILES["image_file"]["name"])). " has been uploaded.";
 
-            // Delete the old image file if it exists
-            if (!empty($old_image_path) && file_exists($old_image_path)) {
+            // Delete the old image file
+            if (file_exists($old_image_path)) {
                 unlink($old_image_path);
             }
 
-            // Update the record in the database
             $stmt = $con->prepare("UPDATE events SET title = ?, content = ?, image_path = ? WHERE id = ?");
             $stmt->bind_param("sssi", $title, $content, $target_file, $id);
             $stmt->execute();
             $stmt->close();
-            $con->close();
-            echo "<script>alert('อัพเดทข้อมูลสำเร็จ');</script>";
+            echo "<script>alert('บันทึกข้อมูลสำเร็จ');</script>";
             echo "<script type='text/javascript'> document.location = './dashboard.php'; </script>";
         } else {
-            echo "ผิดพลาดในการอัพโหลดไฟล์.";
+            echo "ผิดพลาดในการบันทึกผล.";
         }
     }
 }
-
-
 ?>

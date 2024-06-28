@@ -2,20 +2,26 @@
 session_start();
 include_once('./inc/config.php');
 
-if (isset($_POST['login'])) {
-    $adminusername = $_POST['username'];
+$alertMessage = '';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
+    $username = $_POST['username'];
     $pass = md5($_POST['password']);
-    $ret = mysqli_query($con, "SELECT * FROM admin WHERE username='$adminusername' and password='$pass'");
+    $ret = mysqli_query($con, "SELECT * FROM admin WHERE username='$username' and password='$pass'");
     $num = mysqli_fetch_array($ret);
     if ($num > 0) {
-        $extra = "dashboard.php";
         $_SESSION['login'] = $_POST['username'];
-        $_SESSION['adminid'] = $num['id'];
-        echo "<script>alert('success !!!')</script>";
-        echo "<script>window.location.href='" . $extra . "'</script>";
-        exit();
+        $_SESSION['admin_id'] = $num['id'];
+        $alertMessage = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <strong>Success!</strong> You have logged in successfully.
+                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                          </div>";
+        echo "<script>setTimeout(function(){ window.location.href='dashboard.php'; }, 2000);</script>";
     } else {
-        echo "<script>alert('Invalid username or password');</script>";
+        $alertMessage = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <strong>Error!</strong> Invalid username or password.
+                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                          </div>";
     }
 }
 ?>
@@ -29,7 +35,7 @@ if (isset($_POST['login'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         body {
             background-color: #f8f9fa;
@@ -58,13 +64,20 @@ if (isset($_POST['login'])) {
         <div class="card">
             <h3 class="text-center mb-4">Admin Login</h3>
             <form method="POST">
+                <?php if (!empty($alertMessage)) echo $alertMessage; ?>
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" name="username" required>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <input type="text" class="form-control" name="username" required>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" required>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input type="password" class="form-control" name="password" required>
+                    </div>
                 </div>
                 <div class="d-grid">
                     <button type="submit" name="login" class="btn btn-primary btn-block">Sign In</button>
