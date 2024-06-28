@@ -77,7 +77,6 @@ if (isset($_POST['news_update'])) {
         echo "<script>alert('บันทึกข้อมูลสำเร็จ');</script>";
         echo "<script type='text/javascript'> document.location = './dashboard.php'; </script>";
     } else {
-    } else {
         echo "ผิดพลาดในการบันทึกผล: " . mysqli_error($con);
     }
     mysqli_close($con);

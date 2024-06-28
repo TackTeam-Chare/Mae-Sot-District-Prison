@@ -74,7 +74,7 @@
                 <input type="file" class="form-control" name="image_file" accept="image/*" required>
             </div>
             <div>
-                <button type="submit" name="news_insert" class="btn btn-primary">บันทึก</button>
+                <button type="submit" name="event_insert" class="btn btn-primary">บันทึก</button>
             </div>
         </form>
     </div>
