@@ -65,22 +65,22 @@
 <!-- Sidebar -->
 <div id="sidebar" class="bg-dark">
     <div class="p-3 d-flex justify-content-between align-items-center border-bottom">
-        <span class="fw-bold">Menu</span>
+        <span class="fw-bold">เมนู</span>
         <span class="close-btn" onclick="toggleSidebar()">&times;</span>
     </div>
     <div class="sidebar-links p-3">
         <a href="#" class="d-block"><i class="fa fa-home"></i> หน้าเเรก</a>
-        <a href="#" class="d-block" onclick="toggleSubMenu('aboutSubMenu')"><i class="fa fa-user"></i> เกี่ยวกับเรือนจำ <i class="fa fa-caret-down ms-auto"></i></a>
+        <a href="#" class="d-block" onclick="toggleSubMenu('aboutSubMenu')"><i class="fa fa-building"></i> เกี่ยวกับเรือนจำ <i class="fa fa-caret-down ms-auto"></i></a>
         <div id="aboutSubMenu" class="sidebar-submenu">
             <a href="#" class="d-block"><i class="fa fa-history"></i> ประวัติเรือนจำ</a>
-            <a href="#" class="d-block"><i class="fa fa-briefcase"></i> ทำเนียบบุคคลากร</a>
-            <a href="#" class="d-block"><i class="fa fa-history"></i> ผลิตภัณฑ์</a>
-            <a href="#" class="d-block"><i class="fa fa-briefcase"></i> ข่าวประชาสัมพันธ์</a>
-            <a href="#" class="d-block"><i class="fa fa-history"></i> พันธกิจ</a>
-            <a href="#" class="d-block"><i class="fa fa-briefcase"></i> ภารกิจ</a>
+            <a href="#" class="d-block"><i class="fa fa-users"></i> ทำเนียบบุคคลากร</a>
+            <a href="#" class="d-block"><i class="fa fa-box"></i> ผลิตภัณฑ์</a>
+            <a href="#" class="d-block"><i class="fa fa-bullhorn"></i> ข่าวประชาสัมพันธ์</a>
+            <a href="#" class="d-block"><i class="fa fa-flag"></i> พันธกิจ</a>
+            <a href="#" class="d-block"><i class="fa fa-tasks"></i> ภารกิจ</a>
         </div>
-        <a href="#" class="d-block"><i class="fa fa-cog"></i> ระเบียบการเยี่ยมญาติ</a>
-        <a href="#" class="d-block"><i class="fa fa-cog"></i> ติดต่อ</a>
+        <a href="#" class="d-block"><i class="fa fa-handshake"></i> ระเบียบการเยี่ยมญาติ</a>
+        <a href="#" class="d-block"><i class="fa fa-phone"></i> ติดต่อ</a>
     </div>
 </div>
 
