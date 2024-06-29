@@ -98,8 +98,8 @@
                 <a href="/admin/manage/manage_personnel_list.php" class="d-block"><i class="fa fa-users"></i> ทำเนียบบุคคลากร</a>
                 <a href="/admin/manage/manage_product.php" class="d-block"><i class="fa fa-box"></i> ผลิตภัณฑ์</a>
                 <a href="/admin/manage/manage_events.php" class="d-block"><i class="fa fa-bullhorn"></i> ข่าวประชาสัมพันธ์</a>
-                <a href="/admin/edit/edit_mission.php" class="d-block"><i class="fa fa-flag"></i> พันธกิจ</a>
-                <a href="/admin/edit/edit_duty.php" class="d-block"><i class="fa fa-tasks"></i> ภารกิจ</a>
+                <a href="/admin/manage/manage_mission.php" class="d-block"><i class="fa fa-flag"></i> พันธกิจ</a>
+                <a href="/admin/manage/mange_duty.php" class="d-block"><i class="fa fa-tasks"></i> ภารกิจ</a>
             </div>
             <a href="/admin/add/add_user.php" class="d-block"><i class="fa fa-user-shield"></i> ผู้ดูแลระบบ</a>
             <a href="/admin/add/add_regulations_for_visiting_relatives.php" class="d-block"><i class="fa fa-handshake"></i> ระเบียบการเยี่ยมญาติ</a>
