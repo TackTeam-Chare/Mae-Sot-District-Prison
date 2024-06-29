@@ -63,7 +63,7 @@
         <form method="POST" action="./crud.php" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="title" class="form-label">username</label>
-                <input type="text" class="form-control" placeholder="userName" name="title" required>
+                <input type="text" class="form-control" placeholder="UserName" name="title" required>
             </div>
             <div class="mb-3">
                 <label for="title" class="form-label">password</label>

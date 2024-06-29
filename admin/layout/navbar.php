@@ -97,7 +97,7 @@
                 <a href="/admin/edit/edit_prison_history.php" class="d-block"><i class="fa fa-history"></i> ประวัติเรือนจำ</a>
                 <a href="/admin/add/add_personnel_list.php" class="d-block"><i class="fa fa-users"></i> ทำเนียบบุคคลากร</a>
                 <a href="/admin/add/add_product.php" class="d-block"><i class="fa fa-box"></i> ผลิตภัณฑ์</a>
-                <a href="/admin/add/add_press_release.php" class="d-block"><i class="fa fa-bullhorn"></i> ข่าวประชาสัมพันธ์</a>
+                <a href="/admin/manage/manage_events.php" class="d-block"><i class="fa fa-bullhorn"></i> ข่าวประชาสัมพันธ์</a>
                 <a href="/admin/edit/edit_mission.php" class="d-block"><i class="fa fa-flag"></i> พันธกิจ</a>
                 <a href="/admin/edit/edit_duty.php" class="d-block"><i class="fa fa-tasks"></i> ภารกิจ</a>
             </div>
