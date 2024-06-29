@@ -54,7 +54,7 @@
 </head>
 
 <body>
-<?php include_once('./layout/navbar.php') ?>
+    <?php include_once('./layout/navbar.php') ?>
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>เพิ่มข่าวสารประชาสัมพันธ์</h1>
@@ -68,6 +68,10 @@
             <div class="mb-3">
                 <label for="content" class="form-label">เนื้อหาข่าว</label>
                 <textarea class="form-control" name="content" rows="5" placeholder="ใส่บทความเนื้อหาข่าวสาร" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="image_file" class="form-label">ภาพข่าว</label>
+                <input type="file" class="form-control" name="image_file" accept="image/*" required>
             </div>
             <div>
                 <button type="submit" name="news_insert" class="btn btn-primary">บันทึก</button>
