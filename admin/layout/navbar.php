@@ -34,7 +34,7 @@
             </ul>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/index.php">ออกจากระบบ</a>
+                    <a class="nav-link" href="../../admin/admin_verify.php">ออกจากระบบ</a>
                 </li>
             </ul>
         </div>
