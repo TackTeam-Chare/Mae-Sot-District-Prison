@@ -87,12 +87,12 @@
     <!-- Sidebar -->
     <div id="sidebar" class="bg-dark">
         <div class="p-3 d-flex justify-content-between align-items-center border-bottom">
-            <span class="fw-bold">Menu</span>
+            <span class="fw-bold">เมนู</span>
             <span class="close-btn" onclick="toggleSidebar()">&times;</span>
         </div>
         <div class="sidebar-links p-3">
             <a href="/admin/dashboard.php" class="d-block"><i class="fa fa-home"></i> หน้าเเรก</a>
-            <a href="#" class="d-block" onclick="toggleSubMenu('aboutSubMenu')"><i class="fa fa-building"></i> เกี่ยวกับเรือนจำ <i class="fa fa-caret-down ms-auto"></i></a>
+            <a href="#" class="d-block" onclick="toggleSubMenu('aboutSubMenu')"><i class="fa fa-building"></i> การจัดการข้อมูล <i class="fa fa-caret-down ms-auto"></i></a>
             <div id="aboutSubMenu" class="sidebar-submenu">
                 <a href="/admin/edit/edit_prison_history.php" class="d-block"><i class="fa fa-history"></i> ประวัติเรือนจำ</a>
                 <a href="/admin/add/add_personnel_list.php" class="d-block"><i class="fa fa-users"></i> ทำเนียบบุคคลากร</a>
@@ -103,8 +103,8 @@
             </div>
             <a href="/admin/add/add_user.php" class="d-block"><i class="fa fa-user-shield"></i> ผู้ดูแลระบบ</a>
             <a href="/admin/add/add_regulations_for_visiting_relatives.php" class="d-block"><i class="fa fa-handshake"></i> ระเบียบการเยี่ยมญาติ</a>
-            <a href="#" class="d-block"><i class="fa fa-phone"></i> ติดต่อ</a>
-            <a href="#" class="d-block"><i class="fa fa-sign-out-alt"></i> ออกจากระบบ</a>
+            <a href="/admin/edit/edit_contact.php" class="d-block"><i class="fa fa-phone"></i> ติดต่อ</a>
+            <a href="/admin/admin_verify.php" class="d-block"><i class="fa fa-sign-out-alt"></i> ออกจากระบบ</a>
         </div>
     </div>
 
