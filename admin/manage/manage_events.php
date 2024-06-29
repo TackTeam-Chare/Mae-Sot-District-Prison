@@ -46,7 +46,7 @@ if (!isset($_SESSION['login'])) {
         <hr>
         <div class="row gy-5 justify-content-center">
             <div class="d-flex justify-content-end align-items-center mb-3">
-                <button class="btn btn-primary"><a href="./add_event.php" class="text-white text-decoration-none">Add</a></button>
+                <button class="btn btn-primary"><a href="../add/add_event.php" class="text-white text-decoration-none">Add</a></button>
             </div>
             <div class="col-lg-12 events-section">
                 <?php
@@ -58,7 +58,7 @@ if (!isset($_SESSION['login'])) {
                             <p class="card-text"><?php echo $result['content']; ?></p>
                             <img src="../../uploads/<?php echo $result['image_path']; ?>" alt="event image" class="img-fluid mb-3" style="max-height: 200px;">
                             <div class="d-flex justify-content-end">
-                                <a href="./update_event.php?id=<?php echo $result['id']; ?>" class="btn btn-warning me-2">Edit</a>
+                                <a href="../edit/edit_event.php?id=<?php echo $result['id']; ?>" class="btn btn-warning me-2">Edit</a>
                                 <form action="../crud.php" method="POST">
                                     <input type="text" name='id' hidden value=<?php echo $result['id'] ?>>
                                     <button class="btn btn-danger" type="submit" name="event_delete">delete</button>

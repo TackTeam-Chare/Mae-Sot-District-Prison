@@ -51,7 +51,7 @@
 </head>
 
 <body>
-<?php include_once('./layout/navbar.php') ?>
+<?php include_once('../layout/navbar.php') ?>
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>เเก้ไขกิจกรรม</h1>
