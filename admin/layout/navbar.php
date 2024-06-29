@@ -101,8 +101,8 @@
                 <a href="/admin/edit/edit_mission.php" class="d-block"><i class="fa fa-flag"></i> พันธกิจ</a>
                 <a href="/admin/edit/edit_duty.php" class="d-block"><i class="fa fa-tasks"></i> ภารกิจ</a>
             </div>
-            <a href="#" class="d-block"><i class="fa fa-user-shield"></i> ผู้ดูแลระบบ</a>
-            <a href="#" class="d-block"><i class="fa fa-handshake"></i> ระเบียบการเยี่ยมญาติ</a>
+            <a href="/admin/add/add_user.php" class="d-block"><i class="fa fa-user-shield"></i> ผู้ดูแลระบบ</a>
+            <a href="/admin/add/add_regulations_for_visiting_relatives.php" class="d-block"><i class="fa fa-handshake"></i> ระเบียบการเยี่ยมญาติ</a>
             <a href="#" class="d-block"><i class="fa fa-phone"></i> ติดต่อ</a>
             <a href="#" class="d-block"><i class="fa fa-sign-out-alt"></i> ออกจากระบบ</a>
         </div>
