@@ -94,8 +94,8 @@
             <a href="/admin/dashboard.php" class="d-block"><i class="fa fa-home"></i> หน้าเเรก</a>
             <a href="#" class="d-block" onclick="toggleSubMenu('aboutSubMenu')"><i class="fa fa-building"></i> การจัดการข้อมูล <i class="fa fa-caret-down ms-auto"></i></a>
             <div id="aboutSubMenu" class="sidebar-submenu">
-                <a href="/admin/edit/edit_prison_history.php" class="d-block"><i class="fa fa-history"></i> ประวัติเรือนจำ</a>
-                <a href="/admin/add/add_personnel_list.php" class="d-block"><i class="fa fa-users"></i> ทำเนียบบุคคลากร</a>
+                <a href="/admin/manage/manage_prison_history.php" class="d-block"><i class="fa fa-history"></i> ประวัติเรือนจำ</a>
+                <a href="/admin/manage/manage_personnel_list.php" class="d-block"><i class="fa fa-users"></i> ทำเนียบบุคคลากร</a>
                 <a href="/admin/add/add_product.php" class="d-block"><i class="fa fa-box"></i> ผลิตภัณฑ์</a>
                 <a href="/admin/manage/manage_events.php" class="d-block"><i class="fa fa-bullhorn"></i> ข่าวประชาสัมพันธ์</a>
                 <a href="/admin/edit/edit_mission.php" class="d-block"><i class="fa fa-flag"></i> พันธกิจ</a>
@@ -103,7 +103,7 @@
             </div>
             <a href="/admin/add/add_user.php" class="d-block"><i class="fa fa-user-shield"></i> ผู้ดูแลระบบ</a>
             <a href="/admin/add/add_regulations_for_visiting_relatives.php" class="d-block"><i class="fa fa-handshake"></i> ระเบียบการเยี่ยมญาติ</a>
-            <a href="/admin/edit/edit_contact.php" class="d-block"><i class="fa fa-phone"></i> ติดต่อ</a>
+            <a href="/admin/manage/manage_contact.php" class="d-block"><i class="fa fa-phone"></i> ติดต่อ</a>
             <a href="/admin/admin_verify.php" class="d-block"><i class="fa fa-sign-out-alt"></i> ออกจากระบบ</a>
         </div>
     </div>

@@ -15,7 +15,7 @@ if (!isset($_SESSION['login'])) {
     <link rel="icon" type="image/x-icon" href="./assets/icons/admin.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>การจัดการข้อมูลกิจกรรม</title>
+    <title>การจัดการข้อมูลติดต่อ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/admin/css/style.css">
     <style>
@@ -42,11 +42,11 @@ if (!isset($_SESSION['login'])) {
 <body>
     <?php include_once('../layout/navbar.php') ?>
     <div class="container my-5">
-        <h1 class="text-center mb-4 fw-bold">การจัดการข้อมูลกิจกรรม</h1>
+        <h1 class="text-center mb-4 fw-bold">การจัดการข้อมูลติดต่อ</h1>
         <hr>
         <div class="row gy-5 justify-content-center">
             <div class="d-flex justify-content-end align-items-center mb-3">
-                <button class="btn btn-primary"><a href="../add/add_event.php" class="text-white text-decoration-none">Add</a></button>
+                <button class="btn btn-primary"><a href="../add/add_contact.php" class="text-white text-decoration-none">Add</a></button>
             </div>
             <div class="col-lg-12 events-section">
                 <?php
@@ -58,7 +58,7 @@ if (!isset($_SESSION['login'])) {
                             <p class="card-text"><?php echo $result['content']; ?></p>
                             <img src="../../uploads/<?php echo $result['image_path']; ?>" alt="event image" class="img-fluid mb-3" style="max-height: 200px;">
                             <div class="d-flex justify-content-end">
-                                <a href="../edit/edit_event.php?id=<?php echo $result['id']; ?>" class="btn btn-warning me-2">Edit</a>
+                                <a href="../edit/edit_contact.php?php echo $result['id']; ?>" class="btn btn-warning me-2">Edit</a>
                                 <form action="../crud.php" method="POST">
                                     <input type="text" name='id' hidden value=<?php echo $result['id'] ?>>
                                     <button class="btn btn-danger" type="submit" name="event_delete">delete</button>

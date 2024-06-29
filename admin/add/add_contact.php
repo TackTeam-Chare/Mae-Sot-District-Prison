@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เเก้ไขประวัติเรือนจำ</title>
+    <title>เพิ่มข้อมูลติดต่อ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -57,17 +57,13 @@
 <?php include_once('../layout/navbar.php') ?>
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1>เเก้ไขประวัติเรือนจำ</h1>
+            <h1>เพิ่มข้อมูลติดต่อ</h1>
             <button class="btn btn-secondary"><a href="../dashboard.php" class="text-white text-decoration-none">กลับ</a></button>
         </div>
         <form method="POST" action="./crud.php" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="content" class="form-label">เนื้อหาประวัติ</label>
+                <label for="content" class="form-label">เนื้อหา</label>
                 <textarea class="form-control" name="content" rows="5" placeholder="ใส่บทความเนื้อหาข่าวสาร" required></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="image_file" class="form-label">ภาพ</label>
-                <input type="file" class="form-control" name="image_file" accept="image/*" required>
             </div>
             <div>
                 <button type="submit" name="event_insert" class="btn btn-primary">บันทึก</button>
