@@ -58,7 +58,7 @@
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>พันธกิจ</h1>
-            <button class="btn btn-secondary"><a href="./dashboard.php" class="text-white text-decoration-none">กลับ</a></button>
+            <button class="btn btn-secondary"><a href="../dashboard.php" class="text-white text-decoration-none">กลับ</a></button>
         </div>
         <form method="POST" action="./crud.php" enctype="multipart/form-data">
             <div class="mb-3">

@@ -38,7 +38,6 @@ if (!isset($_SESSION['login'])) {
 </head>
 <body>
     <?php include_once('./layout/navbar.php') ?>
-    <?php include_once('./layout/sidebar.php') ?>
     <div class="container my-5">
         <h1 class="text-center mb-4 fw-bold">Admin Dashboard</h1>
         <hr>
