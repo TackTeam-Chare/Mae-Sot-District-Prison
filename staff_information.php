@@ -12,7 +12,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
   <style>
-  .card {
+    .card {
       transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
       height: 100%;
       display: flex;
@@ -55,6 +55,35 @@
       background-size: cover;
       background-position: center;
     }
+
+    .tree {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+    }
+
+    .node {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .node img {
+      width: 150px; /* Increased size */
+      height: 150px; /* Increased size */
+      border-radius: 50%;
+      border: 3px solid #ddd;
+    }
+
+    .children {
+      display: flex;
+      justify-content: center;
+    }
   </style>
 </head>
 
@@ -63,37 +92,45 @@
   <div class="container my-5">
     <h2 class="text-white mb-4">แผนผังฝ่ายการศึกษา</h2>
     <hr class="bg-white my-4" style="height: 3px;">
-    <div class="d-flex flex-wrap justify-content-center">
-      <div class="card mb-4">
-        <div class="card-img-top" style="background-image: url('./img/01.jpg');"></div>
-        <div class="card-body text-center" data-bs-toggle="modal" data-bs-target="#staffModal" data-name="นาย กุหลาบ บุญเลิศ" data-position="นักทัณฑวิทยาชำนาญการพิเศษ">
-          <h5 class="card-title">นาย กุหลาบ บุญเลิศ</h5>
-          <p class="card-text">นักทัณฑวิทยาชำนาญการพิเศษ<br>ผู้กำกับการฝ่ายการศึกษาและพัฒนาจิตใจ</p>
-        </div>
+    <div class="tree">
+      <div class="node">
+        <img src="img/02.jpg" alt="นายกุหลาบ บุญเลิศ">
+        <div>นายกุหลาบ บุญเลิศ</div>
+        <div>ผู้กำกับการฝ่ายการศึกษาและพัฒนาจิตใจ</div>
       </div>
-      <div class="card mb-4">
-        <div class="card-img-top" style="background-image: url('./img/02.jpg');"></div>
-        <div class="card-body text-center" data-bs-toggle="modal" data-bs-target="#staffModal" data-name="นายชูพันธ์ วรเจริญ" data-position="นักวิชาการอบรมและฝึกวิชาชีพชำนาญการ">
-          <h5 class="card-title">นายชูพันธ์ วรเจริญ</h5>
-          <p class="card-text">นักวิชาการอบรมและฝึกวิชาชีพชำนาญการ<br>หัวหน้าโครงการศึกษาและพัฒนาจิตใจ</p>
-        </div>
+      <div class="node">
+        <img src="img/02.jpg" alt="นายชูพันธ์ วรเจริญ">
+        <div>นายชูพันธ์ วรเจริญ</div>
+        <div>หัวหน้าโครงการศึกษาและพัฒนาจิตใจ</div>
       </div>
-      <div class="card mb-4">
-        <div class="card-img-top" style="background-image: url('./img/03.jpg');"></div>
-        <div class="card-body text-center" data-bs-toggle="modal" data-bs-target="#staffModal" data-name="นายวิทยา ก้านลำ" data-position="นักทัณฑวิทยาปฏิบัติการ">
-          <h5 class="card-title">นายวิทยา ก้านลำ</h5>
-          <p class="card-text">นักทัณฑวิทยาปฏิบัติการ<br>หัวหน้าฝ่ายการศึกษา</p>
+      <div class="children">
+        <div class="node">
+          <img src="img/02.jpg" alt="นายวิทยา ก้านลำ">
+          <div>นายวิทยา ก้านลำ</div>
+          <div>หัวหน้าฝ่ายการศึกษา</div>
         </div>
-      </div>
-      <div class="card mb-4">
-        <div class="card-img-top" style="background-image: url('./img/04.jpg');"></div>
-        <div class="card-body text-center" data-bs-toggle="modal" data-bs-target="#staffModal" data-name="นายอนันทร์ สิงหิการ" data-position="เจ้าพนักงานราชทัณฑ์ชำนาญงาน">
-          <h5 class="card-title">นายอนันทร์ สิงหิการ</h5>
-          <p class="card-text">เจ้าพนักงานราชทัณฑ์ชำนาญงาน<br>หัวหน้าฝ่ายงานอบรมจิตบำบัด</p>
+        <div class="node">
+          <img src="img/04.jpg" alt="นายอนันทร์ สิงหิการ">
+          <div>นายอนันทร์ สิงหิการ</div>
+          <div>หัวหน้าฝ่ายงานอบรมจิตบำบัด</div>
+        </div>
+        <div class="node">
+          <img src="img/04.jpg" alt="นายอนันทร์ สิงหิการ">
+          <div>นายอนันทร์ สิงหิการ</div>
+          <div>หัวหน้าฝ่ายงานอบรมจิตบำบัด</div>
+        </div>
+        <div class="node">
+          <img src="img/04.jpg" alt="นายอนันทร์ สิงหิการ">
+          <div>นายอนันทร์ สิงหิการ</div>
+          <div>หัวหน้าฝ่ายงานอบรมจิตบำบัด</div>
+        </div>
+        <div class="node">
+          <img src="img/04.jpg" alt="นายอนันทร์ สิงหิการ">
+          <div>นายอนันทร์ สิงหิการ</div>
+          <div>หัวหน้าฝ่ายงานอบรมจิตบำบัด</div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 
   <!-- Modal -->
