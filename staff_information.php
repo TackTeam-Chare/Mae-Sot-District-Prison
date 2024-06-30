@@ -12,17 +12,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .card {
+  .card {
       transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
       height: 100%;
       display: flex;
       flex-direction: column;
-    }
-
-    .card {
       background-color: rgb(179, 78, 78);
       border-radius: 2px;
-      display: inline-block;
       margin: 1rem;
       padding: 25px;
     }
@@ -53,6 +49,12 @@
       font-size: 1rem;
       flex-grow: 1;
     }
+
+    .card-img-top {
+      height: 300px;
+      background-size: cover;
+      background-position: center;
+    }
   </style>
 </head>
 
@@ -61,46 +63,37 @@
   <div class="container my-5">
     <h2 class="text-white mb-4">แผนผังฝ่ายการศึกษา</h2>
     <hr class="bg-white my-4" style="height: 3px;">
-    <div class="row justify-content-center">
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <div class="card-img-top" style="background-image: url('./img/01.jpg'); height: 300px; background-size: cover; background-position: center;"></div>
-          <div class="card-body text-center" data-toggle="modal" data-target="#staffModal" data-name="นาย กุหลาบ บุญเลิศ" data-position="นักทัณฑวิทยาชำนาญการพิเศษ">
-            <h5 class="card-title">นาย กุหลาบ บุญเลิศ</h5>
-            <p class="card-text">นักทัณฑวิทยาชำนาญการพิเศษ<br>ผู้กำกับการฝ่ายการศึกษาและพัฒนาจิตใจ</p>
-          </div>
+    <div class="d-flex flex-wrap justify-content-center">
+      <div class="card mb-4">
+        <div class="card-img-top" style="background-image: url('./img/01.jpg');"></div>
+        <div class="card-body text-center" data-bs-toggle="modal" data-bs-target="#staffModal" data-name="นาย กุหลาบ บุญเลิศ" data-position="นักทัณฑวิทยาชำนาญการพิเศษ">
+          <h5 class="card-title">นาย กุหลาบ บุญเลิศ</h5>
+          <p class="card-text">นักทัณฑวิทยาชำนาญการพิเศษ<br>ผู้กำกับการฝ่ายการศึกษาและพัฒนาจิตใจ</p>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <div class="card-img-top" style="background-image: url('./img/02.jpg'); height: 300px; background-size: cover; background-position: center;"></div>
-          <div class="card-body text-center" data-toggle="modal" data-target="#staffModal" data-name="นายชูพันธ์ วรเจริญ" data-position="นักวิชาการอบรมและฝึกวิชาชีพชำนาญการ">
-            <h5 class="card-title">นายชูพันธ์ วรเจริญ</h5>
-            <p class="card-text">นักวิชาการอบรมและฝึกวิชาชีพชำนาญการ<br>หัวหน้าโครงการศึกษาและพัฒนาจิตใจ</p>
-          </div>
+      <div class="card mb-4">
+        <div class="card-img-top" style="background-image: url('./img/02.jpg');"></div>
+        <div class="card-body text-center" data-bs-toggle="modal" data-bs-target="#staffModal" data-name="นายชูพันธ์ วรเจริญ" data-position="นักวิชาการอบรมและฝึกวิชาชีพชำนาญการ">
+          <h5 class="card-title">นายชูพันธ์ วรเจริญ</h5>
+          <p class="card-text">นักวิชาการอบรมและฝึกวิชาชีพชำนาญการ<br>หัวหน้าโครงการศึกษาและพัฒนาจิตใจ</p>
         </div>
       </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <div class="card-img-top" style="background-image: url('./img/03.jpg'); height: 300px; background-size: cover; background-position: center;"></div>
-          <div class="card-body text-center" data-toggle="modal" data-target="#staffModal" data-name="นายวิทยา ก้านลำ" data-position="นักทัณฑวิทยาปฏิบัติการ">
-            <h5 class="card-title">นายวิทยา ก้านลำ</h5>
-            <p class="card-text">นักทัณฑวิทยาปฏิบัติการ<br>หัวหน้าฝ่ายการศึกษา</p>
-          </div>
+      <div class="card mb-4">
+        <div class="card-img-top" style="background-image: url('./img/03.jpg');"></div>
+        <div class="card-body text-center" data-bs-toggle="modal" data-bs-target="#staffModal" data-name="นายวิทยา ก้านลำ" data-position="นักทัณฑวิทยาปฏิบัติการ">
+          <h5 class="card-title">นายวิทยา ก้านลำ</h5>
+          <p class="card-text">นักทัณฑวิทยาปฏิบัติการ<br>หัวหน้าฝ่ายการศึกษา</p>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <div class="card-img-top" style="background-image: url('./img/04.jpg'); height: 300px; background-size: cover; background-position: center;"></div>
-          <div class="card-body text-center" data-toggle="modal" data-target="#staffModal" data-name="นายอนันทร์ สิงหิการ" data-position="เจ้าพนักงานราชทัณฑ์ชำนาญงาน">
-            <h5 class="card-title">นายอนันทร์ สิงหิการ</h5>
-            <p class="card-text">เจ้าพนักงานราชทัณฑ์ชำนาญงาน<br>หัวหน้าฝ่ายงานอบรมจิตบำบัด</p>
-          </div>
+      <div class="card mb-4">
+        <div class="card-img-top" style="background-image: url('./img/04.jpg');"></div>
+        <div class="card-body text-center" data-bs-toggle="modal" data-bs-target="#staffModal" data-name="นายอนันทร์ สิงหิการ" data-position="เจ้าพนักงานราชทัณฑ์ชำนาญงาน">
+          <h5 class="card-title">นายอนันทร์ สิงหิการ</h5>
+          <p class="card-text">เจ้าพนักงานราชทัณฑ์ชำนาญงาน<br>หัวหน้าฝ่ายงานอบรมจิตบำบัด</p>
         </div>
       </div>
     </div>
+  </div>
   </div>
 
   <!-- Modal -->

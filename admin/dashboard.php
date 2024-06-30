@@ -26,11 +26,9 @@ if (!isset($_SESSION['login'])) {
             padding: 0;
             font-family: 'Noto Sans Thai', sans-serif;
         }
-
         h1 {
             font-weight: 900;
         }
-
         .news-section, .events-section {
             margin-bottom: 2rem; /* เพิ่มช่องว่างด้านล่าง */
         }
