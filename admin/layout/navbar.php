@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap 5 Sidebar</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
@@ -79,39 +79,53 @@
         #content.active {
             margin-left: 0;
         }
+
+        .submenu-active a::before {
+            content: "- ";
+            padding-right: 5px;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- Sidebar -->
-    <div id="sidebar" class="bg-dark">
-        <div class="p-3 d-flex justify-content-between align-items-center border-bottom">
-            <span class="fw-bold">เมนู</span>
-            <span class="close-btn" onclick="toggleSidebar()">&times;</span>
-        </div>
-        <div class="sidebar-links p-3">
-            <a href="/admin/dashboard.php" class="d-block"><i class="fa fa-home"></i> หน้าเเรก</a>
-            <a href="#" class="d-block" onclick="toggleSubMenu('aboutSubMenu')"><i class="fa fa-building"></i> การจัดการข้อมูล <i class="fa fa-caret-down ms-auto"></i></a>
-            <div id="aboutSubMenu" class="sidebar-submenu">
-                <a href="/admin/manage/manage_prison_history.php" class="d-block"><i class="fa fa-history"></i> ประวัติเรือนจำ</a>
-                <a href="/admin/manage/manage_personnel_list.php" class="d-block"><i class="fa fa-users"></i> ทำเนียบบุคคลากร</a>
-                <a href="/admin/manage/manage_product.php" class="d-block"><i class="fa fa-box"></i> ผลิตภัณฑ์</a>
-                <a href="/admin/manage/manage_events.php" class="d-block"><i class="fa fa-bullhorn"></i> ข่าวประชาสัมพันธ์</a>
-                <a href="/admin/manage/manage_mission.php" class="d-block"><i class="fa fa-flag"></i> พันธกิจ</a>
-                <a href="/admin/manage/mange_duty.php" class="d-block"><i class="fa fa-tasks"></i> ภารกิจ</a>
-            </div>
-            <a href="/admin/manage/manage_admin.php" class="d-block"><i class="fa fa-user-shield"></i> ผู้ดูแลระบบ</a>
-            <a href="/admin/manage/manage_regulations_for_visiting_relatives.php" class="d-block"><i class="fa fa-handshake"></i> ระเบียบการเยี่ยมญาติ</a>
-            <a href="/admin/manage/manage_contact.php" class="d-block"><i class="fa fa-phone"></i> ติดต่อ</a>
-            <a href="/admin/admin_verify.php" class="d-block"><i class="fa fa-sign-out-alt"></i> ออกจากระบบ</a>
-        </div>
-    </div>
-
-    <!-- Page Content -->
     <div id="content" class="p-3">
         <button class="btn btn-primary" onclick="toggleSidebar()">☰ เมนู</button>
-        <!-- Add your page content here -->
+        <div id="sidebar" class="bg-dark">
+            <div class="p-3 d-flex justify-content-between align-items-center border-bottom">
+                <span class="fw-bold">เมนู</span>
+                <span class="close-btn" onclick="toggleSidebar()">&times;</span>
+            </div>
+            <div class="sidebar-links p-3">
+                <a href="/admin/dashboard.php" class="d-block"><i class="fa fa-home"></i> หน้าเเรก</a>
+                <a href="#" class="d-block" onclick="toggleSubMenu('dataManagementSubMenu')"><i class="fa fa-building"></i> การจัดการข้อมูล <i class="fa fa-caret-down ms-auto"></i></a>
+                <div id="dataManagementSubMenu" class="sidebar-submenu">
+                    <a href="/admin/manage/manage_prison_history.php" class="d-block"><i class="fa fa-history"></i> ประวัติเรือนจำ</a>
+                    <a href="#" class="d-block" onclick="toggleSubMenu('personnelSubMenu')"><i class="fa fa-users"></i> ทำเนียบบุคลากร <i class="fa fa-caret-down ms-auto"></i></a>
+                    <div id="personnelSubMenu" class="sidebar-submenu">
+                        <a href="staff_information.php" class="d-block">ฝ่ายผู้บริหาร</a>
+                        <a href="staff_information.php" class="d-block">ฝ่ายบริหารทั่วไป</a>
+                        <a href="staff_information.php" class="d-block">ฝ่ายทัณฑปฎิบัติ</a>
+                        <a href="staff_information.php" class="d-block">ฝ่ายฝึกวิชาชีพ</a>
+                        <a href="staff_information.php" class="d-block">ฝ่ายควบคุมเเละรักษาการณ์</a>
+                        <a href="staff_information.php" class="d-block">ฝ่ายสวัสดิการผู้ต้องขังเเละสงเคราะห์ผู้ต้องขัง</a>
+                        <a href="staff_information.php" class="d-block">ฝ่ายการศึกษา</a>
+                        <a href="staff_information.php" class="d-block">ฝ่ายสภานพยาบาลเรือนจำ</a>
+                        <a href="staff_information.php" class="d-block">ฝ่ายควบคุมเเดนหญิง</a>
+                        <a href="staff_information.php" class="d-block">ฝ่ายรักษาการณ์</a>
+                        <a href="staff_information.php" class="d-block">ฝ่ายควบคุม</a>
+                    </div>
+                    <a href="/admin/manage/manage_product.php" class="d-block"><i class="fa fa-box"></i> ผลิตภัณฑ์</a>
+                    <a href="/admin/manage/manage_events.php" class="d-block"><i class="fa fa-bullhorn"></i> ข่าวประชาสัมพันธ์</a>
+                    <a href="/admin/manage/manage_mission.php" class="d-block"><i class="fa fa-flag"></i> พันธกิจ</a>
+                    <a href="/admin/manage/mange_duty.php" class="d-block"><i class="fa fa-tasks"></i> ภารกิจ</a>
+                </div>
+                <a href="/admin/manage/manage_admin.php" class="d-block"><i class="fa fa-user-shield"></i> ผู้ดูแลระบบ</a>
+                <a href="/admin/manage/manage_regulations_for_visiting_relatives.php" class="d-block"><i class="fa fa-handshake"></i> ระเบียบการเยี่ยมญาติ</a>
+                <a href="/admin/manage/manage_contact.php" class="d-block"><i class="fa fa-phone"></i> ติดต่อ</a>
+                <a href="/admin/admin_verify.php" class="d-block"><i class="fa fa-sign-out-alt"></i> ออกจากระบบ</a>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -126,7 +140,7 @@
         }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
