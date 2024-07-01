@@ -149,7 +149,7 @@
     .browser>h2,
     p {
       margin: 4px;
-      font-size: 90%;
+      font-size: 100%;
     }
 
     .text-info,
@@ -167,55 +167,36 @@
     <h1 class="text-center text-light">ผลิตภัณฑ์ของฝ่ายฝึกวิชาชีพ</h1>
     <p class="text-center text-light">ติดต่อสอบถามได้ที่<br>เบอร์ 055 531226 ต่อ 108</p>
 
-    <div class="row justify-content-center">
-      <div class="col-12 col-sm-6 col-md-4 mb-4 d-flex justify-content-center">
-        <div class="card">
-          <img src="img/toop01.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">ชุดรับแขกตอรากไม้ ราคา 5,000 บาท ค่ะ</h5>
-          </div>
+    <div class="d-flex flex-wrap justify-content-center">
+      <div class="card mb-4">
+        <div class="card-img-top" style="background-image: url('./img/toop05.jpg');"></div>
+        <div class="card-body text-center">
+          <h5 class="card-title">ชุดรับแขกตอรากไม้</h5>
+          <p class="card-text">ชุดรับแขกตอรากไม้<br> ราคา 5,000 บาท</p>
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-md-4 mb-4 d-flex justify-content-center">
-        <div class="card">
-          <img src="img/แก้ไขtoop2.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">เก้าอี้บาร์ตอไม้ขาเหล็ก ขนาด 45*45*70 ซม. ราคา 1,500 บาท</h5>
-          </div>
+      <div class="card mb-4">
+        <div class="card-img-top" style="background-image: url('./img/toop05.jpg');"></div>
+        <div class="card-body text-center">
+          <h5 class="card-title">ชุดรับแขกตอรากไม้</h5>
+          <p class="card-text">ชุดรับแขกตอรากไม้<br> ราคา 5,000 บาท</p>
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-md-4 mb-4 d-flex justify-content-center">
-        <div class="card">
-          <img src="img/toop03.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">เก้าอี้พนักพิงตอรากไม้ ขนาด 85*120*100 ซม. ทำจากไม้สักทอง ราคา 6,000 บาท</h5>
-          </div>
+      <div class="card mb-4">
+        <div class="card-img-top" style="background-image: url('./img/toop05.jpg');"></div>
+        <div class="card-body text-center">
+          <h5 class="card-title">ชุดรับแขกตอรากไม้</h5>
+          <p class="card-text">ชุดรับแขกตอรากไม้<br> ราคา 5,000 บาท</p>
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-md-4 mb-4 d-flex justify-content-center">
-        <div class="card">
-          <img src="img/toop04.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">เก้าอี้พนักพิงตอรากไม้เล็ก ขนาด 35*60*65 ซม. ทำจากไม้สักทอง ราคา 4,000 บาท</h5>
-          </div>
+      <div class="card mb-4">
+        <div class="card-img-top" style="background-image: url('./img/toop05.jpg');"></div>
+        <div class="card-body text-center">
+          <h5 class="card-title">ชุดรับแขกตอรากไม้</h5>
+          <p class="card-text">ชุดรับแขกตอรากไม้<br> ราคา 5,000 บาท</p>
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-md-4 mb-4 d-flex justify-content-center">
-        <div class="card">
-          <img src="img/toop05.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">เก้าอี้ฮ่องเต้ ขนาด 50*95*80 ซม. ทำจากไม้สักทอง ราคา 4,500 บาท</h5>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 mb-4 d-flex justify-content-center">
-        <div class="card">
-          <img src="img/toop06.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">ชิงช้าสนามเล็ก ขนาด 100*100*200 ซม. ราคา 4,500 บาท</h5>
-          </div>
-        </div>
-      </div>
+
     </div>
   </div>
 

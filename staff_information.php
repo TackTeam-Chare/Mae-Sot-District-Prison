@@ -133,39 +133,9 @@
     </div>
   </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="staffModal" tabindex="-1" aria-labelledby="staffModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staffModalLabel">ข้อมูลพนักงาน</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" id="staffModalBody">
-          <!-- ข้อมูลจะถูกแทรกที่นี่โดย JavaScript -->
-        </div>
-      </div>
-    </div>
-  </div>
-
   <?php include('./layout/footer.php'); ?>
 
-  <script>
-    $(document).ready(function() {
-      $('.card-body').click(function() {
-        var name = $(this).data('name');
-        var position = $(this).data('position');
-        var imgSrc = $(this).prev('.card-img-top').css('background-image').replace('url("', '').replace('")', '');
 
-        $('#staffModalLabel').text('ข้อมูล: ' + name);
-        $('#staffModalBody').html('<img src="' + imgSrc + '" class="img-fluid mb-3" style="max-width: 100%; height: auto;" /><p><strong>ตำแหน่ง:</strong> ' + position + '</p>');
-
-        $('#staffModal').modal('show');
-      });
-    });
-  </script>
 </body>
 
 </html>
