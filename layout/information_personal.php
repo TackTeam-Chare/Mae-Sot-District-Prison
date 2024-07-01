@@ -5,13 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>information_personal</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
     <style>
         body {
             text-align: center;
             background-color: rgb(148, 16, 16);
             font-family: Arial, sans-serif;
         }
-
         .main-content {
             margin-top: 20px;
         }
@@ -73,10 +79,17 @@
             </div>
             <br>
             <div class="d-grid gap-2 col-6 mx-auto">
-                <a href="staff_information.php" class="btn btn-primary" role="button">ฝ่ายการศึกษา</a>
-                <a href="staff_information.php" class="btn btn-primary" role="button">แผนผังผู้บริหาร</a>
-                <a href="staff_information.php" class="btn btn-primary" role="button">ฝ่ายบริหารทั่วไป</a>
-                <a href="staff_information.php" class="btn btn-primary" role="button">ฝ่ายทัณฑปฏิบัติ</a>
+                <a href="staff_information.php" class="btn btn-primary">ฝ่ายผู้บริหาร</a>
+                <a href="staff_information.php" class="btn btn-primary">ฝ่ายบริหารทั่วไป</a>
+                <a href="staff_information.php" class="btn btn-primary">ฝ่ายทัณฑปฎิบัติ</a>
+                <a href="staff_information.php" class="btn btn-primary">ฝ่ายฝึกวิชาชีพ</a>
+                <a href="staff_information.php" class="btn btn-primary">ฝ่ายควบคุมเเละรักษาการณ์</a>
+                <a href="staff_information.php" class="btn btn-primary">ฝ่ายสวัสดิการผู้ต้องขังเเละสงเคราะห์ผู้ต้องขัง</a>
+                <a href="staff_information.php" class="btn btn-primary">ฝ่ายการศึกษา</a>
+                <a href="staff_information.php" class="btn btn-primary">ฝ่ายสภานพยาบาลเรือนจำ</a>
+                <a href="staff_information.php" class="btn btn-primary">ฝ่ายควบคุมเเดนหญิง</a>
+                <a href="staff_information.php" class="btn btn-primary">ฝ่ายรักษาการณ์</a>
+                <a href="staff_information.php" class="btn btn-primary">ฝ่ายควบคุม</a>
             </div>
         </div>
     </main>
