@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap 5 Sidebar</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
 
@@ -81,6 +79,11 @@
         #content.active {
             margin-left: 0;
         }
+
+        .submenu-active a::before {
+            content: "- ";
+            padding-right: 5px;
+        }
     </style>
 </head>
 
@@ -98,7 +101,7 @@
                 <a href="#" class="d-block" onclick="toggleSubMenu('dataManagementSubMenu')"><i class="fa fa-building"></i> การจัดการข้อมูล <i class="fa fa-caret-down ms-auto"></i></a>
                 <div id="dataManagementSubMenu" class="sidebar-submenu">
                     <a href="/admin/manage/manage_prison_history.php" class="d-block"><i class="fa fa-history"></i> ประวัติเรือนจำ</a>
-                    <a href="#" class="d-block" onclick="toggleSubMenu('personnelSubMenu')"><i class="fa fa-users"></i> ทำเนียบบุคคลากร <i class="fa fa-caret-down ms-auto"></i></a>
+                    <a href="#" class="d-block" onclick="toggleSubMenu('personnelSubMenu')"><i class="fa fa-users"></i> ทำเนียบบุคลากร <i class="fa fa-caret-down ms-auto"></i></a>
                     <div id="personnelSubMenu" class="sidebar-submenu">
                         <a href="staff_information.php" class="d-block">ฝ่ายผู้บริหาร</a>
                         <a href="staff_information.php" class="d-block">ฝ่ายบริหารทั่วไป</a>
@@ -137,7 +140,7 @@
         }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
