@@ -15,7 +15,7 @@ include_once('./admin/inc/config.php');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <style>
         .unique-animation-container {
@@ -262,51 +262,61 @@ include_once('./admin/inc/config.php');
                                         </div>
                                     </div>
                                     <article class="all-browsers">
-                                        <h2 style="color: #ffffff;">ข่าวจัดซื้อ-จัดจ้าง</h2>
+                                        <h2 style="color: #ffffff;  text-align: center; margin-top:20px" >ข่าวจัดซื้อ-จัดจ้าง</h2>
                                         <div class="row">
                                             <?php
-                                            $query = mysqli_query($con, "select * from procurements where 1 order by id desc");
-                                            while ($result = mysqli_fetch_array($query)) { ?>
+                                            $query_procurements = mysqli_query($con, "SELECT * FROM procurements ORDER BY id DESC");
+                                            while ($result = mysqli_fetch_array($query_procurements)) {
+                                            ?>
                                                 <div class="col-md-4 mb-4">
                                                     <div class="card h-100">
                                                         <div class="card-body">
-                                                            <h5 class="card-title"><?php echo $result['title'] ?></h5>
-                                                            <p class="card-text"><?php echo $result['content'] ?></p>
+                                                            <h5 class="card-title"><?php echo htmlspecialchars($result['title']); ?></h5>
+                                                            <p class="card-text"><?php echo htmlspecialchars($result['content']); ?></p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             <?php } ?>
-
                                         </div>
                                     </article>
 
                                     <article class="all-browsers">
-                                        <h2 style="color: #ffffff;">ข่าวประชาสัมพันธ์</h2>
-                                        <div class="row">
-                                            <?php
-                                            $query = mysqli_query($con, "select * from news where 1 order by id desc");
-                                            while ($result = mysqli_fetch_array($query)) { ?>
-                                                <div class="col-md-4 mb-4">
-                                                    <div class="card h-100">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"><?php echo $result['title'] ?></h5>
-                                                            <p class="card-text"><?php echo $result['content'] ?></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <?php } ?>
-                                        </div>
-                                    </article>
+    <h2 style="color: #ffffff;   text-align: center;">ข่าวประชาสัมพันธ์</h2>
+    <div class="row">
+        <?php
+        $query_news = mysqli_query($con, "SELECT * FROM news ORDER BY id DESC");
+        while ($result = mysqli_fetch_array($query_news)) {
+        ?>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo htmlspecialchars($result['title']); ?></h5>
+                        <p class="card-text"><?php echo htmlspecialchars($result['content']); ?></p>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+    
+</article>
 
                                 </div>
+                                
                             </div>
+                            
                         </div>
+
                     </div>
+
+            </div>
     </main>
+
     <article>
         <h1 class="top">
             <span style="color: aliceblue;">เว็บไซต์ที่เกี่ยวข้อง</span>
         </h1>
+        <p style="color: aliceblue;">เว็บไซต์นี้จัดทำขึ้นเพื่อให้ข้อมูลและข่าวสารเกี่ยวกับเรือนจำอำเภอแม่สอด และเพื่ออำนวยความสะดวกให้กับประชาชนที่สนใจและมีความประสงค์ที่จะติดต่อกับเรือนจำอำเภอแม่สอด</p>
+        <p style="color: aliceblue;">เรือนจำอำเภอแม่สอดเป็นหน่วยงานในสังกัดกรมราชทัณฑ์ กระทรวงยุติธรรม ที่มีภารกิจหลักในการดูแลควบคุมผู้ต้องขัง และฟื้นฟูสมรรถภาพทางร่างกายและจิตใจของผู้ต้องขังให้สามารถกลับเข้าสู่สังคมได้อย่างมีคุณภาพ</p>
         <hr style="height: 5px;" color="aliceblue">
     </article>
     <div class="unique-animation-container">
