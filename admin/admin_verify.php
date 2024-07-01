@@ -1,38 +1,7 @@
-<?php
-session_start();
-include_once('./inc/config.php');
-
-if (!isset($_SESSION['login_status'])) {
-    $_SESSION['login_status'] = ''; 
-}
-
-if (isset($_POST['login'])) {
-    $admin_username = $_POST['username'];
-    $password = md5($_POST['password']);
-    $ret = mysqli_query($con, 'SELECT * FROM admin WHERE username="'.$admin_username.'" and password="'.$password.'"');
-    $num = mysqli_num_rows($ret);
-
-    if ($num > 0) {
-        $row = mysqli_fetch_array($ret);
-        $_SESSION['login'] = $_POST['username'];
-        $_SESSION['admin_id'] = $row['id'];
-        header("Location: ./dashboard.php");
-        exit();
-    } else {
-        $_SESSION['login_status'] = 'fail';  
-        header("Location: ".$_SERVER['PHP_SELF']);
-        exit();
-    }
-}
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>Login Admin</title>
+    <title>เรือนจำอำเภอแม่สอด</title>
     <link rel="icon" type="image/x-icon" href="img/spd_20150704164759_b.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -62,63 +31,66 @@ if (isset($_POST['login'])) {
         }
     </style>
 </head>
-
 <body>
+
+
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="card">
             <h3 class="text-center mb-4">Admin Login</h3>
-
-        
-            <div id="alert-fail" class="alert alert-danger d-none" role="alert">
-                ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง
-            </div>
-
-            <form method="POST">
+            <form id="loginForm" method="post">
                 <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
+                    <label for="email" class="form-label">Email</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-person"></i></span>
-                        <input type="text" class="form-control" name="username" required>
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                        <input type="password" class="form-control" name="password" required>
+                        <input type="password" class="form-control" id="password" name="password" required>
                     </div>
                 </div>
                 <div class="d-grid">
-                    <button type="submit" name="login" class="btn btn-primary btn-block">Sign In</button>
+                    <button type="submit" value="Login" class="btn btn-primary btn-block">Sign In</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Bootstrap และ Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
-    <!-- JavaScript สำหรับการแสดง Alert -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-  
-            const loginStatus = '<?php echo $_SESSION['login_status']; ?>';
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
 
-            if (loginStatus === 'success') {
-                setTimeout(function() {
-                    window.location.href = './dashboard.php';
-                }, 5000); 
-            } else if (loginStatus === 'fail') {
+            const formData = new FormData(event.target); // Create FormData object from form
+            const url = 'http://localhost:8000/login'; // Replace with your API endpoint
+            var status =null
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response =>{
+                status = response['status'];
+                return response.json()
+            })
+            .then(data => {
+                console.log('token:', data['token']);
+                if (status==200){
 
-                const failAlert = document.getElementById('alert-fail');
-                failAlert.classList.remove('d-none');
-            }
-
-            // ล้าง session สำหรับ login status หลังจากการแสดงผล
-            <?php $_SESSION['login_status'] = ''; ?>
+                window.location.href = "dashboard.php"                 
+                }
+            // window.location = 'dashboard.php';
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                // Handle error here
+            });
         });
     </script>
-</body>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
 </html>

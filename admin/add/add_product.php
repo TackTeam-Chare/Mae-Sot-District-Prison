@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เพิ่มผลิตภัณฑ์</title>
+    <title>เพิ่มกิจกรรม</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -54,37 +54,75 @@
 </head>
 
 <body>
-<?php include_once('../layout/navbar.php') ?>
+    <?php include_once('../layout/navbar.php') ?>
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1>เพิ่มผลิตภัณฑ์</h1>
-            <button class="btn btn-secondary"><a href="../dashboard.php" class="text-white text-decoration-none">กลับ</a></button>
+            <h1>เพิ่มสินค้า</h1>
+            <button class="btn btn-secondary" onclick="window.history.back();">กลับ</button>
         </div>
-        <form method="POST" action="./crud.php" enctype="multipart/form-data">
+        <form id="addProductForm" method="post" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="title" class="form-label">ชื่อผลิตภัณฑ์</label>
+                <label for="title" class="form-label">ชื่อสินค้า</label>
                 <input type="text" class="form-control" placeholder="หัวข่าว" name="title" required>
             </div>
             <div class="mb-3">
-                <label for="title" class="form-label">ราคา</label>
-                <input type="text" class="form-control" placeholder="หัวข่าว" name="title" required>
-            </div>
-            <div class="mb-3">
-                <label for="content" class="form-label">รายละเอียด</label>
+                <label for="content" class="form-label">รายละเอียดสินค้า</label>
                 <textarea class="form-control" name="content" rows="5" placeholder="ใส่บทความเนื้อหาข่าวสาร" required></textarea>
             </div>
             <div class="mb-3">
-                <label for="image_file" class="form-label">ภาพสถานที่</label>
-                <input type="file" class="form-control" name="image_file" accept="image/*" required>
+                <label for="image" class="form-label">ภาพสินค้า</label>
+                <input type="file" class="form-control" name="image" accept="image/*" >
             </div>
             <div>
-                <button type="submit" name="event_insert" class="btn btn-primary">บันทึก</button>
+                <button type="submit" id="submitForm" class="btn btn-primary">บันทึก</button>
             </div>
         </form>
     </div>
- 
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+function goBackAndReset() {
+    sessionStorage.setItem('refreshPreviousPage', 'true');
+    // Navigate to the previous page
+    window.history.back();
+
+    // After a short delay, reload the previous page to reset its state
+}
+
+        document.getElementById("addProductForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            const formData = new FormData(); // Create FormData object
+            formData.append('title', document.querySelector('input[name="title"]').value);
+            formData.append('content', document.querySelector('textarea[name="content"]').value);
+            formData.append('image', document.querySelector('input[name="image"]').files[0]);
+
+            const url = 'http://localhost:8000/products'; // Replace with your API endpoint
+
+            fetch(url, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Handle success response
+                    console.log('Success:', data);
+                    // goBackAndReset();
+                    // Optionally redirect to another page
+                })
+                .catch(error => {
+                    // Handle error
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+
 </body>
 
 </html>
