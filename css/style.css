@@ -57,10 +57,7 @@ body {
   font-size: 1rem;
   flex-grow: 1;
 }
-.row-cols-6 {
-  gap: 20px;
 
-}
 .container {
   margin-left: auto;
 
