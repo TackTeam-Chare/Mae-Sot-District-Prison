@@ -2,29 +2,37 @@
 session_start();
 include_once('./inc/config.php');
 
+if (!isset($_SESSION['login_status'])) {
+    $_SESSION['login_status'] = ''; 
+}
+
 if (isset($_POST['login'])) {
-    $adminusername = $_POST['username'];
-    $pass = md5($_POST['password']);
-    $ret = mysqli_query($con, 'SELECT * FROM admin WHERE username="'.$adminusername.'" and password="'.$pass.'"');
-    $num = mysqli_fetch_array($ret);
+    $admin_username = $_POST['username'];
+    $password = md5($_POST['password']);
+    $ret = mysqli_query($con, 'SELECT * FROM admin WHERE username="'.$admin_username.'" and password="'.$password.'"');
+    $num = mysqli_num_rows($ret);
+
     if ($num > 0) {
-        $extra = "./dashboard.php";
+        $row = mysqli_fetch_array($ret);
         $_SESSION['login'] = $_POST['username'];
-        $_SESSION['adminid'] = $num['id'];
-        echo "<script>alert('success !!!')</script>";
-        echo "<script>window.location.href='" . $extra . "'</script>";
+        $_SESSION['admin_id'] = $row['id'];
+        header("Location: ./dashboard.php");
         exit();
     } else {
-        echo "<script>alert('Invalid username or password');</script>";
+        $_SESSION['login_status'] = 'fail';  
+        header("Location: ".$_SERVER['PHP_SELF']);
+        exit();
     }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>เรือนจำอำเภอแม่สอด</title>
+    <title>Login Admin</title>
     <link rel="icon" type="image/x-icon" href="img/spd_20150704164759_b.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -39,6 +47,7 @@ if (isset($_POST['login'])) {
             height: 100vh;
             margin: 0;
         }
+
         .card {
             width: 100%;
             max-width: 400px;
@@ -46,6 +55,7 @@ if (isset($_POST['login'])) {
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         .btn-primary {
             background-color: #007bff;
             border: none;
@@ -57,8 +67,13 @@ if (isset($_POST['login'])) {
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="card">
             <h3 class="text-center mb-4">Admin Login</h3>
+
+        
+            <div id="alert-fail" class="alert alert-danger d-none" role="alert">
+                ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง
+            </div>
+
             <form method="POST">
-  
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <div class="input-group">
@@ -79,8 +94,31 @@ if (isset($_POST['login'])) {
             </form>
         </div>
     </div>
+
+    <!-- Bootstrap และ Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript สำหรับการแสดง Alert -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+  
+            const loginStatus = '<?php echo $_SESSION['login_status']; ?>';
+
+            if (loginStatus === 'success') {
+                setTimeout(function() {
+                    window.location.href = './dashboard.php';
+                }, 5000); 
+            } else if (loginStatus === 'fail') {
+
+                const failAlert = document.getElementById('alert-fail');
+                failAlert.classList.remove('d-none');
+            }
+
+            // ล้าง session สำหรับ login status หลังจากการแสดงผล
+            <?php $_SESSION['login_status'] = ''; ?>
+        });
+    </script>
 </body>
 
 </html>
