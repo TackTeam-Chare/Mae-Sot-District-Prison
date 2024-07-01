@@ -10,6 +10,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/style.css">
   <style>
     .card {
@@ -74,8 +76,10 @@
     }
 
     .node img {
-      width: 150px; /* Increased size */
-      height: 150px; /* Increased size */
+      width: 150px;
+      /* Increased size */
+      height: 150px;
+      /* Increased size */
       border-radius: 50%;
       border: 3px solid #ddd;
     }
@@ -93,41 +97,60 @@
     <h2 class="text-white mb-4">แผนผังฝ่ายการศึกษา</h2>
     <hr class="bg-white my-4" style="height: 3px;">
     <div class="tree">
-      <div class="node">
+      <div class="node" data-bs-toggle="modal" data-bs-target="#productModal">
         <img src="img/02.jpg" alt="นายกุหลาบ บุญเลิศ">
         <div>นายกุหลาบ บุญเลิศ</div>
         <div>ผู้กำกับการฝ่ายการศึกษาและพัฒนาจิตใจ</div>
       </div>
-      <div class="node">
+      <div class="node" data-bs-toggle="modal" data-bs-target="#productModal">
         <img src="img/02.jpg" alt="นายชูพันธ์ วรเจริญ">
         <div>นายชูพันธ์ วรเจริญ</div>
         <div>หัวหน้าโครงการศึกษาและพัฒนาจิตใจ</div>
       </div>
       <div class="children">
-        <div class="node">
+        <div class="node" data-bs-toggle="modal" data-bs-target="#productModal">
           <img src="img/02.jpg" alt="นายวิทยา ก้านลำ">
           <div>นายวิทยา ก้านลำ</div>
           <div>หัวหน้าฝ่ายการศึกษา</div>
         </div>
-        <div class="node">
+        <div class="node" data-bs-toggle="modal" data-bs-target="#productModal">
           <img src="img/04.jpg" alt="นายอนันทร์ สิงหิการ">
           <div>นายอนันทร์ สิงหิการ</div>
           <div>หัวหน้าฝ่ายงานอบรมจิตบำบัด</div>
         </div>
-        <div class="node">
+        <div class="node" data-bs-toggle="modal" data-bs-target="#productModal">
           <img src="img/04.jpg" alt="นายอนันทร์ สิงหิการ">
           <div>นายอนันทร์ สิงหิการ</div>
           <div>หัวหน้าฝ่ายงานอบรมจิตบำบัด</div>
         </div>
-        <div class="node">
+        <div class="node" data-bs-toggle="modal" data-bs-target="#productModal">
           <img src="img/04.jpg" alt="นายอนันทร์ สิงหิการ">
           <div>นายอนันทร์ สิงหิการ</div>
           <div>หัวหน้าฝ่ายงานอบรมจิตบำบัด</div>
         </div>
-        <div class="node">
+        <div class="node" data-bs-toggle="modal" data-bs-target="#productModal">
           <img src="img/04.jpg" alt="นายอนันทร์ สิงหิการ">
           <div>นายอนันทร์ สิงหิการ</div>
           <div>หัวหน้าฝ่ายงานอบรมจิตบำบัด</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="productModalLabel">นายอนันทร์ สิงหิการ</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="./img/04.jpg" class="card-img-top mb-3" alt="...">
+          <p>หัวหน้าฝ่ายงานอบรมจิตบำบัด</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
         </div>
       </div>
     </div>
