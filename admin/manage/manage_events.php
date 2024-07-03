@@ -7,59 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>การจัดการข้อมูลกิจกรรม</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/admin/css/style.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;900&display=swap');
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Noto Sans Thai', sans-serif;
-        }
-
-        h1 {
-            font-weight: 900;
-        }
-
-        .news-section,
-        .events-section {
-            margin-bottom: 2rem;
-        }
-
-        .card img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-top-left-radius: calc(0.25rem - 1px);
-            border-top-right-radius: calc(0.25rem - 1px);
-        }
-
-        .card {
-            border: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-primary {
-            background-color: #0069d9;
-            border-color: #0062cc;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #004085;
-        }
-
-        .btn-success {
-            background-color: #28a745;
-            border-color: #218838;
-        }
-
-        .btn-danger {
-            background-color: #dc3545;
-            border-color: #c82333;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -101,7 +49,6 @@
                                 </div>
                             </div>
                         `;
-
                         eventsContainer.appendChild(eventCard);
                     });
                 })

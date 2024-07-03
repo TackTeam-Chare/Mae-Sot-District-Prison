@@ -7,38 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>การจัดการข้อมูลกิจกรรม</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/admin/css/style.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;900&display=swap');
+    <link rel="stylesheet" href="../css/style.css">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Noto Sans Thai', sans-serif;
-        }
-
-        h1 {
-            font-weight: 900;
-        }
-        .card img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-top-left-radius: calc(0.25rem - 1px);
-            border-top-right-radius: calc(0.25rem - 1px);
-        }
-
-        .card {
-            border: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .news-section,
-        .events-section {
-            margin-bottom: 2rem;
-        }
-    </style>
 </head>
 
 <body>
