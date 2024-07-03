@@ -51,7 +51,7 @@ class ProductController
 
         if (isset($_FILES['image'])) {
                 // Handle file upload
-                $uploadDir = '../front-end/uploads/';
+                $uploadDir = '../uploads';
                 $uploadFile = time() . basename($_FILES['image']['name']);
                 $imageFileType = strtolower(pathinfo($uploadFile, PATHINFO_EXTENSION));
         

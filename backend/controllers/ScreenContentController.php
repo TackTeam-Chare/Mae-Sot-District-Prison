@@ -50,7 +50,7 @@ class ScreenContentController
 
         if (isset($_FILES['image'])) {
                 // Handle file upload
-                $uploadDir = '../Mae-Sot-District-Prison/uploads/';
+                $uploadDir = '../../../front-end/uploads/';
                 $uploadFile = time() . basename($_FILES['image']['name']);
                 $imageFileType = strtolower(pathinfo($uploadFile, PATHINFO_EXTENSION));
         
