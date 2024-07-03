@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
   <title>ประวัติเรือนจำ</title>
@@ -49,38 +49,43 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
   <?php include('./layout/navbar.php'); ?>
   <h1 class="mission-title">ประวัติเรือนจำ</h1>
-  
-  <br>
-  <img class="img-fluid" src="img/phpiWvmR0.png">
-  <br>
-  <br>
+ 
   <article class="content">
-    <h4>
-      <span>
-        เรือนจำอำเภอแม่สอด เดิมตั้งอยู่หลังสถานีตำรวจภูธรอำเภอแม่สอด<br>
-        สร้างเมื่อ เมื่อปี พ.ศ. ๒๔๖๙ มีพื้นที่ทั้งหมด ๕ ไร่เศษ มีกำแพงเรือนจำเป็นไม้<br>
-        มีป้อมรักษาการณ์ บนสันกำแพง ๒ ป้อม เรือนนอนชายเป็นไม้สัก จำนวน ๑ หลัง<br>
-        แดนผู้ต้องขังหญิงใช้เรือนพยาบาลเป็นเรือนนอน จำนวน ๑ หลัง มีนายอำเภอ<br>
-        เป็นผู้บัญชาการเรือนจำโดยตำแหน่ง ต่อมานายธีรศักดิ์ วงรักษ์ ซึ่งเป็นพัสดีเรือนจำ<br>
-        อำเภอแม่สอด และปฏิบัติหน้าที่ผู้บัญชาการเรือนจำแทนนายอำเภอเรือนจำอำเภอ<br>
-        แม่สอด ได้พิจารณาเห็นว่าเรือนจำอำเภอแม่สอด(เดิม)มีสถานที่คับแคบไม่เพียงพอ<br>
-        แก่จำนวนผู้ต้องขังในอนาคต จึงได้พิจารณาสถานที่สำหรับก่อสร้างเรือนจำแห่งใหม่<br>
-        เพื่อให้มีพื้นที่เพียงพอรองรับกับจำนวนผู้ต้องขังที่มีแนวโน้มที่จะเพิ่มขึ้นต่อมา
-        ในปี <br>พ.ศ. ๒๕๑๗ เรือนจำใหม่ ณ เรือนจำชั่วคราววัดดอนไชย ในเนื้อที่ ๒๑ ไร่ ๓ งาน<br>
-        ๒๐ ตารางวาเปิดทำการ ในปี พ.ศ. ๒๕๑๙ และมีผู้บัญชาการเรือนจำเฉพาะตำแหน่งเมื่อปี <br>
-        พ.ศ. ๒๕๒๐ เป็นต้นมาจนถึงปัจจุบัน
-      </span>
-    </h4>
-    <br>
+    <h4 id="cards-container">
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('http://localhost:8000/screen_contents?id=1') // Replace with the actual URL of your JSON file or API endpoint
+            .then(response => response.json())
+            .then(data => {
+                const cardsContainer = document.getElementById('cards-container');
+                cardsContainer.innerHTML = `
+                
+                 
+  <br>
+  <img class="img-fluid" src="./uploads/${data.image}">
+  <br>
+  <br>
+                <span>${data.content.replace(/\r\n/g, '<br>')}</span>`;
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+    });
+  </script>
+
+    </h4> <!-- Added id here -->
   </article>
+
   <?php include('./layout/footer.php'); ?>
+
+
 </body>
 
 </html>

@@ -1,12 +1,3 @@
-<?php
-include_once('./inc/config.php');
-
-session_start();
-if (!isset($_SESSION['login'])) {
-    header('location: login.php');
-    exit();
-}
-?>
 
 <!DOCTYPE html>
 <html lang="th">
@@ -26,6 +17,7 @@ if (!isset($_SESSION['login'])) {
             padding: 0;
             font-family: 'Noto Sans Thai', sans-serif;
         }
+
         h1 {
             font-weight: 900;
         }

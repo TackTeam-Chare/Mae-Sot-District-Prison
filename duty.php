@@ -14,29 +14,34 @@
 
 
 <?php include('./layout/navbar.php'); ?>
-<div class="container mt-4">
-  <h1 class="text-white">พันธกิจ</h1>
+ <h1 class="mission-title">พันธกิจ</h1>
+ 
+  <article class="content">
+    <h4 id="cards-container">
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('http://localhost:8000/screen_contents?id=2') // Replace with the actual URL of your JSON file or API endpoint
+            .then(response => response.json())
+            .then(data => {
+                const cardsContainer = document.getElementById('cards-container');
+                cardsContainer.innerHTML = `
+                
+                 
   <br>
-  <img src="img/phpiWvmR0.png" class="img-fluid" alt="พันธกิจกรมราชทัณฑ์">
+  <img class="img-fluid" src="./uploads/${data.image}">
   <br>
   <br>
-  <article>
-    <h1 class="text-white">พันธกิจกรมราชทัณฑ์</h1>
-    <h3 class="text-white">1. ควบคุมผู้ต้องขังอย่างมืออาชีพ</h3>
-    <h3 class="text-white">2. บำบัดฟื้นฟูและแก้ไขพฤตินิสัยของผู้ต้องขังอย่างมีประสิทธิภาพ</h3>
-    <br>
-    <br>
-    <h1 class="text-white">วิสัยทัศน์ เรือนจำอำเภอแม่สอด</h1><br>
-    <h3 class="text-white">มุ่งพัฒนาสิ่งแวดล้อม พร้อมนำองค์ให้เข้มแข็ง</h3>
-    <h3 class="text-white">ใส่ใจในการแก้ไขบำบัดฟื้นฟู และมีความพอเพียง</h3>
-    <br>
-    <h1 class="text-white">พันธกิจ เรือนจำอำเภอแม่สอด</h1>
-    <br>
-    <h3 class="text-white">1. ควบคุมผู้ต้องขังอย่างมืออาชีพ</h3>
-    <h3 class="text-white">2. พัฒนาพฤตินิสัยผู้ต้องขัง ส่งเสริมการศึกษา พัฒนาทักษะอาชีพ แก้ไขและบำบัดฟื้นฟู</h3>
-    <br>
+                <span>${data.content.replace(/\r\n/g, '<br>')}</span>`;
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+    });
+  </script>
+
+    </h4> <!-- Added id here -->
   </article>
-</div>
+
 <?php include('./layout/footer.php'); ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
