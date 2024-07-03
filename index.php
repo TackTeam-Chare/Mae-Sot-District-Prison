@@ -171,13 +171,7 @@ include_once('./admin/inc/config.php');
                                             <li><a href="https://www.maepalocal.go.th/home" style="color: aliceblue;">องค์การบริหารส่วนอำเภอแม่สอด</a></li>
                                             <li><a href="https://www.nakhonmaesotcity.go.th/web/" style="color: aliceblue;">เทศบาลนครแม่สอด</a></li>
                                         </ul>
-                                        <h4>
-                                            <span style="color: aliceblue;">ยอดผู้ต้องขัง</span>
-                                        </h4>
-                                        <br>
-                                        <img src="img/ยอดผู้ต้องขัง.png" height="150" width="255">
-                                        <br>
-                                        <br>
+                                       
                                         <br>
                                     </aside>
                                 </div>
@@ -261,54 +255,55 @@ include_once('./admin/inc/config.php');
                                             </div>
                                         </div>
                                     </div>
-                                    <article class="all-browsers">
-                                        <h2 style="color: #ffffff;  text-align: center; margin-top:20px" >ข่าวจัดซื้อ-จัดจ้าง</h2>
-                                        <div class="row">
-                                            <?php
-                                            $query_procurements = mysqli_query($con, "SELECT * FROM procurements ORDER BY id DESC");
-                                            while ($result = mysqli_fetch_array($query_procurements)) {
-                                            ?>
-                                                <div class="col-md-4 mb-4">
-                                                    <div class="card h-100">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"><?php echo htmlspecialchars($result['title']); ?></h5>
-                                                            <p class="card-text"><?php echo htmlspecialchars($result['content']); ?></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <?php } ?>
-                                        </div>
-                                    </article>
+                                    
+                                    <!-- <article class="all-browsers"> -->
+                                    <div class="container mt-5 table-container" style=" font-weight: bold; color: white;">
+                                        <h2 class="text-center mb-4">ยอดผู้ต้องขัง</h2>
+                                        <table class="table custom-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>สัญชาติ</th>
+                                                    <th>ชาย</th>
+                                                    <th>หญิง</th>
+                                                    <th>รวม</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>ผู้ต้องขังชาวไทย</td>
+                                                    <td class="thai-numerals">๒๕๔</td>
+                                                    <td class="thai-numerals">๔๓</td>
+                                                    <td class="thai-numerals">๒๙๗</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ผู้ต้องขังชาวต่างประเทศ</td>
+                                                    <td class="thai-numerals">๒๖๒</td>
+                                                    <td class="thai-numerals">๒๖</td>
+                                                    <td class="thai-numerals">๒๘๘</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td>รวม</td>
+                                                    <td class="thai-numerals">๕๑๖</td>
+                                                    <td class="thai-numerals">๖๙</td>
+                                                    <td class="thai-numerals">๕๘๕</td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <!-- </article> -->
 
-                                    <article class="all-browsers">
-    <h2 style="color: #ffffff;   text-align: center;">ข่าวประชาสัมพันธ์</h2>
-    <div class="row">
-        <?php
-        $query_news = mysqli_query($con, "SELECT * FROM news ORDER BY id DESC");
-        while ($result = mysqli_fetch_array($query_news)) {
-        ?>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo htmlspecialchars($result['title']); ?></h5>
-                        <p class="card-text"><?php echo htmlspecialchars($result['content']); ?></p>
-                    </div>
-                </div>
-            </div>
-        <?php } ?>
-    </div>
-    
-</article>
 
                                 </div>
-                                
+
                             </div>
-                            
+
                         </div>
 
                     </div>
 
-            </div>
+                </div>
     </main>
 
     <article>
