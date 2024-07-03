@@ -64,13 +64,6 @@
         .events-section {
             margin-bottom: 2rem;
         }
-        .card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-top-left-radius: calc(0.25rem - 1px);
-            border-top-right-radius: calc(0.25rem - 1px);
-        }
 
     </style>
 </head>
