@@ -113,7 +113,7 @@ function goBackAndReset() {
                 .then(data => {
                     // Handle success response
                     console.log('Success:', data);
-                    // goBackAndReset();
+                    goBackAndReset();
                     // Optionally redirect to another page
                 })
                 .catch(error => {

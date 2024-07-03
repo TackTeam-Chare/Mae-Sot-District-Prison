@@ -72,16 +72,30 @@
         <div class="map-container">
             <iframe class="iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3821.277474354053!2d98.57530591429452!3d16.71300142630372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30dd98b51c22209b%3A0x9f9ecbc69dec0fa8!2z4LmA4Lij4Li34Lit4LiZ4LiI4Liz4Lit4Liz4LmA4Lig4Lit4LmB4Lih4LmI4Liq4Lit4LiU!5e0!3m2!1sth!2sth!4v1647395813755!5m2!1sth!2sth" allowfullscreen="" loading="lazy"></iframe>
         </div>
-        <div class="card mx-auto">
-            <div class="card-body">
-                <h5 class="card-title">ติดต่อเรา</h5>
-                <p class="card-text">
-                    โทร. 055-531-226<br>
-                    โทรสาร. 0-5553-2826><br>
-                    Email: maesodprison@hotmail.com
-                </p>
-            </div>
-        </div>
+        <div id="cards-container"></div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('http://localhost:8000/screen_contents?id=4') // Replace with the actual URL of your JSON file or API endpoint
+                .then(response => response.json())
+                .then(data => {
+                    const cardsContainer = document.getElementById('cards-container');
+
+                    const card = document.createElement('div');
+                    card.className = 'card';
+
+                    const cardBody = `
+                        <div class="card-body">
+                            <h5 class="card-title">${data.title}</h5>
+                            <p class="card-text">${data.content.replace(/\r\n/g, '<br>')}</p>
+                        </div>
+                    `;
+                    card.innerHTML = cardBody;
+                    cardsContainer.appendChild(card);
+                })
+                .catch(error => console.error('Error fetching JSON:', error));
+        });
+    </script>
 </body>
 </html>

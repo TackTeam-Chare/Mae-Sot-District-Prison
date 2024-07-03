@@ -50,21 +50,21 @@
     <?php include_once('../layout/navbar.php') ?>
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1>แก้ไขกิจกรรม</h1>
+            <h1>แก้ไขสินค้า</h1>
             <button onclick="window.history.back()" class="btn btn-secondary">กลับ</button>
         </div>
         <form id="updateProductForm" enctype="multipart/form-data">
             <input type="hidden" value="<?php echo $_GET['id'];?>" name="id">
             <div class="mb-3">
-                <label for="title" class="form-label">หัวเรื่อง</label>
+                <label for="title" class="form-label">ชื่อสินค้า</label>
                 <input type="text" class="form-control" placeholder="หัวข่าว" name="title" required>
             </div>
             <div class="mb-3">
-                <label for="content" class="form-label">เนื้อหาข่าว</label>
+                <label for="content" class="form-label">รายละเอียดสินค้า</label>
                 <textarea class="form-control" name="content" rows="5" placeholder="ใส่บทความเนื้อหาข่าวสาร" required></textarea>
             </div>
             <div class="mb-3">
-                <label for="image" class="form-label">ภาพข่าว</label>
+                <label for="image" class="form-label">ภาพสินค้า</label>
                 <input type="file" class="form-control" name="image" accept="image/*" onchange="previewImage(event)">
                 <img id="currentImage" src="" alt="Current Image">
             </div>

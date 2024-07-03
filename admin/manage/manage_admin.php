@@ -1,13 +1,3 @@
-<?php
-include_once('../inc/config.php');
-
-session_start();
-if (!isset($_SESSION['login'])) {
-    header('location: login.php');
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +5,7 @@ if (!isset($_SESSION['login'])) {
     <link rel="icon" type="image/x-icon" href="./assets/icons/admin.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>การจัดการข้อมูลผู้ดูเเลระบบ</title>
+    <title>การจัดการข้อมูลกิจกรรม</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/admin/css/style.css">
     <style>
@@ -42,34 +32,80 @@ if (!isset($_SESSION['login'])) {
 <body>
     <?php include_once('../layout/navbar.php') ?>
     <div class="container my-5">
-        <h1 class="text-center mb-4 fw-bold">การจัดการข้อมูลผู้ดูเเลระบบ</h1>
+        <h1 class="text-center mb-4 fw-bold">การจัดการข้อมูลกิจกรรม</h1>
         <hr>
         <div class="row gy-5 justify-content-center">
             <div class="d-flex justify-content-end align-items-center mb-3">
                 <button class="btn btn-primary"><a href="../add/add_admin.php" class="text-white text-decoration-none">Add</a></button>
             </div>
-            <div class="col-lg-12 events-section">
-                <?php
-                $query = mysqli_query($con, "SELECT * FROM events");
-                while ($result = mysqli_fetch_array($query)) { ?>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $result['title']; ?></h5>
-                            <p class="card-text"><?php echo $result['content']; ?></p>
-                            <img src="../../uploads/<?php echo $result['image_path']; ?>" alt="event image" class="img-fluid mb-3" style="max-height: 200px;">
-                            <div class="d-flex justify-content-end">
-                                <a href="../edit/edit_admin.php?php echo $result['id']; ?>" class="btn btn-warning me-2">Edit</a>
-                                <form action="../crud.php" method="POST">
-                                    <input type="text" name='id' hidden value=<?php echo $result['id'] ?>>
-                                    <button class="btn btn-danger" type="submit" name="event_delete">delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                <?php } ?>
+            <div class="col-lg-12 admins-section" id="admins-container">
+                <!-- Events will be dynamically added here -->
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('http://localhost:8000/admins')
+                .then(response => response.json())
+                .then(data => {
+                    const adminsContainer = document.getElementById('admins-container');
+
+                    data.forEach(admins => {
+                        const adminCard = document.createElement('div');
+                        adminCard.classList.add('card', 'mb-3');
+
+                        // Check if event.image exists and use it, otherwise use a default icon                        
+                        // const imageUrl = event.image ? `../../uploads/${event.image}` : '../../img/no_image.png';
+
+                        adminCard.innerHTML = `
+                            <div class="card-body">
+                                <h5 class="card-title">${admins.name}</h5>
+                                <p class="card-text">${admins.email}</p>
+                                <div class="d-flex justify-content-end">
+                                    <a href="../edit/edit_admin.php?id=${admins.id}" class="btn btn-success me-2">Edit</a>
+                                    <button class="btn btn-danger" onclick="confirmDelete(${admins.id})">Delete</button>
+                                </div>
+                            </div>
+                        `;
+
+                        adminsContainer.appendChild(adminCard);
+                    });
+                })
+                .catch(error => console.error('Error fetching events:', error));
+        });
+
+        function confirmDelete(eventId) {
+            if (confirm('Are you sure you want to delete this event?')) {
+                deleteEvent(eventId);
+            }
+        }
+
+        function deleteEvent(eventId) {
+            fetch(`http://localhost:8000/admin_delete?id=${eventId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert('Event deleted successfully!');
+                    location.reload(); // Reload the page to reflect the changes
+                })
+                .catch(error => {
+                    console.error('Error deleting event:', error);
+                    alert('Failed to delete event: ' + error.message);
+                });
+        }
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
