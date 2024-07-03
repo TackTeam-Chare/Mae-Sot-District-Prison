@@ -21,19 +21,9 @@
         h1 {
             font-weight: 900;
         }
-        .card {
-            margin: 1rem 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        .card-body {
-            padding: 1.5rem;
-        }
-        .table-responsive {
-            margin-top: 2rem;
-        }
-        .navbar-brand {
-            font-weight: bold;
+
+        .news-section, .events-section {
+            margin-bottom: 2rem; /* เพิ่มช่องว่างด้านล่าง */
         }
     </style>
 </head>
