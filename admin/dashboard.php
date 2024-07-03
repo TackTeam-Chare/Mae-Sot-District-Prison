@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -23,14 +22,26 @@
         }
 
         .news-section, .events-section {
-            margin-bottom: 2rem; /* เพิ่มช่องว่างด้านล่าง */
+            margin-bottom: 2rem;
+        }
+
+        /* Main content container */
+        .main-content {
+            margin-left: 250px; /* Same width as the sidebar */
+            transition: margin-left 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+            }
         }
     </style>
 </head>
 <body>
     <?php include_once('./layout/navbar.php') ?>
 
-    <div class="container mt-4">
+    <div class="container main-content mt-4">
         <h1 class="mb-4 text-center">หน้าหลัก</h1>
         <div class="row">
             <div class="col-md-6">
@@ -57,7 +68,7 @@
             </div>
         </div>
         
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -93,7 +104,6 @@
                                             <a href="#" class="btn btn-sm btn-danger">ลบ</a>
                                         </td>
                                     </tr>
-                                    <!-- เพิ่มข้อมูลในตารางตามต้องการ -->
                                 </tbody>
                             </table>
                         </div>
@@ -136,7 +146,6 @@
                                             <a href="#" class="btn btn-sm btn-danger">ลบ</a>
                                         </td>
                                     </tr>
-                                    <!-- เพิ่มข้อมูลในตารางตามต้องการ -->
                                 </tbody>
                             </table>
                         </div>

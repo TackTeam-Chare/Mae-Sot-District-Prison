@@ -50,7 +50,7 @@ class ScreenContentController
 
         if (isset($_FILES['image'])) {
                 // Handle file upload
-                $uploadDir = '../../../front-end/uploads/';
+                $uploadDir = '../uploads/';
                 $uploadFile = time() . basename($_FILES['image']['name']);
                 $imageFileType = strtolower(pathinfo($uploadFile, PATHINFO_EXTENSION));
         
@@ -112,7 +112,7 @@ class ScreenContentController
         // Check if an image file is uploaded
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             // Handle file upload
-            $uploadDir = '../Mae-Sot-District-Prison/uploads/';
+            $uploadDir = '../uploads/';
             $uploadFile = time() . basename($_FILES['image']['name']);
             $imageFileType = strtolower(pathinfo($uploadFile, PATHINFO_EXTENSION));
     
@@ -173,7 +173,7 @@ class ScreenContentController
             return;
         }
         $this->screen_content->id = $_GET['id'];
-        $uploadDir = '../Mae-Sot-District-Prison/uploads/';
+        $uploadDir = '../uploads/';
         $stmt = $this->screen_content->read_id();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $old_image = $result[0]['image'];

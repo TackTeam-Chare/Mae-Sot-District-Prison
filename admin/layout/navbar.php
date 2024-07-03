@@ -7,84 +7,94 @@
     <title>Bootstrap 5 Sidebar</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
+         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Noto Sans Thai', sans-serif;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans Thai', sans-serif;
+}
 
-        body {
-            overflow-x: hidden;
-        }
+body {
+    overflow-x: hidden;
+}
 
-        #sidebar {
-            height: 100vh;
-            width: 250px;
-            position: fixed;
-            top: 0;
-            left: -250px;
-            transition: all 0.3s;
-            background-color: #343a40;
-            color: white;
-        }
+#sidebar {
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    transition: all 0.3s;
+    background-color: #343a40;
+    color: white;
+}
 
-        #sidebar.active {
-            left: 0;
-        }
+#sidebar.active {
+    left: 0;
+}
 
-        #sidebar .close-btn {
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+#sidebar .close-btn {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
 
-        .sidebar-links a {
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-        }
+.sidebar-links a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+}
 
-        .sidebar-links a:hover {
-            background-color: #495057;
-            border-radius: 0;
-        }
+.sidebar-links a:hover {
+    background-color: #495057;
+}
 
-        .sidebar-links a .fa {
-            margin-right: 10px;
-        }
+.sidebar-links a .fa {
+    margin-right: 10px;
+}
 
-        .sidebar-submenu {
-            display: none;
-            padding-left: 30px;
-        }
+.sidebar-submenu {
+    display: none;
+    padding-left: 30px;
+}
 
-        .sidebar-submenu a {
-            padding: 8px 15px;
-        }
+.sidebar-submenu a {
+    padding: 8px 15px;
+}
 
-        .submenu-active {
-            display: block;
-        }
+.submenu-active {
+    display: block;
+}
 
-        #content {
-            margin-left: 250px;
-            transition: all 0.3s;
-        }
+#content {
+    transition: all 0.3s;
+}
 
-        #content.active {
-            margin-left: 0;
-        }
+#content.active {
+    margin-left: 250px;
+}
 
-        .submenu-active a::before {
-            content: "- ";
-            padding-right: 5px;
-        }
-    </style>
+@media (max-width: 768px) {
+    #content.active {
+        margin-left: 0;
+    }
+}
+
+.submenu-active a::before {
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    display: inline-block;
+    padding-right: 10px;
+}
+</style>
+
 </head>
 
 <body>

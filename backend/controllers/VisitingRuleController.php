@@ -44,7 +44,7 @@ class VisitingRuleController
 
         if (isset($_FILES['image'])) {
                 // Handle file upload
-                $uploadDir = '../Mae-Sot-District-Prison/uploads/';
+                $uploadDir = '../uploads/';
                 $uploadFile = time() . basename($_FILES['image']['name']);
                 $imageFileType = strtolower(pathinfo($uploadFile, PATHINFO_EXTENSION));
         
@@ -106,7 +106,7 @@ class VisitingRuleController
         // Check if an image file is uploaded
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             // Handle file upload
-            $uploadDir = '../Mae-Sot-District-Prison/uploads/';
+            $uploadDir = '../uploads/';
             $uploadFile = time() . basename($_FILES['image']['name']);
             $imageFileType = strtolower(pathinfo($uploadFile, PATHINFO_EXTENSION));
     
@@ -167,7 +167,7 @@ class VisitingRuleController
             return;
         }
         $this->visiting_rule->id = $_GET['id'];
-        $uploadDir = '../Mae-Sot-District-Prison/uploads/';
+        $uploadDir = '../uploads/';
         $stmt = $this->visiting_rule->read_id();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $old_image = $result[0]['image'];

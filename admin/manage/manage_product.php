@@ -17,7 +17,45 @@
             padding: 0;
             font-family: 'Noto Sans Thai', sans-serif;
         }
+     
 
+        h1 {
+            font-weight: 900;
+        }
+
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-top-left-radius: calc(0.25rem - 1px);
+            border-top-right-radius: calc(0.25rem - 1px);
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #218838;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #c82333;
+        }
         h1 {
             font-weight: 900;
         }
@@ -26,6 +64,14 @@
         .events-section {
             margin-bottom: 2rem;
         }
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-top-left-radius: calc(0.25rem - 1px);
+            border-top-right-radius: calc(0.25rem - 1px);
+        }
+
     </style>
 </head>
 
@@ -59,10 +105,11 @@
                         const imageUrl = product.image ? `../../uploads/${product.image}` : '../../img/no_image.png';
 
                         productCard.innerHTML = `
+                            <img src="${imageUrl}" alt="product image" class="img-fluid mb-3">
                             <div class="card-body">
                                 <h5 class="card-title">${product.title}</h5>
                                 <p class="card-text">${product.content}</p>
-                                <img src="${imageUrl}" alt="product image" class="img-fluid mb-3" style="max-height: 200px;">
+                            
                                 <div class="d-flex justify-content-end">
                                     <a href="../edit/edit_product.php?id=${product.id}" class="btn btn-success me-2">Edit</a>
                                     <button class="btn btn-danger" onclick="confirmDelete(${product.id})">Delete</button>

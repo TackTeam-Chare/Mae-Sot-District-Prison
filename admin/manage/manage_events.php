@@ -26,6 +26,39 @@
         .events-section {
             margin-bottom: 2rem;
         }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-top-left-radius: calc(0.25rem - 1px);
+            border-top-right-radius: calc(0.25rem - 1px);
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #218838;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #c82333;
+        }
     </style>
 </head>
 
@@ -55,15 +88,13 @@
                         const eventCard = document.createElement('div');
                         eventCard.classList.add('card', 'mb-3');
 
-                        // Check if event.image exists and use it, otherwise use a default icon
-                        
                         const imageUrl = event.image ? `../../uploads/${event.image}` : '../../img/no_image.png';
 
                         eventCard.innerHTML = `
+                            <img src="${imageUrl}" alt="event image" class="card-img-top">
                             <div class="card-body">
                                 <h5 class="card-title">${event.title}</h5>
                                 <p class="card-text">${event.content}</p>
-                                <img src="${imageUrl}" alt="event image" class="img-fluid mb-3" style="max-height: 200px;">
                                 <div class="d-flex justify-content-end">
                                     <a href="../edit/edit_event.php?id=${event.id}" class="btn btn-success me-2">Edit</a>
                                     <button class="btn btn-danger" onclick="confirmDelete(${event.id})">Delete</button>
@@ -99,7 +130,7 @@
                 })
                 .then(data => {
                     alert('Event deleted successfully!');
-                    location.reload(); // Reload the page to reflect the changes
+                    location.reload();
                 })
                 .catch(error => {
                     console.error('Error deleting event:', error);
