@@ -7,26 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>การจัดการข้อมูลกิจกรรม</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/admin/css/style.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;900&display=swap');
+    <link rel="stylesheet" href="../css/style.css">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Noto Sans Thai', sans-serif;
-        }
-
-        h1 {
-            font-weight: 900;
-        }
-
-        .news-section,
-        .events-section {
-            margin-bottom: 2rem;
-        }
-    </style>
 </head>
 
 <body>
@@ -60,10 +42,12 @@
                         const imageUrl = event.image ? `../../uploads/${event.image}` : '../../img/no_image.png';
 
                         eventCard.innerHTML = `
+                     
                             <div class="card-body">
+                                <img src="../../uploads/${imageUrl}" alt="event image" class="img-fluid mb-3" >
                                 <h5 class="card-title">${event.title}</h5>
                                 <p class="card-text">${event.content}</p>
-                                <img src="../../uploads/${imageUrl}" alt="event image" class="img-fluid mb-3" style="max-height: 200px;">
+                               
                                 <div class="d-flex justify-content-end">
                                     <a href="../edit/edit_regulations_for_visiting_relatives.php?id=${event.id}" class="btn btn-success me-2">Edit</a>
                                     <button class="btn btn-danger" onclick="confirmDelete(${event.id})">Delete</button>

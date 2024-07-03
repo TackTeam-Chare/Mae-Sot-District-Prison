@@ -7,26 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>การจัดการข้อมูลสินค้า</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/admin/css/style.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;900&display=swap');
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Noto Sans Thai', sans-serif;
-        }
-
-        h1 {
-            font-weight: 900;
-        }
-
-        .news-section,
-        .events-section {
-            margin-bottom: 2rem;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/style.css">
+  
 </head>
 
 <body>
@@ -60,9 +42,9 @@
 
                         productCard.innerHTML = `
                             <div class="card-body">
+                                   <img src="${imageUrl}" alt="product image" class="img-fluid mb-3">
                                 <h5 class="card-title">${product.title}</h5>
                                 <p class="card-text">${product.content}</p>
-                                <img src="${imageUrl}" alt="product image" class="img-fluid mb-3" style="max-height: 200px;">
                                 <div class="d-flex justify-content-end">
                                     <a href="../edit/edit_product.php?id=${product.id}" class="btn btn-success me-2">Edit</a>
                                     <button class="btn btn-danger" onclick="confirmDelete(${product.id})">Delete</button>

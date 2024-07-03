@@ -47,11 +47,12 @@
             display: flex;
             align-items: center;
             padding: 10px 15px;
+            transition: all 0.3s;
         }
 
         .sidebar-links a:hover {
             background-color: #495057;
-            border-radius: 0;
+            transform: translateX(10px);
         }
 
         .sidebar-links a .fa {
@@ -72,25 +73,53 @@
         }
 
         #content {
-            margin-left: 250px;
             transition: all 0.3s;
         }
 
         #content.active {
-            margin-left: 0;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            #content.active {
+                margin-left: 0;
+            }
         }
 
         .submenu-active a::before {
-            content: "- ";
-            padding-right: 5px;
+            content: "\f105";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            display: inline-block;
+            padding-right: 10px;
+        }
+        
+        .btn-menu {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-menu:hover {
+            background-color: #0056b3;
+        }
+
+        .close-btn {
+            color: white;
+        }
+
+        .close-btn:hover {
+            color: #ff0000;
         }
     </style>
 </head>
 
 <body>
-
     <div id="content" class="p-3">
-        <button class="btn btn-primary" onclick="toggleSidebar()">☰ เมนู</button>
+        <button class="btn-menu" id="menuButton" onclick="toggleSidebar()">☰ เมนู</button>
         <div id="sidebar" class="bg-dark">
             <div class="p-3 d-flex justify-content-between align-items-center border-bottom">
                 <span class="fw-bold">เมนู</span>
@@ -130,8 +159,18 @@
 
     <script>
         function toggleSidebar() {
-            document.getElementById("sidebar").classList.toggle("active");
-            document.getElementById("content").classList.toggle("active");
+            const sidebar = document.getElementById("sidebar");
+            const content = document.getElementById("content");
+            const menuButton = document.getElementById("menuButton");
+            
+            sidebar.classList.toggle("active");
+            content.classList.toggle("active");
+            
+            if (sidebar.classList.contains("active")) {
+                menuButton.style.display = "none";
+            } else {
+                menuButton.style.display = "block";
+            }
         }
 
         function toggleSubMenu(id) {
