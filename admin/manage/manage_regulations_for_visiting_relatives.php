@@ -21,6 +21,18 @@
         h1 {
             font-weight: 900;
         }
+        .card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-top-left-radius: calc(0.25rem - 1px);
+            border-top-right-radius: calc(0.25rem - 1px);
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
         .news-section,
         .events-section {
@@ -60,10 +72,12 @@
                         const imageUrl = event.image ? `../../uploads/${event.image}` : '../../img/no_image.png';
 
                         eventCard.innerHTML = `
+                     
                             <div class="card-body">
+                                <img src="../../uploads/${imageUrl}" alt="event image" class="img-fluid mb-3" >
                                 <h5 class="card-title">${event.title}</h5>
                                 <p class="card-text">${event.content}</p>
-                                <img src="../../uploads/${imageUrl}" alt="event image" class="img-fluid mb-3" style="max-height: 200px;">
+                               
                                 <div class="d-flex justify-content-end">
                                     <a href="../edit/edit_regulations_for_visiting_relatives.php?id=${event.id}" class="btn btn-success me-2">Edit</a>
                                     <button class="btn btn-danger" onclick="confirmDelete(${event.id})">Delete</button>

@@ -119,7 +119,7 @@
 
 <body>
     <div id="content" class="p-3">
-        <button class="btn-menu" onclick="toggleSidebar()">☰ เมนู</button>
+        <button class="btn-menu" id="menuButton" onclick="toggleSidebar()">☰ เมนู</button>
         <div id="sidebar" class="bg-dark">
             <div class="p-3 d-flex justify-content-between align-items-center border-bottom">
                 <span class="fw-bold">เมนู</span>
@@ -159,8 +159,18 @@
 
     <script>
         function toggleSidebar() {
-            document.getElementById("sidebar").classList.toggle("active");
-            document.getElementById("content").classList.toggle("active");
+            const sidebar = document.getElementById("sidebar");
+            const content = document.getElementById("content");
+            const menuButton = document.getElementById("menuButton");
+            
+            sidebar.classList.toggle("active");
+            content.classList.toggle("active");
+            
+            if (sidebar.classList.contains("active")) {
+                menuButton.style.display = "none";
+            } else {
+                menuButton.style.display = "block";
+            }
         }
 
         function toggleSubMenu(id) {

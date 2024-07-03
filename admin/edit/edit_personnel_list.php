@@ -6,51 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>เเก้ไขทำเนียบบุคคลากร</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-
-        .container {
-            max-width: 800px;
-        }
-
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .btn-secondary a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .btn-secondary a:hover {
-            color: white;
-            text-decoration: none;
-        }
-
-        .form-label {
-            font-weight: bold;
-        }
-
-        .form-control {
-            border-radius: 0.25rem;
-        }
-
-        textarea.form-control {
-            resize: none;
-        }
-
-        button.btn-primary {
-            background-color: #007bff;
-            border: none;
-        }
-
-        button.btn-primary:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>

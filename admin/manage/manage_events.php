@@ -29,7 +29,7 @@
 
         .card img {
             width: 100%;
-            height: 250px;
+            height: 400px;
             object-fit: cover;
             border-top-left-radius: calc(0.25rem - 1px);
             border-top-right-radius: calc(0.25rem - 1px);
@@ -91,8 +91,8 @@
                         const imageUrl = event.image ? `../../uploads/${event.image}` : '../../img/no_image.png';
 
                         eventCard.innerHTML = `
-                            <img src="${imageUrl}" alt="event image" class="card-img-top">
                             <div class="card-body">
+                                     <img src="${imageUrl}" alt="event image" class="img-fluid mb-3">
                                 <h5 class="card-title">${event.title}</h5>
                                 <p class="card-text">${event.content}</p>
                                 <div class="d-flex justify-content-end">

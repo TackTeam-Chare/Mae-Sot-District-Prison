@@ -17,7 +17,7 @@
             padding: 0;
             font-family: 'Noto Sans Thai', sans-serif;
         }
-     
+
 
         h1 {
             font-weight: 900;
@@ -26,7 +26,7 @@
 
         .card img {
             width: 100%;
-            height: 250px;
+            height: 400px;
             object-fit: cover;
             border-top-left-radius: calc(0.25rem - 1px);
             border-top-right-radius: calc(0.25rem - 1px);
@@ -56,6 +56,7 @@
             background-color: #dc3545;
             border-color: #c82333;
         }
+
         h1 {
             font-weight: 900;
         }
@@ -64,7 +65,6 @@
         .events-section {
             margin-bottom: 2rem;
         }
-
     </style>
 </head>
 
@@ -98,11 +98,10 @@
                         const imageUrl = product.image ? `../../uploads/${product.image}` : '../../img/no_image.png';
 
                         productCard.innerHTML = `
-                            <img src="${imageUrl}" alt="product image" class="img-fluid mb-3">
                             <div class="card-body">
+                                   <img src="${imageUrl}" alt="product image" class="img-fluid mb-3">
                                 <h5 class="card-title">${product.title}</h5>
                                 <p class="card-text">${product.content}</p>
-                            
                                 <div class="d-flex justify-content-end">
                                     <a href="../edit/edit_product.php?id=${product.id}" class="btn btn-success me-2">Edit</a>
                                     <button class="btn btn-danger" onclick="confirmDelete(${product.id})">Delete</button>
