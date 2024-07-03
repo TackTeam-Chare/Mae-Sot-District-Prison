@@ -1,8 +1,8 @@
 <?php
 define('DB_SERVER','localhost');
 define('DB_USER','root');
-define('DB_PASS' ,'Arnumat@4185');
-define('DB_NAME', 'loginsystem');
+define('DB_PASS' ,'');
+define('DB_NAME', 'prison_db');
 $con = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
 
 // Check connection
