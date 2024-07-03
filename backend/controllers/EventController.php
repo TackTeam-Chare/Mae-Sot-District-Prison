@@ -51,7 +51,7 @@ class EventController
 
         if (isset($_FILES['image'])) {
                 // Handle file upload
-                $uploadDir = '../Mae-Sot-District-Prison/uploads/';
+                $uploadDir = '../uploads/';
                 $uploadFile = time() . basename($_FILES['image']['name']);
                 $imageFileType = strtolower(pathinfo($uploadFile, PATHINFO_EXTENSION));
         
@@ -113,7 +113,7 @@ class EventController
         // Check if an image file is uploaded
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             // Handle file upload
-            $uploadDir = '../Mae-Sot-District-Prison/uploads/';
+            $uploadDir = '../uploads/';
             $uploadFile = time() . basename($_FILES['image']['name']);
             $imageFileType = strtolower(pathinfo($uploadFile, PATHINFO_EXTENSION));
     
@@ -174,7 +174,7 @@ class EventController
             return;
         }
         $this->event->id = $_GET['id'];
-        $uploadDir = '../Mae-Sot-District-Prison/uploads/';
+        $uploadDir = '../uploads/';
         $stmt = $this->event->read_id();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $old_image = $result[0]['image'];
