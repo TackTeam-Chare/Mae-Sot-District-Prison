@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <link rel="icon" type="image/x-icon" href="./assets/icons/admin.jpg">
     <meta charset="UTF-8">
@@ -21,13 +22,15 @@
             font-weight: 900;
         }
 
-        .news-section, .events-section {
+        .news-section,
+        .events-section {
             margin-bottom: 2rem;
         }
 
         /* Main content container */
         .main-content {
-            margin-left: 250px; /* Same width as the sidebar */
+            margin-left: 250px;
+            /* กำหนดความกว้างเดียวกับ Sidebar */
             transition: margin-left 0.3s;
         }
 
@@ -38,6 +41,7 @@
         }
     </style>
 </head>
+
 <body>
     <?php include_once('./layout/navbar.php') ?>
 
@@ -45,29 +49,14 @@
         <h1 class="mb-4 text-center">หน้าหลัก</h1>
         <div class="row">
             <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">ข่าวประชาสัมพันธ์</h5>
-                        <p class="card-text">
-                            เนื้อหาของข่าวประชาสัมพันธ์เกี่ยวกับเหตุการณ์ล่าสุดที่เกี่ยวข้องกับองค์กรของเราและข้อมูลที่เป็นประโยชน์ต่อสมาชิก.
-                        </p>
-                        <a href="#" class="btn btn-primary">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
+                <?php include_once('../admin/layout/event.php') ?>
             </div>
             <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">ผลิตภัณฑ์</h5>
-                        <p class="card-text">
-                            ข้อมูลเกี่ยวกับผลิตภัณฑ์ใหม่และผลิตภัณฑ์ที่มีอยู่ที่สามารถให้บริการแก่ลูกค้า รวมถึงรายละเอียดการใช้งานและคุณสมบัติพิเศษ.
-                        </p>
-                        <a href="#" class="btn btn-primary">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
+                
+                <?php include_once('../admin/layout/product.php') ?>
             </div>
         </div>
-        
+
         <div class="row mt-5">
             <div class="col-md-6">
                 <div class="card">
@@ -159,4 +148,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>

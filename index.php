@@ -1,7 +1,3 @@
-<?php
-include_once('./admin/inc/config.php');
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -18,6 +14,17 @@ include_once('./admin/inc/config.php');
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <style>
+        /* Hover effect for links */
+a {
+    color: aliceblue;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #ffc107; /* Change to the color you prefer on hover */
+    text-decoration: none; /* Optional: Remove underline on hover */
+}
+
         .unique-animation-container {
             background-color: rgb(175, 61, 61);
             height: 90px;
@@ -171,7 +178,7 @@ include_once('./admin/inc/config.php');
                                             <li><a href="https://www.maepalocal.go.th/home" style="color: aliceblue;">องค์การบริหารส่วนอำเภอแม่สอด</a></li>
                                             <li><a href="https://www.nakhonmaesotcity.go.th/web/" style="color: aliceblue;">เทศบาลนครแม่สอด</a></li>
                                         </ul>
-                                       
+
                                         <br>
                                     </aside>
                                 </div>
@@ -206,97 +213,7 @@ include_once('./admin/inc/config.php');
                                     <p style="color: white;">ยินดีต้อนรับสู่เว็บไซต์ของเรือนจำอำเภอแม่สอด
                                         ท่านสามารถเรียนรู้ข้อมูลเพิ่มเติมได้จากเว็บไซต์นี้</p>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="card h-100">
-                                            <img src="img/new10.jpg" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h5 class="card-title">ข่าวประชาสัมพันธ์</h5>
-                                                <p class="card-text">รับสมัครพนักงานคุมเยาวชนและผู้เข้าคุก จำนวน 7
-                                                    ตำแหน่ง ด่วน</p>
-                                                <a href="new.php" class="btn btn-primary">อ่านข่าว</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mb-4">
-                                        <div class="card h-100">
-                                            <img src="img/new10.jpg" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h5 class="card-title">ปฏิทินกิจกรรม</h5>
-                                                <p class="card-text">กิจกรรมต่าง ๆ ของเรือนจำอำเภอแม่สอด
-                                                    ประจำเดือนมกราคม 2567</p>
-                                                <a href="new.php" class="btn btn-primary">ดูปฏิทิน</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="card h-100">
-                                            <img src="img/new10.jpg" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h5 class="card-title">ข่าวประชาสัมพันธ์</h5>
-                                                <p class="card-text">รับสมัครพนักงานคุมเยาวชนและผู้เข้าคุก จำนวน 7
-                                                    ตำแหน่ง ด่วน</p>
-                                                <a href="new.php" class="btn btn-primary">อ่านข่าว</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mb-4">
-                                        <div class="card h-100">
-                                            <img src="img/new10.jpg" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h5 class="card-title">ปฏิทินกิจกรรม</h5>
-                                                <p class="card-text">กิจกรรมต่าง ๆ ของเรือนจำอำเภอแม่สอด
-                                                    ประจำเดือนมกราคม 2567</p>
-                                                <a href="new.php" class="btn btn-primary">ดูปฏิทิน</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- <article class="all-browsers"> -->
-                                    <div class="container mt-5 table-container" style=" font-weight: bold; color: white;">
-                                        <h2 class="text-center mb-4">ยอดผู้ต้องขัง</h2>
-                                        <table class="table custom-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>สัญชาติ</th>
-                                                    <th>ชาย</th>
-                                                    <th>หญิง</th>
-                                                    <th>รวม</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>ผู้ต้องขังชาวไทย</td>
-                                                    <td class="thai-numerals">๒๕๔</td>
-                                                    <td class="thai-numerals">๔๓</td>
-                                                    <td class="thai-numerals">๒๙๗</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>ผู้ต้องขังชาวต่างประเทศ</td>
-                                                    <td class="thai-numerals">๒๖๒</td>
-                                                    <td class="thai-numerals">๒๖</td>
-                                                    <td class="thai-numerals">๒๘๘</td>
-                                                </tr>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <td>รวม</td>
-                                                    <td class="thai-numerals">๕๑๖</td>
-                                                    <td class="thai-numerals">๖๙</td>
-                                                    <td class="thai-numerals">๕๘๕</td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                    <!-- </article> -->
-
-
-                                </div>
-
+                               <?php include_once('./layout/event_news.php') ?>
                             </div>
 
                         </div>
@@ -305,6 +222,9 @@ include_once('./admin/inc/config.php');
 
                 </div>
     </main>
+
+
+
 
     <article>
         <h1 class="top">

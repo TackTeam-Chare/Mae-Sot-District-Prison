@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เพิ่มกิจกรรม</title>
+    <title>เพิ่มผลิตภันฑ์</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -113,12 +113,14 @@ function goBackAndReset() {
                 .then(data => {
                     // Handle success response
                     console.log('Success:', data);
+                    alert('Event add successfully!');
                     goBackAndReset();
                     // Optionally redirect to another page
                 })
                 .catch(error => {
                     // Handle error
                     console.error('Error:', error);
+                    alert('Failed to add event: ' + error.message);
                 });
         });
     </script>

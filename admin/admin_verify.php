@@ -15,6 +15,9 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            background-image: url('img/background.jpg'); /* Add a background image if desired */
+            background-size: cover;
+            background-position: center;
         }
 
         .card {
@@ -23,20 +26,28 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
         }
 
         .btn-primary {
             background-color: #007bff;
             border: none;
         }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .input-group-text {
+            background-color: #e9ecef;
+        }
     </style>
 </head>
 <body>
-
-
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="card">
             <h3 class="text-center mb-4">Admin Login</h3>
+            <div id="alertPlaceholder"></div> <!-- Alert placeholder -->
             <form id="loginForm" method="post">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
@@ -65,30 +76,46 @@
 
             const formData = new FormData(event.target); // Create FormData object from form
             const url = 'http://localhost:8000/login'; // Replace with your API endpoint
-            var status =null
+            var status = null;
+
             fetch(url, {
                 method: 'POST',
                 body: formData
             })
-            .then(response =>{
-                status = response['status'];
-                return response.json()
+            .then(response => {
+                status = response.status;
+                console.log('Response status:', status); // เพิ่มการดีบัก
+                return response.json();
             })
             .then(data => {
-                console.log('token:', data['token']);
-                if (status==200){
-
-                window.location.href = "dashboard.php"                 
+                console.log('Response data:', data); // เพิ่มการดีบัก
+                if (status == 200) {
+                    showAlert('Login successful!', 'success');
+                    setTimeout(() => {
+                        window.location.href = "dashboard.php";  
+                    }, 3000); // รอ 3 วินาทีก่อนจะเปลี่ยนหน้า
+                } else {
+                    showAlert('Login failed! Please check your credentials.', 'danger');
                 }
-            // window.location = 'dashboard.php';
             })
             .catch((error) => {
                 console.error('Error:', error);
-                // Handle error here
+                showAlert('An error occurred during login. Please try again later.', 'danger');
             });
         });
-    </script>
 
+        function showAlert(message, type) {
+            const alertPlaceholder = document.getElementById('alertPlaceholder');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} alert-dismissible fade show`;
+            alert.role = 'alert';
+            alert.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            `;
+            alertPlaceholder.append(alert);
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
