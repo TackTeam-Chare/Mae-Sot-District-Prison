@@ -13,13 +13,11 @@
     div.card {
       width: 100%;
       height: auto;
-      /* ทำให้การ์ดมีความสูงอัตโนมัติ */
     }
 
     img.card-img-top {
       width: 100%;
       max-height: 400px;
-      /* จำกัดความสูงของรูปภาพ */
       object-fit: cover;
       border-top-left-radius: calc(0.25rem - 1px);
       border-top-right-radius: calc(0.25rem - 1px);
@@ -27,12 +25,9 @@
 
     .card-body {
       overflow: hidden;
-      /* ป้องกันไม่ให้ข้อความล้นออกนอก card */
       text-overflow: ellipsis;
-      /* เพิ่มจุดต่อท้ายถ้าข้อความยาวเกินไป */
       display: -webkit-box;
       -webkit-line-clamp: 4;
-      /* จำนวนบรรทัดที่ต้องการแสดง */
       -webkit-box-orient: vertical;
     }
 
@@ -44,12 +39,9 @@
 
     .card-text {
       height: 100px;
-      /* จำกัดความสูงของ card-text */
       overflow-y: auto;
-      /* เพิ่มการเลื่อนถ้าข้อความเกิน */
     }
 
-    /* ปรับความกว้างของการ์ดตามขนาดหน้าจอ */
     @media (min-width: 768px) {
       .col-md-8 {
         max-width: 80%;
@@ -74,8 +66,23 @@
   </div>
   <?php include('./layout/footer.php'); ?>
 
+  <!-- Modal -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="imageModalLabel">Image</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="" id="modalImage" class="img-fluid" alt="...">
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       fetch('http://localhost:8000/visiting_rules')
         .then(response => response.json())
         .then(data => {
@@ -85,17 +92,28 @@
             colDiv.className = 'col-md-12 col-lg-8 mb-3';
 
             const card = `
-                            <div class="card">
-                                <img src="../../uploads/${item.image}" class="card-img-top" alt="${item.title}">
-                                <div class="card-body">
-                                    <h5 class="card-title">${item.title}</h5>
-                                    <p class="card-text">${item.content}</p>
-                                </div>
-                            </div>
-                        `;
+              <div class="card">
+                <img src="../../uploads/${item.image}" class="card-img-top" alt="${item.title}" data-bs-toggle="modal" data-bs-target="#imageModal">
+                <div class="card-body">
+                  <h5 class="card-title">${item.title}</h5>
+                  <p class="card-text">${item.content}</p>
+                </div>
+              </div>
+            `;
 
             colDiv.innerHTML = card;
             contentDiv.appendChild(colDiv);
+          });
+
+          // Add event listeners for opening the modal with the image
+          const images = document.querySelectorAll('.card-img-top');
+          images.forEach(img => {
+            img.addEventListener('click', function () {
+              const modalImage = document.getElementById('modalImage');
+              modalImage.src = this.src;
+              const imageModalLabel = document.getElementById('imageModalLabel');
+              imageModalLabel.textContent = this.alt;
+            });
           });
         })
         .catch(error => console.error('Error fetching JSON:', error));
