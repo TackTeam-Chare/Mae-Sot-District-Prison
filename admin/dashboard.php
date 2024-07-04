@@ -30,7 +30,7 @@
         /* Main content container */
         .main-content {
             margin-left: 250px;
-            /* Same width as the sidebar */
+            /* กำหนดความกว้างเดียวกับ Sidebar */
             transition: margin-left 0.3s;
         }
 
@@ -49,23 +49,12 @@
         <h1 class="mb-4 text-center">หน้าหลัก</h1>
         <div class="row">
             <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">ข่าวประชาสัมพันธ์</h5>
-                        <p class="card-text">
-                            เนื้อหาของข่าวประชาสัมพันธ์เกี่ยวกับเหตุการณ์ล่าสุดที่เกี่ยวข้องกับองค์กรของเราและข้อมูลที่เป็นประโยชน์ต่อสมาชิก.
-                        </p>
-                        <a href="#" class="btn btn-primary">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
+                <?php include_once('../admin/layout/event.php') ?>
             </div>
-
             <div class="col-md-6">
-             <?php include_once('../admin/layout/product.php') ?>
+                <?php include_once('../admin/layout/product.php') ?>
             </div>
-
         </div>
-
 
         <div class="row mt-5">
             <div class="col-md-6">
