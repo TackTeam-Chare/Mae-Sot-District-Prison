@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -168,7 +167,7 @@
                                             <li><a href="https://www.maepalocal.go.th/home" style="color: aliceblue;">องค์การบริหารส่วนอำเภอแม่สอด</a></li>
                                             <li><a href="https://www.nakhonmaesotcity.go.th/web/" style="color: aliceblue;">เทศบาลนครแม่สอด</a></li>
                                         </ul>
-                                       
+
                                         <br>
                                     </aside>
                                 </div>
@@ -203,15 +202,7 @@
                                     <p style="color: white;">ยินดีต้อนรับสู่เว็บไซต์ของเรือนจำอำเภอแม่สอด
                                         ท่านสามารถเรียนรู้ข้อมูลเพิ่มเติมได้จากเว็บไซต์นี้</p>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-4" id="newsList">
-
-                                    </div>
-
-                                  
-                                </div>
-                              
-
+                               <?php include_once('./layout/event_news.php') ?>
                             </div>
 
                         </div>
@@ -220,31 +211,10 @@
 
                 </div>
     </main>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            fetchNews(); // Fetch news when the page loads
 
-            function fetchNews() {
-                fetch('http://localhost:8000/events') // Replace with your API endpoint
-                    .then(response => response.json())
-                    .then(data => {
-                        const newsListDiv = document.getElementById('newsList');
-                        data.forEach(events => {
-                            const article = document.createElement('article');
-                            article.classList.add('browser');
-                            article.innerHTML = `
-                                <h2>${events.title}</h2>
-                                <img class="img-fluid" src="./uploads/${events.image}">
-                                <p>${events.content}</p>
 
-                            `;
-                            newsListDiv.appendChild(article);
-                        });
-                    })
-                    .catch(error => console.error('Error fetching news:', error));
-            }
-        });
-    </script>
+
+
     <article>
         <h1 class="top">
             <span style="color: aliceblue;">เว็บไซต์ที่เกี่ยวข้อง</span>
