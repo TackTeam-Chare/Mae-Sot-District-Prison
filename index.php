@@ -14,6 +14,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <style>
+        /* Hover effect for links */
+a {
+    color: aliceblue;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #ffc107; /* Change to the color you prefer on hover */
+    text-decoration: none; /* Optional: Remove underline on hover */
+}
+
         .unique-animation-container {
             background-color: rgb(175, 61, 61);
             height: 90px;
