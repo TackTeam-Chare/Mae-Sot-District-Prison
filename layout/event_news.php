@@ -1,111 +1,84 @@
-<style>
-    .pagination .page-item .page-link {
-        color: #0056b3;
-        /* เปลี่ยนสีข้อความเป็นสีน้ำเงินเข้ม */
-        background-color: #f8f9fa;
-        /* เปลี่ยนสีพื้นหลังเป็นสีเทาอ่อน */
-        border: 1px solid #dee2e6;
-        /* กำหนดเส้นขอบของปุ่ม */
-    }
 
-    .pagination .page-item.active .page-link {
-        z-index: 3;
-        color: #fff;
-        /* เปลี่ยนสีข้อความในปุ่มที่ active เป็นสีขาว */
-        background-color: #0056b3;
-        /* เปลี่ยนสีพื้นหลังในปุ่มที่ active เป็นสีน้ำเงินเข้ม */
-        border-color: #0056b3;
-        /* เปลี่ยนสีเส้นขอบของปุ่มที่ active เป็นสีน้ำเงินเข้ม */
-    }
-
-    .pagination .page-item .page-link:hover {
-        color: #0056b3;
-        /* เปลี่ยนสีข้อความในปุ่มเมื่อ hover เป็นสีน้ำเงินเข้ม */
-        background-color: #e9ecef;
-        /* เปลี่ยนสีพื้นหลังเป็นสีเทาอ่อนเมื่อ hover */
-        border-color: #dee2e6;
-        /* กำหนดเส้นขอบของปุ่มเมื่อ hover */
-    }
-
-    div.card {
-        width: 100%;
-        height: auto;
-        /* ทำให้การ์ดมีความสูงอัตโนมัติ */
-    }
-
-    img.card-img-top {
-        width: 100%;
-        max-height: 400px;
-        /* จำกัดความสูงของรูปภาพ */
-        object-fit: cover;
-        border-top-left-radius: calc(0.25rem - 1px);
-        border-top-right-radius: calc(0.25rem - 1px);
-    }
-
-    .card-body {
-        overflow: hidden;
-        /* ป้องกันไม่ให้ข้อความล้นออกนอก card */
-        text-overflow: ellipsis;
-        /* เพิ่มจุดต่อท้ายถ้าข้อความยาวเกินไป */
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        /* จำนวนบรรทัดที่ต้องการแสดง */
-        -webkit-box-orient: vertical;
-    }
-
-    .card-title {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .card-text {
-        height: 100px;
-        /* จำกัดความสูงของ card-text */
-        overflow-y: auto;
-        /* เพิ่มการเลื่อนถ้าข้อความเกิน */
-    }
-
-    /* ปรับความกว้างของการ์ดตามขนาดหน้าจอ */
-    @media (min-width: 768px) {
-        .col-md-8 {
-            max-width: 80%;
+    <style>
+        div.card {
+            width: 100%;
+            height: auto;
+            /* ทำให้การ์ดมีความสูงอัตโนมัติ */
         }
-    }
 
-    @media (min-width: 992px) {
-        .col-lg-8 {
-            max-width: 60%;
+        img.card-img-top {
+            width: 100%;
+            max-height: 400px;
+            /* จำกัดความสูงของรูปภาพ */
+            object-fit: cover;
+            border-top-left-radius: calc(0.25rem - 1px);
+            border-top-right-radius: calc(0.25rem - 1px);
         }
-    }
 
-    /* Style pagination to match the tone */
-    .pagination .page-item .page-link {
-        color: #007bff;
-        background-color: #fff;
-        border: 1px solid #dee2e6;
-    }
+        .card-body {
+            overflow: hidden;
+            /* ป้องกันไม่ให้ข้อความล้นออกนอก card */
+            text-overflow: ellipsis;
+            /* เพิ่มจุดต่อท้ายถ้าข้อความยาวเกินไป */
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            /* จำนวนบรรทัดที่ต้องการแสดง */
+            -webkit-box-orient: vertical;
+        }
 
-    .pagination .page-item.active .page-link {
-        z-index: 3;
-        color: #fff;
-        background-color: #007bff;
-        border-color: #007bff;
-    }
+        .card-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-    .pagination .page-item .page-link:hover {
-        color: #0056b3;
-        background-color: #e9ecef;
-        border-color: #dee2e6;
-    }
-</style>
+        .card-text {
+            height: 100px;
+            /* จำกัดความสูงของ card-text */
+            overflow-y: auto;
+            /* เพิ่มการเลื่อนถ้าข้อความเกิน */
+        }
 
-<body>
+        /* ปรับความกว้างของการ์ดตามขนาดหน้าจอ */
+        @media (min-width: 768px) {
+            .col-md-8 {
+                max-width: 80%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .col-lg-8 {
+                max-width: 60%;
+            }
+        }
+
+        /* Style pagination to match the tone */
+        .pagination .page-item .page-link {
+            color: #007bff;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+        }
+
+        .pagination .page-item.active .page-link {
+            z-index: 3;
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .pagination .page-item .page-link:hover {
+            color: #0056b3;
+            background-color: #e9ecef;
+            border-color: #dee2e6;
+        }
+    </style>
+
+
     <div class="container">
         <h1 class="text-center mb-4 fw-bold text-white">ข่าวประชาสัมพันธ์</h1>
         <hr>
-        <div class="row gy-5 justify-content-center">
-            <div class="col-lg-12 events-section" id="events-container">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col" id="events-container">
                 <!-- Events will be dynamically added here -->
             </div>
         </div>
@@ -118,11 +91,11 @@
 
     <script>
         let currentPage = 1;
-        const eventsPerPage = 1;
+        const eventsPerPage = 4; // จำกัดแสดงเพียง 4 ข่าวต่อหน้า
         let totalEvents = 0;
         let allEvents = [];
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             fetch('http://localhost:8000/events')
                 .then(response => response.json())
                 .then(data => {
@@ -153,8 +126,7 @@
                         <img src="${imageUrl}" alt="event image" class="img-fluid mb-3">
                         <h5 class="card-title">${event.title}</h5>
                         <p class="card-text">${event.content}</p>
-                            <a href="../new.php?id=${event.id}" class="btn btn-success">อ่านเพิ่มเติม</a>
-
+                        <a href="../new.php?id=${event.id}" class="btn btn-success">อ่านเพิ่มเติม</a>
                     </div>
                 `;
 
@@ -221,6 +193,3 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-</body>
-
-</html>
