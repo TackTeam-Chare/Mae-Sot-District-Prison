@@ -14,7 +14,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/style.css">
   <style>
-      div.card {
+    div.card {
       width: 100%;
       height: auto;
     }
@@ -63,7 +63,7 @@
         max-width: 60%;
       }
     }
-  
+
     .card {
       transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
       display: flex;
@@ -82,7 +82,7 @@
       box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     }
 
-  
+
     .card-title {
       font-size: 1.25rem;
       margin-top: 15px;
@@ -148,17 +148,21 @@
     <p class="text-center text-light">ติดต่อสอบถามได้ที่<br>เบอร์ 055 531226 ต่อ 108</p>
 
     <div class="d-flex flex-wrap justify-content-center" id="products-container">
-
-
-
-
+      <!-- Product cards will be dynamically generated here -->
     </div>
   </div>
 
   <?php include('./layout/footer.php'); ?>
 
+  <!-- โหลด jQuery ก่อน Bootstrap 5 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- โหลด Bootstrap 5 พร้อม Popper.js และ JavaScript ของ Bootstrap 5 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Your custom script for fetching and displaying products -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
+      // Fetch products from your API or local data
       fetch('http://localhost:8000/products')
         .then(response => response.json())
         .then(data => {
@@ -172,10 +176,12 @@
             const imageUrl = product.image ? `../../uploads/${product.image}` : '../../img/no_image.png';
 
             productCard.innerHTML = `
-                            <div class="card-body">
+                            <div class="card-body" data-bs-toggle="modal" data-bs-target="#productModal"
+                                    data-title="${product.title}"  data-image="${imageUrl}" data-content="${product.content}">
                                 <img src="${imageUrl}" alt="product image" class="img-fluid mb-3" >
                                 <h5 class="card-title">${product.title}</h5>
-                                <p class="card-text">${product.content}</p> 
+                                <p class="card-text">${product.content}</p>
+                            
                             </div>
                         `;
 
@@ -183,11 +189,42 @@
           });
         })
         .catch(error => console.error('Error fetching products:', error));
+
+      // Modal initialization and content update
+      const productModal = new bootstrap.Modal(document.getElementById('productModal'));
+      const productModalBody = document.getElementById('productModalBody');
+
+      $('#productModal').on('show.bs.modal', function(event) {
+        const button = $(event.relatedTarget);
+        const title = button.data('title');
+        const image = button.data('image');
+        const content = button.data('content');
+
+        productModalBody.innerHTML = `
+                        <div class="text-center">
+                        <img src="${image}" alt="product image" class="img-fluid">
+                    </div>
+                    <h5 class="modal-title mt-3">${title}</h5>
+                    <p>${content}</p>
+                `;
+      });
     });
-
-
-    
   </script>
+
+  <!-- Modal -->
+  <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="productModalLabel">ข้อมูลผลิตภันฑ์</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="productModalBody">
+          <!-- Product details will be dynamically inserted here -->
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 
