@@ -32,6 +32,17 @@
             float: right;
             margin-top: -40px; /* Adjust as needed */
         }
+        .new-product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: green;
+            color: white;
+            padding: 5px 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 5px;
+        }
     </style>
 
 </head>
@@ -64,6 +75,7 @@
                     const imageUrl = product.image ? `../../uploads/${product.image}` : '../../img/no_image.png';
 
                     productCard.innerHTML = `
+                        <div class="new-product-badge">ผลิตภัณฑ์ใหม่</div>
                         <div class="card-body">
                             <img src="${imageUrl}" alt="product image" class="img-fluid mb-3">
                             <h5 class="card-title">${product.title}</h5>
