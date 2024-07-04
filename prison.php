@@ -170,60 +170,43 @@
     <p class="text-center text-light">ติดต่อสอบถามได้ที่<br>เบอร์ 055 531226 ต่อ 108</p>
 
     <div class="d-flex flex-wrap justify-content-center">
-    <div class="card mb-4" data-bs-toggle="modal" data-bs-target="#productModal">
-  <div class="card-img-top" style="background-image: url('./img/toop05.jpg');"></div>
-  <div class="card-body text-center">
-    <h5 class="card-title">ชุดรับแขกตอรากไม้</h5>
-    <p class="card-text">ชุดรับแขกตอรากไม้<br> ราคา 5,000 บาท</p>
-  </div>
+<div id="prisonList"></div>
 </div>
 
-      <div class="card mb-4"  data-bs-toggle="modal" data-bs-target="#productModal">
-        <div class="card-img-top" style="background-image: url('./img/toop05.jpg');"></div>
-        <div class="card-body text-center">
-          <h5 class="card-title">ชุดรับแขกตอรากไม้</h5>
-          <p class="card-text">ชุดรับแขกตอรากไม้<br> ราคา 5,000 บาท</p>
-        </div>
-      </div>
-      <div class="card mb-4"  data-bs-toggle="modal" data-bs-target="#productModal">
-        <div class="card-img-top" style="background-image: url('./img/toop05.jpg');"></div>
-        <div class="card-body text-center">
-          <h5 class="card-title">ชุดรับแขกตอรากไม้</h5>
-          <p class="card-text">ชุดรับแขกตอรากไม้<br> ราคา 5,000 บาท</p>
-        </div>
-      </div>
-      <div class="card mb-4"  data-bs-toggle="modal" data-bs-target="#productModal">
-        <div class="card-img-top" style="background-image: url('./img/toop05.jpg');"></div>
-        <div class="card-body text-center">
-          <h5 class="card-title">ชุดรับแขกตอรากไม้</h5>
-          <p class="card-text">ชุดรับแขกตอรากไม้<br> ราคา 5,000 บาท</p>
-        </div>
-      </div>
+   
+     
 
     </div>
   </div>
 
   <?php include('./layout/footer.php'); ?>
 
-  <!-- Modal -->
-<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="productModalLabel">ชุดรับแขกตอรากไม้</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <img src="./img/toop05.jpg" class="card-img-top mb-3" alt="...">
-        <p>รายละเอียด: ชุดรับแขกตอรากไม้ ราคา 5,000 บาท</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-      </div>
-    </div>
-  </div>
-</div>
 
+  <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetchNews(); // Fetch news when the page loads
+
+            function fetchNews() {
+                fetch('http://localhost:8000/products') // Replace with your API endpoint
+                    .then(response => response.json())
+                    .then(data => {
+                        const newsListDiv = document.getElementById('prisonList');
+                        data.forEach(events => {
+                            const article = document.createElement('article');
+                            article.classList.add('browser');
+                            article.innerHTML = `
+                                <h2>${events.title}</h2>
+                                <img class="img-fluid" src="./uploads/${events.image}">
+                                <p>${events.content}</p>
+
+                            `;
+                            newsListDiv.appendChild(article);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching news:', error));
+            }
+        });
+    </script>
 </body>
 
 </html>

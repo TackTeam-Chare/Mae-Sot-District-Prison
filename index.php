@@ -204,95 +204,13 @@
                                         ท่านสามารถเรียนรู้ข้อมูลเพิ่มเติมได้จากเว็บไซต์นี้</p>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="card h-100">
-                                            <img src="img/new10.jpg" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h5 class="card-title">ข่าวประชาสัมพันธ์</h5>
-                                                <p class="card-text">รับสมัครพนักงานคุมเยาวชนและผู้เข้าคุก จำนวน 7
-                                                    ตำแหน่ง ด่วน</p>
-                                                <a href="new.php" class="btn btn-primary">อ่านข่าว</a>
-                                            </div>
-                                        </div>
+                                    <div class="col-md-6 mb-4" id="newsList">
+
                                     </div>
 
-                                    <div class="col-md-6 mb-4">
-                                        <div class="card h-100">
-                                            <img src="img/new10.jpg" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h5 class="card-title">ปฏิทินกิจกรรม</h5>
-                                                <p class="card-text">กิจกรรมต่าง ๆ ของเรือนจำอำเภอแม่สอด
-                                                    ประจำเดือนมกราคม 2567</p>
-                                                <a href="new.php" class="btn btn-primary">ดูปฏิทิน</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                  
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="card h-100">
-                                            <img src="img/new10.jpg" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h5 class="card-title">ข่าวประชาสัมพันธ์</h5>
-                                                <p class="card-text">รับสมัครพนักงานคุมเยาวชนและผู้เข้าคุก จำนวน 7
-                                                    ตำแหน่ง ด่วน</p>
-                                                <a href="new.php" class="btn btn-primary">อ่านข่าว</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mb-4">
-                                        <div class="card h-100">
-                                            <img src="img/new10.jpg" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                                <h5 class="card-title">ปฏิทินกิจกรรม</h5>
-                                                <p class="card-text">กิจกรรมต่าง ๆ ของเรือนจำอำเภอแม่สอด
-                                                    ประจำเดือนมกราคม 2567</p>
-                                                <a href="new.php" class="btn btn-primary">ดูปฏิทิน</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- <article class="all-browsers"> -->
-                                    <div class="container mt-5 table-container" style=" font-weight: bold; color: white;">
-                                        <h2 class="text-center mb-4">ยอดผู้ต้องขัง</h2>
-                                        <table class="table custom-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>สัญชาติ</th>
-                                                    <th>ชาย</th>
-                                                    <th>หญิง</th>
-                                                    <th>รวม</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>ผู้ต้องขังชาวไทย</td>
-                                                    <td class="thai-numerals">๒๕๔</td>
-                                                    <td class="thai-numerals">๔๓</td>
-                                                    <td class="thai-numerals">๒๙๗</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>ผู้ต้องขังชาวต่างประเทศ</td>
-                                                    <td class="thai-numerals">๒๖๒</td>
-                                                    <td class="thai-numerals">๒๖</td>
-                                                    <td class="thai-numerals">๒๘๘</td>
-                                                </tr>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <td>รวม</td>
-                                                    <td class="thai-numerals">๕๑๖</td>
-                                                    <td class="thai-numerals">๖๙</td>
-                                                    <td class="thai-numerals">๕๘๕</td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                    <!-- </article> -->
-
-
-                                </div>
+                              
 
                             </div>
 
@@ -302,7 +220,31 @@
 
                 </div>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetchNews(); // Fetch news when the page loads
 
+            function fetchNews() {
+                fetch('http://localhost:8000/events') // Replace with your API endpoint
+                    .then(response => response.json())
+                    .then(data => {
+                        const newsListDiv = document.getElementById('newsList');
+                        data.forEach(events => {
+                            const article = document.createElement('article');
+                            article.classList.add('browser');
+                            article.innerHTML = `
+                                <h2>${events.title}</h2>
+                                <img class="img-fluid" src="./uploads/${events.image}">
+                                <p>${events.content}</p>
+
+                            `;
+                            newsListDiv.appendChild(article);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching news:', error));
+            }
+        });
+    </script>
     <article>
         <h1 class="top">
             <span style="color: aliceblue;">เว็บไซต์ที่เกี่ยวข้อง</span>
