@@ -1,6 +1,3 @@
-<?php
-include_once('./admin/inc/config.php');
-?>
 
 <!DOCTYPE html>
 <html>
