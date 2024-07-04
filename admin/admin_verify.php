@@ -65,22 +65,25 @@
             const formData = new FormData(event.target); // Create FormData object from form
             const url = 'http://localhost:8000/login'; // Replace with your API endpoint
             var status = null;
-            
+
             fetch(url, {
                 method: 'POST',
                 body: formData
             })
             .then(response => {
-                status = response['status'];
-                return response.json()
+                status = response.status;
+                console.log('Response status:', status); // เพิ่มการดีบัก
+                return response.json();
             })
             .then(data => {
-                console.log('token:', data['token']);
+                console.log('Response data:', data); // เพิ่มการดีบัก
                 if (status == 200) {
-                    alert('Login successfully!');
-                    window.location.href = "dashboard.php";
+                    showAlert('Login successful!', 'success');
+                    setTimeout(() => {
+                        window.location.href = "dashboard.php";  
+                    }, 3000); // รอ 3 วินาทีก่อนจะเปลี่ยนหน้า
                 } else {
-                    showAlert('Login failed! ', 'danger');
+                    showAlert('Login failed! Please check your credentials.', 'danger');
                 }
             })
             .catch((error) => {
