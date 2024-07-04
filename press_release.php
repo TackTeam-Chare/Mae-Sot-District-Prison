@@ -1,6 +1,3 @@
-<?php
-include_once('./admin/inc/config.php');
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,9 +24,7 @@ include_once('./admin/inc/config.php');
         </div>
     </section>
 
-    <div class="container mt-5">
-        <?php include('./layout/activityNews.php'); ?>
-    </div>
+
 
     <?php include('./layout/footer.php'); ?>
 
