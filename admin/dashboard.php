@@ -52,6 +52,7 @@
                 <?php include_once('../admin/layout/event.php') ?>
             </div>
             <div class="col-md-6">
+                
                 <?php include_once('../admin/layout/product.php') ?>
             </div>
         </div>
