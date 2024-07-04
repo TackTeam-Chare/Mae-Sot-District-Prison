@@ -1,70 +1,104 @@
+<style>
+    .pagination .page-item .page-link {
+        color: #0056b3;
+        /* เปลี่ยนสีข้อความเป็นสีน้ำเงินเข้ม */
+        background-color: #f8f9fa;
+        /* เปลี่ยนสีพื้นหลังเป็นสีเทาอ่อน */
+        border: 1px solid #dee2e6;
+        /* กำหนดเส้นขอบของปุ่ม */
+    }
 
-    <style>
-        div.card {
-            width: 100%;
-            height: auto; /* ทำให้การ์ดมีความสูงอัตโนมัติ */
-        }
+    .pagination .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        /* เปลี่ยนสีข้อความในปุ่มที่ active เป็นสีขาว */
+        background-color: #0056b3;
+        /* เปลี่ยนสีพื้นหลังในปุ่มที่ active เป็นสีน้ำเงินเข้ม */
+        border-color: #0056b3;
+        /* เปลี่ยนสีเส้นขอบของปุ่มที่ active เป็นสีน้ำเงินเข้ม */
+    }
 
-        img.card-img-top {
-            width: 100%;
-            max-height: 400px; /* จำกัดความสูงของรูปภาพ */
-            object-fit: cover;
-            border-top-left-radius: calc(0.25rem - 1px);
-            border-top-right-radius: calc(0.25rem - 1px);
-        }
+    .pagination .page-item .page-link:hover {
+        color: #0056b3;
+        /* เปลี่ยนสีข้อความในปุ่มเมื่อ hover เป็นสีน้ำเงินเข้ม */
+        background-color: #e9ecef;
+        /* เปลี่ยนสีพื้นหลังเป็นสีเทาอ่อนเมื่อ hover */
+        border-color: #dee2e6;
+        /* กำหนดเส้นขอบของปุ่มเมื่อ hover */
+    }
 
-        .card-body {
-            overflow: hidden; /* ป้องกันไม่ให้ข้อความล้นออกนอก card */
-            text-overflow: ellipsis; /* เพิ่มจุดต่อท้ายถ้าข้อความยาวเกินไป */
-            display: -webkit-box;
-            -webkit-line-clamp: 4; /* จำนวนบรรทัดที่ต้องการแสดง */
-            -webkit-box-orient: vertical;
-        }
+    div.card {
+        width: 100%;
+        height: auto;
+        /* ทำให้การ์ดมีความสูงอัตโนมัติ */
+    }
 
-        .card-title {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+    img.card-img-top {
+        width: 100%;
+        max-height: 400px;
+        /* จำกัดความสูงของรูปภาพ */
+        object-fit: cover;
+        border-top-left-radius: calc(0.25rem - 1px);
+        border-top-right-radius: calc(0.25rem - 1px);
+    }
 
-        .card-text {
-            height: 100px; /* จำกัดความสูงของ card-text */
-            overflow-y: auto; /* เพิ่มการเลื่อนถ้าข้อความเกิน */
-        }
+    .card-body {
+        overflow: hidden;
+        /* ป้องกันไม่ให้ข้อความล้นออกนอก card */
+        text-overflow: ellipsis;
+        /* เพิ่มจุดต่อท้ายถ้าข้อความยาวเกินไป */
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        /* จำนวนบรรทัดที่ต้องการแสดง */
+        -webkit-box-orient: vertical;
+    }
 
-        /* ปรับความกว้างของการ์ดตามขนาดหน้าจอ */
-        @media (min-width: 768px) {
-            .col-md-8 {
-                max-width: 80%;
-            }
-        }
+    .card-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
-        @media (min-width: 992px) {
-            .col-lg-8 {
-                max-width: 60%;
-            }
-        }
+    .card-text {
+        height: 100px;
+        /* จำกัดความสูงของ card-text */
+        overflow-y: auto;
+        /* เพิ่มการเลื่อนถ้าข้อความเกิน */
+    }
 
-        /* Style pagination to match the tone */
-        .pagination .page-item .page-link {
-            color: #007bff;
-            background-color: #fff;
-            border: 1px solid #dee2e6;
+    /* ปรับความกว้างของการ์ดตามขนาดหน้าจอ */
+    @media (min-width: 768px) {
+        .col-md-8 {
+            max-width: 80%;
         }
+    }
 
-        .pagination .page-item.active .page-link {
-            z-index: 3;
-            color: #fff;
-            background-color: #007bff;
-            border-color: #007bff;
+    @media (min-width: 992px) {
+        .col-lg-8 {
+            max-width: 60%;
         }
+    }
 
-        .pagination .page-item .page-link:hover {
-            color: #0056b3;
-            background-color: #e9ecef;
-            border-color: #dee2e6;
-        }
-    </style>
+    /* Style pagination to match the tone */
+    .pagination .page-item .page-link {
+        color: #007bff;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+    }
+
+    .pagination .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .pagination .page-item .page-link:hover {
+        color: #0056b3;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+    }
+</style>
 
 <body>
     <div class="container">
@@ -119,9 +153,8 @@
                         <img src="${imageUrl}" alt="event image" class="img-fluid mb-3">
                         <h5 class="card-title">${event.title}</h5>
                         <p class="card-text">${event.content}</p>
-                        <div class="d-flex justify-content-end">
-                            <a href="../new.php?id=${event.id}" class="btn btn-success me-2 mt-2">Detail</a>
-                        </div>
+                            <a href="../new.php?id=${event.id}" class="btn btn-success">อ่านเพิ่มเติม</a>
+
                     </div>
                 `;
 
@@ -189,4 +222,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>
