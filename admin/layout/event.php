@@ -19,6 +19,17 @@
             margin-bottom: 1rem;
             font-weight: 900;
         }
+        .new-product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color:aqua;
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 5px;
+        }
 
         .card-body .img-fluid {
             width: 100%;
@@ -27,6 +38,7 @@
             border-top-left-radius: calc(0.25rem - 1px);
             border-top-right-radius: calc(0.25rem - 1px);
         }
+      
     </style>
 </head>
 
@@ -79,6 +91,7 @@
                 const imageUrl = event.image ? `../../uploads/${event.image}` : '../../img/no_image.png';
 
                 eventCard.innerHTML = `
+
                     <div class="card-body">
                         <img src="${imageUrl}" alt="event image" class="img-fluid mb-3">
                         <h5 class="card-title">${event.title}</h5>
@@ -86,6 +99,7 @@
                         <div class="d-flex justify-content-end">
                             <a href="../../admin/edit/edit_event.php?id=${event.id}" class="btn btn-success me-2">Detail</a>
                         </div>
+                           <div class="btn btn-primary">ใหม่</div>
                     </div>
                 `;
 
