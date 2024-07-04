@@ -15,6 +15,9 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            background-image: url('img/background.jpg'); /* Add a background image if desired */
+            background-size: cover;
+            background-position: center;
         }
 
         .card {
@@ -23,11 +26,20 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
         }
 
         .btn-primary {
             background-color: #007bff;
             border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .input-group-text {
+            background-color: #e9ecef;
         }
     </style>
 </head>
