@@ -1,23 +1,35 @@
 <?php
-header("Access-Control-Allow-Origin:*"); // Allow any origin
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");  // Allow these methods
-header("Access-Control-Allow-Headers: Content-Type,X-Auth-token, Authorization"); // Allow these headers
-header("Content-Type: application/json"); // Ensure Content-Type is JSON for responses
 
-require_once './utils/Response.php';
-require_once './config/database.php';
-require_once './controllers/UserController.php';
-require_once './controllers/AuthController.php';
-require_once './controllers/RegisterController.php';
-require_once './controllers/EventController.php';
-require_once './controllers/ProductController.php';
-require_once './controllers/AdminController.php';
-require_once './controllers/ScreenContentController.php';
-require_once './controllers/VisitingRuleController.php';
+use Firebase\JWT\JWT;
 
+require_once '../backend/vendor/autoload.php'; // Ensure Composer autoload is included
 
+// Middleware
+require_once '../backend/middleware/MiddlewareInterface.php';
+require_once '../backend/middleware/MiddlewareStack.php';
+require_once '../backend/middleware/CORSMiddleware.php';
+require_once '../backend/middleware/JWTMiddleware.php';
+require_once '../backend/middleware/AdminPriorityMiddleware.php';
+
+// Database
+require_once '../backend/config/database.php';
+
+// Controllers
+require_once '../backend/controllers/UserController.php';
+require_once '../backend/controllers/AuthController.php';
+require_once '../backend/controllers/RegisterController.php';
+require_once '../backend/controllers/EventController.php';
+require_once '../backend/controllers/ProductController.php';
+require_once '../backend/controllers/AdminController.php';
+require_once '../backend/controllers/ScreenContentController.php';
+require_once '../backend/controllers/VisitingRuleController.php';
+require_once '../backend/utils/Response.php';
+
+// Initialize database connection
 $database = new Database();
 $db = $database->getConnection();
+
+// Initialize controllers
 $userController = new UserController($db);
 $authController = new AuthController($db);
 $registerController = new RegisterController($db);
@@ -25,159 +37,274 @@ $eventController = new EventController($db);
 $productController = new ProductController($db);
 $adminController = new AdminController($db);
 $screenController = new ScreenContentController($db);
-$visitingRule = new VisitingRuleController($db); 
+$visitingRule = new VisitingRuleController($db);
 
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$uri = explode('/', $uri);
+// Initialize middleware stack
+$middlewareStack = new MiddlewareStack();
+$middlewareStack->addMiddleware(new CORSMiddleware()); // Always apply CORS middleware
 
-if ($uri[1] == 'users') {
+// Define the final handler
+$finalHandler = function ($request) use (
+    $userController,
+    $authController,
+    $registerController,
+    $eventController,
+    $productController,
+    $adminController,
+    $screenController,
+    $visitingRule
+) {
+    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $uri = explode('/', $uri);
+
     $requestMethod = $_SERVER["REQUEST_METHOD"];
-    if ($requestMethod == 'GET') {
-        $users = $userController->getUsers();
-        echo json_encode($users);
-    } else {
-        header("HTTP/1.1 405 Method Not Allowed");
-        exit();
+
+    // Determine the action based on URI and HTTP method
+    switch ($uri[1]) {
+            //route for user 
+        case 'viewEvents':
+            if ($requestMethod == 'GET' && isset($_GET['id'])) {
+                return $eventController->getEventsWithID();
+            } elseif ($requestMethod == 'GET') {
+                return $eventController->getEvents();
+            }
+            break;
+
+        case 'viewProducts':
+            if ($requestMethod == 'GET' && isset($_GET['id'])) {
+                return $productController->getProductWithID();
+            } elseif ($requestMethod == 'GET') {
+                return $productController->getProducts();
+            }
+            break;
+
+        case 'viewVisiting_rules':
+            if ($requestMethod == 'GET' && isset($_GET['id'])) {
+                return $visitingRule->getVisitingRulesWithID();
+            } elseif ($requestMethod == 'GET') {
+                return $visitingRule->getVisitingRules();
+            }
+            break;
+
+        case 'viewScreen_contents':
+            if ($requestMethod == 'GET' && isset($_GET['id'])) {
+                return $screenController->getScreenContentsWithID();
+            } elseif ($requestMethod == 'GET') {
+                return $screenController->getScreenContents();
+            }
+            break;
+
+            //route for admin management include for CMS system
+
+        case 'users':
+            if ($requestMethod == 'GET') {
+                $users = $userController->getUsers();
+                return json_encode($users);
+            }
+            break;
+
+        case 'login':
+            if ($requestMethod == 'POST') {
+                return $authController->login();
+            }
+            break;
+
+        case 'logout':
+            if ($requestMethod == 'POST') {
+                return $authController->logout();
+            }
+            break;
+
+            // case 'register':
+            //     if ($requestMethod == 'POST') {
+            //         return $registerController->register();
+            //     }
+            //     break;
+
+        case 'event_delete':
+            if ($requestMethod == 'GET') {
+                return $eventController->deleteEvent();
+            }
+            break;
+
+        case 'stuffview_events':
+            if ($requestMethod == 'GET' && isset($_GET['id'])) {
+                return $eventController->getEventsWithID();
+            } elseif ($requestMethod == 'GET') {
+                return $eventController->getEvents();
+            }
+            break;
+
+
+        case 'events':
+            if ($requestMethod == 'POST' && isset($_POST['id'])) {
+                return $eventController->updateEvent();
+            } elseif ($requestMethod == 'POST') {
+                return $eventController->createEvent();
+            }
+            break;
+
+        case 'events_sum':
+            if ($requestMethod == 'GET') {
+                return $eventController->getEventsSum();
+            }
+            break;
+
+        case 'products_sum':
+            if ($requestMethod == 'GET') {
+                return $productController->getProductsSum();
+            }
+            break;
+
+
+        case 'product_delete':
+            if ($requestMethod == 'GET') {
+                return $productController->deleteProduct();
+            }
+            break;
+
+        case 'stuffview_products':
+            if ($requestMethod == 'GET' && isset($_GET['id'])) {
+                return $productController->getProductWithID();
+            } elseif ($requestMethod == 'GET') {
+                return $productController->getProducts();
+            }
+            break;
+
+        case 'products':
+            if ($requestMethod == 'POST' && isset($_POST['id'])) {
+                return $productController->updateProduct();
+            } elseif ($requestMethod == 'POST') {
+                return $productController->createProduct();
+            }
+            break;
+
+
+
+        case 'stuffview_admins':
+            if ($requestMethod == 'GET' && isset($_GET['id'])) {
+                return $adminController->getAdminWithID();
+            } elseif ($requestMethod == 'GET') {
+                return $adminController->getAdmin();
+            }
+            break;
+
+
+        case 'admin_delete':
+            if ($requestMethod == 'GET') {
+                return $adminController->deleteAdmin();
+            }
+            break;
+
+
+        case 'admins':
+            if ($requestMethod == 'PUT') {
+                return $adminController->updateAdmin();
+            } elseif ($requestMethod == 'POST') {
+                return $adminController->createAdmin();
+            }
+            break;
+
+        case 'screen_content_delete':
+            if ($requestMethod == 'GET') {
+                return $screenController->deleteScreenContent();
+            }
+            break;
+
+        case 'stuffview_screen_contents':
+            if ($requestMethod == 'GET' && isset($_GET['id'])) {
+                return $screenController->getScreenContentsWithID();
+            } elseif ($requestMethod == 'GET') {
+                return $screenController->getScreenContents();
+            }
+            break;
+
+
+        case 'screen_contents':
+            if ($requestMethod == 'POST' && isset($_POST['id'])) {
+                return $screenController->updateScreenContent();
+            } elseif ($requestMethod == 'POST') {
+                return $screenController->createScreenContent();
+            }
+            break;
+
+        case 'visiting_rule_delete':
+            if ($requestMethod == 'GET') {
+                return $visitingRule->deleteVisitingRule();
+            }
+            break;
+
+        case 'stuffview_visiting_rules':
+            if ($requestMethod == 'GET' && isset($_GET['id'])) {
+                return $visitingRule->getVisitingRulesWithID();
+            } elseif ($requestMethod == 'GET') {
+                return $visitingRule->getVisitingRules();
+            }
+            break;
+
+        case 'visiting_rules':
+            if ($requestMethod == 'POST' && isset($_POST['id'])) {
+                return $visitingRule->updateVisitingRule();
+            } elseif ($requestMethod == 'POST') {
+                return $visitingRule->createVisitingRule();
+            }
+            break;
+        default:
+            header("HTTP/1.1 404 Not Found");
+            exit();
     }
-} 
-
-// authentication routes
-
-elseif ($uri[1] == 'login') {
-    $requestMethod = $_SERVER["REQUEST_METHOD"];
-    if ($requestMethod == 'POST') {
-        $authController->login();
-    } else {
-        header("HTTP/1.1 405 Method Not Allowed");
-        exit();
-    }
-} elseif ($uri[1] == 'register') {
-    $requestMethod = $_SERVER["REQUEST_METHOD"];
-    if ($requestMethod == 'POST') {
-        $registerController->register();
-    } else {
-        header("HTTP/1.1 405 Method Not Allowed");
-        exit();
-    }
-}
-
-
-//events routes
-
-elseif($uri[1] == 'event_delete'){
-    $requestMethod = $_SERVER["REQUEST_METHOD"];
-    if($requestMethod=='GET')
-        $eventController->deleteEvent();
-    
-}elseif ($uri[1] == 'events') {
-    $requestMethod = $_SERVER["REQUEST_METHOD"];
-    if ($requestMethod == 'GET' and isset($_GET['id'])) {
-        $eventController->getEventsWithID();
-    }elseif($requestMethod=='GET' ){
-        $eventController->getEvents();
-    } elseif ($requestMethod == 'POST' and isset($_POST['id']))  {
-        $eventController->updateEvent();
-    } elseif ($requestMethod == 'POST' ) {
-        $eventController->createEvent();
-    } else {
-        header("HTTP/1.1 405 Method Not Allowed");
-        exit();
-    }
-    
-}
-
-//product routes
-
-elseif($uri[1] == 'product_delete'){
-    $requestMethod = $_SERVER["REQUEST_METHOD"];
-    if($requestMethod=='GET')
-    $productController->deleteProduct();
-    
-}elseif ($uri[1] == 'products') {
-    $requestMethod = $_SERVER["REQUEST_METHOD"];
-    if ($requestMethod == 'GET' and isset($_GET['id'])) {
-        $productController->getProductWithID();
-    }elseif($requestMethod=='GET' ){
-        $productController->getProducts();
-    } elseif ($requestMethod == 'POST' and isset($_POST['id']))  {
-        $productController->updateProduct();
-    } elseif ($requestMethod == 'POST' ) {
-        $productController->createProduct();
-    } else {
-        header("HTTP/1.1 405 Method Not Allowed");
-        exit();
-    }
-    
-}
-//admin user routes
-
-elseif($uri[1] == 'admin_delete'){
-    $requestMethod = $_SERVER["REQUEST_METHOD"];
-    if($requestMethod=='GET')
-    $adminController->deleteAdmin();
-    
-}elseif ($uri[1] == 'admins') {
-    $requestMethod = $_SERVER["REQUEST_METHOD"];
-    if ($requestMethod == 'GET' and isset($_GET['id'])) {
-        $adminController->getAdminWithID();
-    }elseif($requestMethod=='GET' ){
-        $adminController->getAdmin();
-    } elseif ($requestMethod == 'POST' and isset($_POST['id']))  {
-        $adminController->updateAdmin();
-    } elseif ($requestMethod == 'POST' ) {
-        $registerController->register();
-    } else {
-        header("HTTP/1.1 405 Method Not Allowed");
-        exit();
-    }
-    
-}
-
-//screen content routes
-
-elseif($uri[1] == 'screen_content_delete'){
-    $requestMethod = $_SERVER["REQUEST_METHOD"];
-    if($requestMethod=='GET')
-    $screenController->deleteScreenContent();
-    
-}elseif ($uri[1] == 'screen_contents') {
-    $requestMethod = $_SERVER["REQUEST_METHOD"];
-    if ($requestMethod == 'GET' and isset($_GET['id'])) {
-        $screenController->getScreenContentsWithID();
-    }elseif($requestMethod=='GET' ){
-        $screenController->getScreenContents();
-    } elseif ($requestMethod == 'POST' and isset($_POST['id']))  {
-        $screenController->updateScreenContent();
-    } elseif ($requestMethod == 'POST' ) {
-        $screenController->createScreenContent();
-    } else {
-        header("HTTP/1.1 405 Method Not Allowed");
-        exit();
-    }
-    
-}
-
-//screen content routes
-
-elseif($uri[1] == 'visiting_rule_delete'){
-    $requestMethod = $_SERVER["REQUEST_METHOD"];
-    if($requestMethod=='GET')
-    $visitingRule->deleteVisitingRule();   
-}elseif($uri[1] == 'visiting_rules') {
-    $requestMethod = $_SERVER["REQUEST_METHOD"];
-    if ($requestMethod == 'GET' and isset($_GET['id'])) {
-        $visitingRule->getVisitingRulesWithID();
-    }elseif($requestMethod=='GET' ){
-        $visitingRule->getVisitingRules();
-    } elseif ($requestMethod == 'POST' and isset($_POST['id']))  {
-        $visitingRule->updateVisitingRule();
-    } elseif ($requestMethod == 'POST' ) {
-        $visitingRule->createVisitingRule();
-    } else {
-        header("HTTP/1.1 405 Method Not Allowed");
-        exit();
-    }
-}else {
-    header("HTTP/1.1 404 Not Found");
+    header("HTTP/1.1 405 Method Not Allowed");
     exit();
+};
+
+// Apply JWTMiddleware where needed
+$routesWithAuth = [
+    'logout',
+    'event_delete',
+    'events',
+    'product_delete',
+    'products',
+    'admin_delete',
+    'admins',
+    'screen_content_delete',
+    'screen_contents',
+    'visiting_rule_delete',
+    'visiting_rules',
+    'stuffview_events',
+    'stuffview_products',
+    'stuffview_screen_contents',
+    'stuffview_visiting_rules',
+    'stuffview_admins',
+];
+
+$onlyMainPriorityRoot = [
+    'event_delete',
+    'events',
+
+    'product_delete',
+    'products',
+    
+    'admin_delete',
+    'admins',
+    
+    'screen_content_delete',
+    'screen_contents',
+    
+    'visiting_rule_delete',
+    'visiting_rules'
+];
+
+
+$request = $_POST; // Or use a more appropriate method for handling request data
+
+if (in_array(explode('/', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))[1], $routesWithAuth)) {
+    $middlewareStack->addMiddleware(new JWTMiddleware()); // Apply JWT middleware
 }
+if (in_array(explode('/', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))[1], $onlyMainPriorityRoot)) {
+    $middlewareStack->addMiddleware(new AdminPriorityMiddleware()); // Apply JWT middleware
+}
+
+$response = $middlewareStack->handle($request, $finalHandler);
+
+// Output the response
+echo $response;

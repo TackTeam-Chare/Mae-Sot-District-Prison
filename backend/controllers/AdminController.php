@@ -6,46 +6,102 @@ class AdminController
 {
     private $db;
     private $admin;
+
     public function __construct($db)
     {
         $this->db = $db;
         $this->admin = new User($this->db);
     }
 
+    public function createAdmin()
+    {
+        // Read raw input with content type application/json
+        $rawInput = file_get_contents('php://input');
+        $inputData = json_decode($rawInput, true);
+
+        // Validate input
+        if (!isset($inputData['name']) || !isset($inputData['email']) || !isset($inputData['password']) || !isset($inputData['is_main_admin'])) {
+            Response::send(['message' => 'Invalid input. Make sure name, email, password, and is_main_admin are provided.'], 400);
+            return;
+        }
+
+        // Validate email format
+        if (!filter_var($inputData['email'], FILTER_VALIDATE_EMAIL)) {
+            Response::send(['message' => 'Invalid email format.'], 400);
+            return;
+        }
+
+        // Validate is_main_admin (must be a boolean value)
+        $is_main_admin = filter_var($inputData['is_main_admin'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+        if ($is_main_admin === null) {
+            Response::send(['message' => 'Invalid value for is_main_admin. It must be either true or false.'], 400);
+            return;
+        }
+
+        // Hash password before storing
+        $this->admin->name = htmlspecialchars(strip_tags($inputData['name']));
+        $this->admin->email = htmlspecialchars(strip_tags($inputData['email']));
+        $this->admin->password =$inputData['password'] ;
+        $this->admin->is_main_admin = $is_main_admin;
+
+        // Attempt to create user
+        if ($this->admin->create()) {
+            Response::send(['message' => 'Admin registered successfully']);
+        } else {
+            Response::send(['message' => 'Admin registration failed'], 500);
+        }
+    }
+
     public function getAdmin()
     {
         $stmt = $this->admin->read();
-        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        Response::send($events);
+        $admins = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        Response::send($admins);
     }
-
 
     public function getAdminWithID()
     {
         if (!isset($_GET['id'])) {
-            Response::send(['message' => 'ต้องใช้ ID '], 400);
-        }
-        $this->admin->id = $_GET['id'];
-        $stmt = $this->admin->read_id();
-        $admins = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        Response::send($admins[0]);
-    }
-
-    public function updateAdmin()
-    {
-        // Validate required inputs
-        if (!isset($_POST['id'])) {
-            Response::send(['message' => 'Invalid input'], 400);
+            Response::send(['message' => 'ID is required.'], 400);
             return;
         }
 
-        // echo $_POST['email'].' ';
-        // echo $_POST['password'];
+        $this->admin->id = htmlspecialchars(strip_tags($_GET['id']));
+        $stmt = $this->admin->read_id();
+        $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Set admin properties
-        $this->admin->id = $_POST['id'];
-        $this->admin->name = $_POST['name'];
-        $this->admin->email = $_POST['email'];
+        if ($admin) {
+            Response::send($admin);
+        } else {
+            Response::send(['message' => 'Admin not found'], 404);
+        }
+    }
+    public function updateAdmin()
+    {
+        // Read raw input with content type application/json
+        $rawInput = file_get_contents('php://input');
+        $inputData = json_decode($rawInput, true);
+    
+        // Validate required inputs
+        if (!isset($inputData['id']) || empty($inputData['id']) ||
+            !isset($inputData['name']) || empty($inputData['name']) ||
+            !isset($inputData['email']) || empty($inputData['email']) ||
+            !isset($inputData['password']) || empty($inputData['password'])) {
+            Response::send(['message' => 'Invalid input. Make sure id, name, email, and password are provided.'], 400);
+            return;
+        }
+    
+        // Validate is_main_admin (must be a boolean value)
+        $is_main_admin = filter_var($inputData['is_main_admin'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+        if ($is_main_admin === null) {
+            Response::send(['message' => 'Invalid value for is_main_admin. It must be either true or false.'], 400);
+            return;
+        }
+    
+        $this->admin->id = htmlspecialchars(strip_tags($inputData['id']));
+        $this->admin->name = htmlspecialchars(strip_tags($inputData['name']));
+        $this->admin->email = htmlspecialchars(strip_tags($inputData['email']));
+        $this->admin->is_main_admin = $is_main_admin;
     
         // Retrieve the stored hashed password from the database
         $stmt = $this->admin->check_password();
@@ -57,44 +113,45 @@ class AdminController
         }
     
         $storedHashedPassword = $result['password'];
-        $providedPassword = $_POST['password'];
+        $providedPassword = htmlspecialchars(strip_tags(($inputData['password'])));
     
-        // // Verify the provided password against the stored hashed password
-        if (!password_verify( $providedPassword,$storedHashedPassword)) {
-            Response::send(['message' => 'รหัสผ่านไม่ตรงกัน'], 401);
+        // Verify the provided password against the stored hashed password
+        if (!password_verify($providedPassword, $storedHashedPassword)) {
+            Response::send(['message' => 'Password does not match with the stored password'], 401);
             return;
         }
-        if (isset($_POST['new_password'])) {
-            $this->admin->password = $_POST['new_password'];
+    
+        // If new password is provided, hash it before storing
+        if (isset($inputData['new_password']) && !empty($inputData['new_password'])) {
+            $this->admin->password = $inputData['new_password'];
+        } else {
+            // If no new password is provided, keep the existing password
+            $this->admin->password = $storedHashedPassword;
         }
-        
+    
         // Update admin details in the database
         if ($this->admin->update()) {
-            Response::send(['message' => 'อัปเดตข้อมูลแอดมินเสร็จเรียบร้อย']);
+            Response::send(['message' => 'Admin information updated successfully']);
         } else {
-            Response::send(['message' => 'อัปเดตข้อมูลแอดมินไม่สำเร็จ'], 500);
+            Response::send(['message' => 'Failed to update admin information'], 500);
         }
     }
     
+
     public function deleteAdmin()
     {
-        if (!isset($_GET['id'])) {
-            Response::send(['message' => 'Invalid input'], 400);
+        // Validate required inputs
+        if (!isset($_GET['id']) || empty($_GET['id'])) {
+            Response::send(['message' => 'ID is required.'], 400);
             return;
         }
-        $this->admin->id = $_GET['id'];
-        // $uploadDir = '../Mae-Sot-District-Prison/uploads/';
-        // $stmt = $this->event->read_id();
-        // $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // $old_image = $result[0]['image'];
-        // if (!empty($old_image) && file_exists($uploadDir.$old_image)) {
-        //     unlink($uploadDir.$old_image);
-        // }
+
+        $this->admin->id = htmlspecialchars(strip_tags($_GET['id']));
 
         if ($this->admin->delete()) {
-            Response::send(['message' => 'สร้างข้อมูลสำเร็จ']);
+            Response::send(['message' => 'Admin deleted successfully']);
         } else {
-            Response::send(['message' => 'สร้างข้อมูลไม่สำเร็จ'], 500);
+            Response::send(['message' => 'Failed to delete admin'], 500);
         }
     }
 }

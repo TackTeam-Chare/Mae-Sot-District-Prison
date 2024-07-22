@@ -26,7 +26,7 @@ class Auth {
     }
 
     private function createToken($user) {
-        $secret_key = "YOUR_SECRET_KEY";
+        $secret_key = "jasdklfjaslkdfjasl;dkjf;alskdjflaksdjfl;asdjflasdjflaskdfjlasdjfakl;sdfjla;sdjfasldfjasldfjlskf";
         $issuer_claim = "THE_ISSUER"; // this can be the servername
         $audience_claim = "THE_AUDIENCE";
         $issuedat_claim = time(); // issued at

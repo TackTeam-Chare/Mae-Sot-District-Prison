@@ -12,7 +12,7 @@
     <?php include_once('../layout/navbar.php') ?>
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1>แก้ไขข้อมูลภารกิจ</h1>
+            <h1>แก้ไขข้อมูลติ่อ</h1>
             <button onclick="window.history.back()" class="btn btn-secondary">กลับ</button>
         </div>
         <form id="updateEventForm" enctype="multipart/form-data">
@@ -22,7 +22,7 @@
                 <input type="text" class="form-control" placeholder="หัวเรื่องข้อมูลภารกิจ" name="title" required>
             </div>
             <div class="mb-3">
-                <label for="content" class="form-label">เนื้อหาข้อมูลภารกิจ</label>
+                <label for="content" class="form-label">เนื้อหาข้อมูลติดต่อ</label>
                 <textarea class="form-control" name="content" rows="5" placeholder="ใส่บทความเนื้อหาข้อมูลภารกิจ" required></textarea>
             </div>
 
@@ -37,10 +37,17 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const eventId = 4; // Get event ID from URL parameter
-            const url = `http://localhost:8000/screen_contents?id=${eventId}`;
-
+            const url = `http://localhost:8000/stuffview_screen_contents?id=${eventId}`;
+            const token =localStorage.getItem('authToken');
+          
             // Fetch event details
-            fetch(url)
+            fetch(url,
+                {
+                    headers:{
+                        "Authorization":`Bearer ${token}`
+                    }
+                }
+            )
                 .then(response => response.json())
                 .then(event => {
                     // Populate form fields with existing data
@@ -85,12 +92,14 @@
             // }
 
             const url = 'http://localhost:8000/screen_contents?id=4'; // Replace with your API endpoint
-
+            const token =localStorage.getItem('authToken');
+          
             fetch(url, {
                 method: 'POST', // Use POST instead of PUT due to HTML form restrictions
                 body: formData,
                 headers: {
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'Authorization':`Bearer ${token}`
                 }
             })
             .then(response => {

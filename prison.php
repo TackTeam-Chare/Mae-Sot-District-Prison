@@ -163,7 +163,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       // Fetch products from your API or local data
-      fetch('http://localhost:8000/products')
+      fetch('http://localhost:8000/viewProducts')
         .then(response => response.json())
         .then(data => {
           const productsContainer = document.getElementById('products-container');
@@ -173,7 +173,7 @@
             productCard.classList.add('card', 'mb-3');
 
             // Check if product.image exists and use it, otherwise use a default icon
-            const imageUrl = product.image ? `../../uploads/${product.image}` : '../../img/no_image.png';
+            const imageUrl = product.image ? `uploads/${product.image}` : '../uploads/no_image.png';
 
             productCard.innerHTML = `
                             <div class="card-body" data-bs-toggle="modal" data-bs-target="#productModal"

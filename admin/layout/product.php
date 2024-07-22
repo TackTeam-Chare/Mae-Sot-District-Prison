@@ -5,15 +5,10 @@
     <link rel="icon" type="image/x-icon" href="./assets/icons/admin.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>การจัดการข้อมูลสินค้า</title>
+    <title>การจัดการข้อมูลกิจกรรม</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
-
-        .events-section {
-            margin-bottom: 2rem;
-        }
 
         h1 {
             font-size: 2rem;
@@ -21,101 +16,73 @@
             font-weight: 900;
         }
 
-        .card-body .img-fluid {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-top-left-radius: calc(0.25rem - 1px);
-            border-top-right-radius: calc(0.25rem - 1px);
+        .display--box_sums{
+            padding:20px 10px ;
+            display:flex;
+            flex-direction:column;
+            background-color:darkblue;
+            border:2px solid none;
+            border-radius: 20px;
+            color:white;
+            transition:0.3s
         }
-        .view-all-btn {
-            float: right;
-            margin-top: -40px; /* Adjust as needed */
+        .display--box_sums:hover{
+            box-shadow: 0 0 20px rgba(50,50,50,.4);
         }
-        .new-product-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: green;
-            color: white;
-            padding: 5px 5px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            border-radius: 5px;
+        #nav--button{
+            align-self: center;
         }
-    </style>
 
+
+        
+    </style>
 </head>
 
 <body>
-
     <div class="container">
-        <h1 class="text-center mb-4 fw-bold">ผลิตภันฑ์</h1>
         <hr>
-        <div class="row gy-5 justify-content-center">
-            <div class="col-lg-12 events-section" id="products-container">
-                <!-- Product will be dynamically added here -->
-            </div>
+      <div class ='display--box_sums'>
+      <h1  id="product-count">
+            <!-- Total event count will be dynamically added here -->
+    </h1>
+        <h1>ผลิตภัณท์</h1>
+        <hr style="height:5px;border-width:0;color:gray;background-color:white">
+        <div id="nav--button">
+        <a  style=' text-decoration: none; color:white;' href="/admin/manage/manage_product.php"><h5>More Info ></h5></a>
         </div>
-        <a href="../../admin/manage/manage_product.php" class="btn btn-primary view-all-btn">ดูผลิตภัณฑ์ทั้งหมด</a>
+      </div>
+      
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            fetch('http://localhost:8000/products')
-                .then(response => response.json())
-                .then(data => {
-                    const productsContainer = document.getElementById('products-container');
-                    const product = data[0]; // Get the first product
+        document.addEventListener("DOMContentLoaded", function() {
+            const token = localStorage.getItem("authToken");
 
-                    const productCard = document.createElement('div');
-                    productCard.classList.add('card', 'mb-3');
-
-                    // Check if product.image exists and use it, otherwise use a default icon
-                    const imageUrl = product.image ? `../../uploads/${product.image}` : '../../img/no_image.png';
-
-                    productCard.innerHTML = `
-                        <div class="new-product-badge">ผลิตภัณฑ์ใหม่</div>
-                        <div class="card-body">
-                            <img src="${imageUrl}" alt="product image" class="img-fluid mb-3">
-                            <h5 class="card-title">${product.title}</h5>
-                            <p class="card-text">${product.content}</p>
-                        `;
-
-                    productsContainer.appendChild(productCard);
-                })
-                .catch(error => console.error('Error fetching products:', error));
-        });
-
-        function confirmDelete(productId) {
-            if (confirm('Are you sure you want to delete this product?')) {
-                deleteProduct(productId);
-            }
-        }
-
-        function deleteProduct(productId) {
-            fetch(`http://localhost:8000/product_delete?id=${productId}`, {
+            fetch('http://localhost:8000/products_sum', {
                 method: 'GET',
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Authorization': `Bearer ${token}`,
                 }
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
+            .then(response => {
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        throw new Error('Unauthorized: Invalid token');
+                    } else {
+                        return response.text().then(text => { throw new Error(text) });
                     }
-                    return response.json();
-                })
-                .then(data => {
-                    alert('Product deleted successfully!');
-                    location.reload(); // Reload the page to reflect the changes
-                })
-                .catch(error => {
-                    console.error('Error deleting product:', error);
-                    alert('Failed to delete product: ' + error.message);
-                });
-        }
+                }
+                return response.json();
+            })
+            .then(data => {
+                const count = data.total_events; // Assuming the API returns { total_events: <count> }
+                document.getElementById('product-count').textContent = `${count}`;
+            })
+            .catch(error => {
+                console.error('Error fetching event count:', error);
+                alert('Error fetching event count: ' + error.message);
+            });
+        });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>

@@ -41,10 +41,14 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const eventId = <?php echo $_GET['id']; ?>; // Get event ID from URL parameter
-            const url = `http://localhost:8000/events?id=${eventId}`;
-
+            const url = `http://localhost:8000/stuffview_events?id=${eventId}`;
+            const token = localStorage.getItem('authToken');
             // Fetch event details
-            fetch(url)
+            fetch(url,
+                {headers:{
+                    "Authorization":`Bearer ${token}`
+                }}
+            )
                 .then(response => response.json())
                 .then(event => {
                     // Populate form fields with existing data
@@ -81,7 +85,7 @@
             event.preventDefault(); // Prevent the form from submitting normally
 
             const formData = new FormData(this); // Create FormData object
-
+            const token = localStorage.getItem('authToken');
             // Include current image if it exists
             const currentImage = document.getElementById('currentImage');
             if (currentImage.src && currentImage.src.length > 0) {
@@ -90,12 +94,12 @@
 
             const url = 'http://localhost:8000/events'; // Replace with your API endpoint
 
-            fetch(url, {
-                method: 'POST', // Use POST instead of PUT due to HTML form restrictions
-                body: formData,
+            fetch(url,{
+                method: 'POST',
                 headers: {
-                    'Accept': 'application/json'
-                }
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: formData,
             })
             .then(response => {
                 if (!response.ok) {

@@ -96,7 +96,7 @@
         let allEvents = [];
 
         document.addEventListener("DOMContentLoaded", function () {
-            fetch('http://localhost:8000/events')
+            fetch('http://localhost:8000/viewEvents')
                 .then(response => response.json())
                 .then(data => {
                     allEvents = data;

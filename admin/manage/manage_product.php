@@ -28,7 +28,13 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            fetch('http://localhost:8000/products')
+            const token =localStorage.getItem('authToken');
+            fetch('http://localhost:8000/stuffview_products',{
+                medthod:"GET",
+                headers:{
+                    'Authorization':`Bearer ${token}`
+                }
+            })
                 .then(response => response.json())
                 .then(data => {
                     const productsContainer = document.getElementById('products-container');
@@ -65,11 +71,11 @@
         }
 
         function deleteProduct(productId) {
+            const token =localStorage.getItem('authToken');
             fetch(`http://localhost:8000/product_delete?id=${productId}`, {
                     method: 'GET',
                     headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
+                        'Authorization':`Bearer ${token}`,
                     }
                 })
                 .then(response => {

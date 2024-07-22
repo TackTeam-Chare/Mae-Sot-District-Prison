@@ -40,10 +40,14 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const eventId = 3; // Get event ID from URL parameter
-            const url = `http://localhost:8000/screen_contents?id=${eventId}`;
-
+            const url = `http://localhost:8000/stuffview_screen_contents?id=${eventId}`;
+            const token =localStorage.getItem('authToken');
             // Fetch event details
-            fetch(url)
+            fetch(url,{
+                headers:{
+                    'Authorization':`Bearer ${token}`
+                }
+            })
                 .then(response => response.json())
                 .then(event => {
                     // Populate form fields with existing data
@@ -88,12 +92,12 @@
             }
 
             const url = 'http://localhost:8000/screen_contents'; // Replace with your API endpoint
-
+            const token =localStorage.getItem('authToken')
             fetch(url, {
                 method: 'POST', // Use POST instead of PUT due to HTML form restrictions
                 body: formData,
                 headers: {
-                    'Accept': 'application/json'
+                    'Authorization':`Bearer ${token}`
                 }
             })
             .then(response => {

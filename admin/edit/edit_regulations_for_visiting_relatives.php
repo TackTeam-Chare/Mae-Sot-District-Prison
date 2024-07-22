@@ -39,11 +39,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            const token =localStorage.getItem('authToken');
             const eventId = <?php echo $_GET['id']; ?>; // Get event ID from URL parameter
-            const url = `http://localhost:8000/visiting_rules?id=${eventId}`;
+            const url = `http://localhost:8000/stuffview_visiting_rules?id=${eventId}`;
 
             // Fetch event details
-            fetch(url)
+            fetch(url,{
+                headers:{
+                    'Authorization':`Bearer ${token}`
+                }
+            })
                 .then(response => response.json())
                 .then(event => {
                     // Populate form fields with existing data
@@ -88,12 +93,12 @@
             }
 
             const url = 'http://localhost:8000/visiting_rules'; // Replace with your API endpoint
-
+            const token =localStorage.getItem('authToken');
             fetch(url, {
                 method: 'POST', // Use POST instead of PUT due to HTML form restrictions
                 body: formData,
                 headers: {
-                    'Accept': 'application/json'
+                    'Authorization': `Bearer ${token}`
                 }
             })
             .then(response => {

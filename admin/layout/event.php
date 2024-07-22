@@ -10,146 +10,83 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
 
-        .events-section {
-            margin-bottom: 2rem;
-        }
-
         h1 {
             font-size: 2rem;
             margin-bottom: 1rem;
             font-weight: 900;
         }
 
-        .card-body .img-fluid {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            border-top-left-radius: calc(0.25rem - 1px);
-            border-top-right-radius: calc(0.25rem - 1px);
+        .display--box_sum{
+            padding:20px 10px ;
+            display:flex;
+            flex-direction:column;
+            background-color:chartreuse;
+            border:2px solid none;
+            border-radius: 20px;
+            color:white;
+            transition:0.3s
         }
+        .display--box_sum:hover{
+            box-shadow: 0 0 20px rgba(50,50,50,.4);
+        }
+        #nav--button{
+            align-self: center;
+        }
+
+
+        
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1 class="text-center mb-4 fw-bold">ข่าวประชาสัมพันธ์</h1>
         <hr>
-        <div class="row gy-5 justify-content-center">
-            <div class="col-lg-12 events-section" id="events-container">
-                <!-- Events will be dynamically added here -->
-            </div>
+      <div class ='display--box_sum'>
+      <h1  id="event-count">
+            <!-- Total event count will be dynamically added here -->
+    </h1>
+        <h1>ข่าวประชาสัมพันธ์</h1>
+        <hr style="height:5px;border-width:0;color:gray;background-color:black">
+        <div id="nav--button">
+        <a  style=' text-decoration: none; color:white;' href="/admin/manage/manage_events.php"><h5>More Info ></h5></a>
         </div>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center" id="pagination">
-                <!-- Pagination will be dynamically added here -->
-            </ul>
-        </nav>
+      </div>
+      
     </div>
 
     <script>
-        let currentPage = 1;
-        const eventsPerPage = 1;
-        let totalEvents = 0;
-        let allEvents = [];
-
         document.addEventListener("DOMContentLoaded", function() {
-            fetch('http://localhost:8000/events')
-                .then(response => response.json())
-                .then(data => {
-                    allEvents = data;
-                    totalEvents = data.length;
-                    displayEvents(currentPage);
-                    setupPagination(totalEvents, eventsPerPage);
-                })
-                .catch(error => console.error('Error fetching events:', error));
+            const token = localStorage.getItem("authToken");
+
+            fetch('http://localhost:8000/events_sum', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        throw new Error('Unauthorized: Invalid token');
+                    } else {
+                        return response.text().then(text => { throw new Error(text) });
+                    }
+                }
+                return response.json();
+            })
+            .then(data => {
+                const count = data.total_events; // Assuming the API returns { total_events: <count> }
+                document.getElementById('event-count').textContent = `${count}`;
+            })
+            .catch(error => {
+                console.error('Error fetching event count:', error);
+                alert('Error fetching event count: ' + error.message);
+            });
         });
-
-        function displayEvents(page) {
-            const startIndex = (page - 1) * eventsPerPage;
-            const endIndex = startIndex + eventsPerPage;
-            const eventsToDisplay = allEvents.slice(startIndex, endIndex);
-
-            const eventsContainer = document.getElementById('events-container');
-            eventsContainer.innerHTML = '';
-
-            eventsToDisplay.forEach(event => {
-                const eventCard = document.createElement('div');
-                eventCard.classList.add('card', 'mb-3');
-
-                const imageUrl = event.image ? `../../uploads/${event.image}` : '../../img/no_image.png';
-
-                eventCard.innerHTML = `
-                    <div class="card-body">
-                        <img src="${imageUrl}" alt="event image" class="img-fluid mb-3">
-                        <h5 class="card-title">${event.title}</h5>
-                        <p class="card-text">${event.content}</p>
-                        <div class="d-flex justify-content-end">
-                            <a href="../../admin/edit/edit_event.php?id=${event.id}" class="btn btn-success me-2">Detail</a>
-                        </div>
-                    </div>
-                `;
-
-                eventsContainer.appendChild(eventCard);
-            });
-        }
-
-        function setupPagination(totalItems, itemsPerPage) {
-            const totalPages = Math.ceil(totalItems / itemsPerPage);
-            const pagination = document.getElementById('pagination');
-            pagination.innerHTML = '';
-
-            const createPageItem = (page, isActive = false) => {
-                const li = document.createElement('li');
-                li.classList.add('page-item');
-                if (isActive) li.classList.add('active');
-
-                const a = document.createElement('a');
-                a.classList.add('page-link');
-                a.href = '#';
-                a.textContent = page;
-                a.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    currentPage = page;
-                    displayEvents(currentPage);
-                    setupPagination(totalEvents, eventsPerPage);
-                });
-
-                li.appendChild(a);
-                return li;
-            };
-
-            const prevItem = document.createElement('li');
-            prevItem.classList.add('page-item');
-            prevItem.innerHTML = `<a class="page-link" href="#" aria-label="Previous">&laquo;</a>`;
-            prevItem.addEventListener('click', (event) => {
-                event.preventDefault();
-                if (currentPage > 1) {
-                    currentPage--;
-                    displayEvents(currentPage);
-                    setupPagination(totalEvents, eventsPerPage);
-                }
-            });
-            pagination.appendChild(prevItem);
-
-            for (let i = 1; i <= totalPages; i++) {
-                pagination.appendChild(createPageItem(i, i === currentPage));
-            }
-
-            const nextItem = document.createElement('li');
-            nextItem.classList.add('page-item');
-            nextItem.innerHTML = `<a class="page-link" href="#" aria-label="Next">&raquo;</a>`;
-            nextItem.addEventListener('click', (event) => {
-                event.preventDefault();
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    displayEvents(currentPage);
-                    setupPagination(totalEvents, eventsPerPage);
-                }
-            });
-            pagination.appendChild(nextItem);
-        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
+
+</html>

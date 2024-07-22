@@ -28,6 +28,12 @@ class Product {
         $stmt->execute();
         return $stmt;
     }
+    public function read_sum() {
+        $query = "SELECT  COUNT(*) as total FROM " . $this->table_name.';';
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt;
+    }
 
     public function create() {
         $query = "INSERT INTO " . $this->table_name . " SET title=:title, content=:content, image=:image";
