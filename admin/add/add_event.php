@@ -71,7 +71,7 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">ภาพข่าว</label>
-                <input type="file" class="form-control" name="image" accept="image/*" >
+                <input type="file" class="form-control" name="image" accept="image/*">
             </div>
             <div>
                 <button type="submit" id="submitForm" class="btn btn-primary">บันทึก</button>
@@ -82,13 +82,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script>
-function goBackAndReset() {
-    sessionStorage.setItem('refreshPreviousPage', 'true');
-    // Navigate to the previous page
-    window.history.back();
-
-    // After a short delay, reload the previous page to reset its state
-}
+        function goBackAndReset() {
+            sessionStorage.setItem('refreshPreviousPage', 'true');
+            // Navigate to the previous page
+            window.history.back();
+        }
 
         document.getElementById("addEventForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
@@ -98,12 +96,16 @@ function goBackAndReset() {
             formData.append('content', document.querySelector('textarea[name="content"]').value);
             formData.append('image', document.querySelector('input[name="image"]').files[0]);
 
-            const url = 'http://localhost:8000/events'; // Replace with your API endpoint
+            // Debugging: Print FormData contents
 
-            fetch(url, {
-                    method: 'POST',
-                    body: formData
-                })
+            const token = localStorage.getItem("authToken");
+            fetch('http://localhost:8000/events', {
+                method: "POST",
+                headers: {
+                    'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+                },
+                body: formData // Do not set 'Content-Type' header with FormData
+            })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -122,7 +124,6 @@ function goBackAndReset() {
                 });
         });
     </script>
-
 </body>
 
 </html>

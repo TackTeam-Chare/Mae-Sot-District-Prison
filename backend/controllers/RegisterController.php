@@ -13,7 +13,7 @@ class RegisterController {
 
     public function register() {
         // Get the raw POST data
-        $data = json_decode(file_get_contents("php://input"));
+        // $data = json_decode(file_get_contents("php://input"));
 
         // echo $_POST['name'];
         // if (!isset($data->name) || !isset($data->email) || !isset($data->password)) {

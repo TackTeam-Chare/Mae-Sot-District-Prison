@@ -28,7 +28,12 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            fetch('http://localhost:8000/visiting_rules')
+            const token =localStorage.getItem('authToken');
+            fetch('http://localhost:8000/stuffview_visiting_rules',{
+                headers:{
+                        'Authorization':`Bearer ${token}`
+                }
+            })
                 .then(response => response.json())
                 .then(data => {
                     const eventsContainer = document.getElementById('events-container');
@@ -68,11 +73,11 @@
         }
 
         function deleteEvent(eventId) {
+            const token =localStorage.getItem('authToken');
             fetch(`http://localhost:8000/visiting_rule_delete?id=${eventId}`, {
                     method: 'GET',
                     headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
+                        'Authorization':`Bearer ${token}`
                     }
                 })
                 .then(response => {

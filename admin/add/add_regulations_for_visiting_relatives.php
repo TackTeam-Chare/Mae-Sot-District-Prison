@@ -99,9 +99,13 @@ function goBackAndReset() {
             formData.append('image', document.querySelector('input[name="image"]').files[0]);
 
             const url = 'http://localhost:8000/visiting_rules'; // Replace with your API endpoint
-
+            const token =localStorage.getItem('authToken');
+          
             fetch(url, {
                     method: 'POST',
+                    headers:{
+                        'Authorization':`Bearer ${token}`
+                    },
                     body: formData
                 })
                 .then(response => {

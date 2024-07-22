@@ -110,12 +110,12 @@
 
     <script>
         let currentPage = 1;
-        const eventsPerPage = 1;
+        const eventsPerPage = 20;
         let totalEvents = 0;
         let allEvents = [];
 
         document.addEventListener("DOMContentLoaded", function() {
-            fetch('http://localhost:8000/events')
+            fetch('http://localhost:8000/viewEvents')
                 .then(response => response.json())
                 .then(data => {
                     allEvents = data;
@@ -138,7 +138,7 @@
                 const eventCard = document.createElement('div');
                 eventCard.classList.add('card', 'mb-3');
 
-                const imageUrl = event.image ? `../../uploads/${event.image}` : '../../img/no_image.png';
+                const imageUrl = event.image ? `./uploads/${event.image}` : './uploads/no_image.png';
 
                 eventCard.innerHTML = `
                     <div class="card-body">

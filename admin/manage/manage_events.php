@@ -27,7 +27,12 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            fetch('http://localhost:8000/events')
+            const token = localStorage.getItem('authToken');
+            fetch('http://localhost:8000/stuffview_events',{
+                headers:{
+                    'Authorization':`Bearer ${token}`,
+                }
+            })
                 .then(response => response.json())
                 .then(data => {
                     const eventsContainer = document.getElementById('events-container');
@@ -62,13 +67,12 @@
         }
 
         function deleteEvent(eventId) {
-            fetch(`http://localhost:8000/event_delete?id=${eventId}`, {
-                    method: 'GET',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
-                })
+            const token = localStorage.getItem('authToken');
+            fetch(`http://localhost:8000/event_delete?id=${eventId}`,{
+                headers:{
+                    'Authorization':`Bearer ${token}`,
+                }
+            })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');

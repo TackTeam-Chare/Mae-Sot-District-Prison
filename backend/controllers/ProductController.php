@@ -20,6 +20,24 @@ class ProductController
         Response::send($events);
     }
 
+    public function getProductsSum() {
+    
+        // Call the read_sum method
+        $stmt = $this->product->read_sum();
+    
+        // Fetch the result
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $total = $result['total']; // The count of events
+    
+        // Prepare the response
+        if ($total !== false) {
+            // Send a JSON response with the count
+            Response::send(['total_events' => $total]);
+        } else {
+            // Handle the error
+            Response::send(['message' => 'Failed to retrieve event count'], 500);
+        }
+    }
 
     public function getProductWithID()
     {

@@ -77,7 +77,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('http://localhost:8000/screen_contents?id=4') // Replace with the actual URL of your JSON file or API endpoint
+            fetch('http://localhost:8000/viewScreen_contents?id=4') // Replace with the actual URL of your JSON file or API endpoint
                 .then(response => response.json())
                 .then(data => {
                     const cardsContainer = document.getElementById('cards-container');

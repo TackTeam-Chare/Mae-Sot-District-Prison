@@ -76,24 +76,27 @@
 
             const formData = new FormData(event.target); // Create FormData object from form
             const url = 'http://localhost:8000/login'; // Replace with your API endpoint
-            var status = null;
 
             fetch(url, {
                 method: 'POST',
                 body: formData
             })
             .then(response => {
-                status = response.status;
-                console.log('Response status:', status); // เพิ่มการดีบัก
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
                 return response.json();
             })
             .then(data => {
-                console.log('Response data:', data); // เพิ่มการดีบัก
-                if (status == 200) {
+                // Assuming the token is in the response data
+                const token = data.token;
+                if (token) {
+                    // Save token to localStorage
+                    localStorage.setItem('authToken', token);
                     showAlert('Login successful!', 'success');
                     setTimeout(() => {
                         window.location.href = "dashboard.php";  
-                    }, 3000); // รอ 3 วินาทีก่อนจะเปลี่ยนหน้า
+                    }, 3000); // Wait 3 seconds before redirecting
                 } else {
                     showAlert('Login failed! Please check your credentials.', 'danger');
                 }

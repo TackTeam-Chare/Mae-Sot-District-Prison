@@ -20,6 +20,12 @@ class Event {
         $stmt->execute();
         return $stmt;
     }
+    public function read_sum() {
+        $query = "SELECT  COUNT(*) as total FROM " . $this->table_name.';';
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt;
+    }
     public function read_id(){
         $query = "SELECT id, title, content, image FROM " . $this->table_name.' where id=:id';
         $stmt = $this->conn->prepare($query);

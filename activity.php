@@ -83,7 +83,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      fetch('http://localhost:8000/visiting_rules')
+      fetch('http://localhost:8000/viewVisiting_rules')
         .then(response => response.json())
         .then(data => {
           const contentDiv = document.getElementById('content');
