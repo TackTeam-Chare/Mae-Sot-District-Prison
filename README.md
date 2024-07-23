@@ -20,8 +20,8 @@ wget --mirror --convert-links --adjust-extension --page-requisites --no-parent h
 "# Mae-Sot-District-Prison" 
 
 # เข้าสู่ระบบด้วยแอดมินหลักค่อยไปเพิ่มบัญชีตัวเอง
-arnumat@test.com
-12345678
+# arnumat@test.com
+# 12345678
 
 # ตอนเพิ่มอย่าลืมปรับให้เป็นสิทธิหลักไม่งั้นจะ เพิ่ม ลบ เเก้ไข ข้อมูลไม่ได้
 
