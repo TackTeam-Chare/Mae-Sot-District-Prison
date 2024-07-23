@@ -49,6 +49,8 @@ class EventController
         $this->event->title = $_POST['title'];
         $this->event->content = $_POST['content'];
     
+        $this->event->allow_publish = $_POST['allow_publish'];
+    
         // Handle file upload
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             $uploadDir = '../uploads/';
@@ -127,6 +129,7 @@ public function getEventsSum() {
         $this->event->id = $_POST['id'];
         $this->event->title = $_POST['title'];
         $this->event->content = $_POST['content'];
+        $this->event->allow_publish = $_POST['allow_publish'];
     
         // Handle file upload if present
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {

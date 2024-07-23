@@ -48,6 +48,7 @@
                                      <img src="${imageUrl}" alt="event image" class="img-fluid mb-3">
                                 <h5 class="card-title">${event.title}</h5>
                                 <p class="card-text">${event.content}</p>
+                                <p class="card-text">${event.allow_publish==0?"ยังไม่เผยเเพร่":"กำลังเผยเเพร่"}</p>
                                 <div class="d-flex justify-content-end">
                                     <a href="../edit/edit_event.php?id=${event.id}" class="btn btn-success me-2">Edit</a>
                                     <button class="btn btn-danger" onclick="confirmDelete(${event.id})">Delete</button>

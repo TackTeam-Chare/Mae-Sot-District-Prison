@@ -24,7 +24,7 @@ class AdminPriorityMiddleware implements MiddlewareInterface {
                 $decodedToken = $this->jwtHandler->decodeToken($token);
                 
                 // Debugging output
-                error_log("Decoded Token: " . print_r($decodedToken, true));
+                //error_log("Decoded Token: " . print_r($decodedToken, true));
                 
                 if (is_null($decodedToken) || !isset($decodedToken->sub)) {
                     throw new Exception("Token structure is invalid");
@@ -37,12 +37,20 @@ class AdminPriorityMiddleware implements MiddlewareInterface {
                 $stmt->bindParam(':id', $userId);
                 $stmt->execute();
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-                
+
                 if (!$user || $user['is_main_priority'] !== 1) {
+                    $_POST['allow_publish'] = 0;
+                }
+
+                if  ($user['is_main_priority'] !== 1 && isset($_POST['id'] ) || isset($_GET['id'])) {
                     header("HTTP/1.1 403 Forbidden");
                     echo json_encode(['message' => 'You do not have sufficient permissions.']);
                     exit();
                 }
+
+                
+
+                
                 
                 // Proceed to the next middleware or handler
                 return $next($request);

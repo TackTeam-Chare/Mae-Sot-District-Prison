@@ -23,6 +23,8 @@ require_once '../backend/controllers/ProductController.php';
 require_once '../backend/controllers/AdminController.php';
 require_once '../backend/controllers/ScreenContentController.php';
 require_once '../backend/controllers/VisitingRuleController.php';
+require_once '../backend/controllers/EmployeeController.php';
+require_once '../backend/controllers/PrisonerController.php';
 require_once '../backend/utils/Response.php';
 
 // Initialize database connection
@@ -38,6 +40,8 @@ $productController = new ProductController($db);
 $adminController = new AdminController($db);
 $screenController = new ScreenContentController($db);
 $visitingRule = new VisitingRuleController($db);
+$employeeController = new EmployeeController($db);
+$prisonerController = new PrisonerController($db);
 
 // Initialize middleware stack
 $middlewareStack = new MiddlewareStack();
@@ -52,7 +56,9 @@ $finalHandler = function ($request) use (
     $productController,
     $adminController,
     $screenController,
-    $visitingRule
+    $visitingRule,
+    $employeeController,
+    $prisonerController
 ) {
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $uri = explode('/', $uri);
@@ -179,7 +185,75 @@ $finalHandler = function ($request) use (
             }
             break;
 
+            case 'employee_delete':
+                if ($requestMethod == 'GET') {
+                    return $employeeController->deleteEmployee();
+                }
+                break;
+    
+            case 'stuffview_employees':
+                if ($requestMethod == 'GET' && isset($_GET['id'])) {
+                    return $employeeController->getEmployeeWithID();
+                } elseif ($requestMethod == 'GET') {
+                    return $employeeController->getEmployees();
+                }
+                break;
+    
+            case 'employees':
+                if ($requestMethod == 'POST' && isset($_POST['id'])) {
+                    return $employeeController->updateEmployee();
+                } elseif ($requestMethod == 'POST') {
+                    return $employeeController->createEmployee();
+                }
+            break;
+    
 
+            
+            case 'prisoner_delete':
+                if ($requestMethod == 'GET') {
+                    return $prisonerController->deletePrisoner();
+                }
+                break;
+    
+            case 'stuffview_prisoners':
+                if ($requestMethod == 'GET' && isset($_GET['id'])) {
+                    return $prisonerController->getPrisonerWithID();
+                } elseif ($requestMethod == 'GET') {
+                    return $prisonerController->getPrisoners();
+                }
+                break;
+    
+            case 'prisoners':
+                if ($requestMethod == 'POST' && isset($_POST['id'])) {
+                    return $prisonerController->updatePrisoner();
+                } elseif ($requestMethod == 'POST') {
+                    return $prisonerController->createPrisoner();
+                }
+            break;
+            case 'countPrisonersEach':
+                if ($requestMethod == 'GET') {
+                    return $prisonerController->getPrisonersCount();
+                }
+            break;
+    
+            case 'countDepartmentsEach':
+                if ($requestMethod == 'GET') {
+                    return $employeeController->getDepartmentsCount();
+                }
+            break;
+    
+
+            case 'viewDepartments':
+                    if ($requestMethod == 'GET') {
+                        return $employeeController->getDepartments();
+                    }
+            break;
+
+                case 'viewJobPositions':
+                        if ($requestMethod == 'GET') {
+                            return $employeeController->getJobPositions();
+                        }
+            break;
 
         case 'stuffview_admins':
             if ($requestMethod == 'GET' && isset($_GET['id'])) {
@@ -275,6 +349,15 @@ $routesWithAuth = [
     'stuffview_screen_contents',
     'stuffview_visiting_rules',
     'stuffview_admins',
+
+    'stuffview_employees',
+
+    'employees',
+    'employee_delete',
+
+    'prisoners',
+    'prisoner_delete',
+
 ];
 
 $onlyMainPriorityRoot = [
@@ -284,14 +367,21 @@ $onlyMainPriorityRoot = [
     'product_delete',
     'products',
     
-    'admin_delete',
-    'admins',
+    // 'admin_delete',
+    // 'admins',
     
-    'screen_content_delete',
-    'screen_contents',
+    // 'screen_content_delete',
+    // 'screen_contents',
     
-    'visiting_rule_delete',
-    'visiting_rules'
+    // 'visiting_rule_delete',
+    // 'visiting_rules',
+
+    // 'employees',
+    // 'employee_delete',
+    
+    // 'prisoners',
+    // 'prisoner_delete',
+
 ];
 
 

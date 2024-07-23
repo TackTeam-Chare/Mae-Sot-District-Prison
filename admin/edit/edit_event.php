@@ -30,6 +30,21 @@
                 <input type="file" class="form-control" name="image" accept="image/*" onchange="previewImage(event)">
                 <img class="form-control mt-2" id="currentImage" src="" alt="Current Image">
             </div>
+            <fieldset class="mb-3">
+                <legend class="form-label">กำหนดการเผยเเพร่</legend>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="is_main_admin" id="is_main_admin_no" value="0" required>
+                    <label class="form-check-label" for="is_main_admin_no">
+                        ไม่เผยเเพร่
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="is_main_admin" id="is_main_admin_yes" value="1" required>
+                    <label class="form-check-label" for="is_main_admin_yes">
+                        เผยเเพร่
+                    </label>
+                </div>
+            </fieldset>
             <div>
                 <button type="submit" id="submitForm" class="btn btn-primary">บันทึก</button>
             </div>
@@ -54,7 +69,11 @@
                     // Populate form fields with existing data
                     document.querySelector('input[name="title"]').value = event.title;
                     document.querySelector('textarea[name="content"]').value = event.content;
-
+                    if (event.allow_publish == 0) {
+                    document.getElementById('is_main_admin_no').checked = true;
+                } else {
+                    document.getElementById('is_main_admin_yes').checked = true;
+                }
                     // Display current image if exists
                     if (event.image) {
                         const currentImage = document.getElementById('currentImage');
@@ -83,9 +102,22 @@
 
         document.getElementById("updateEventForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
+            const allow_publish_= document.querySelector('input[name="is_main_admin"]:checked').value;
+            const allow_publish= allow_publish_ === '0' ? 0 : 1; 
 
-            const formData = new FormData(this); // Create FormData object
+            const formData = new FormData(); // Create FormData object
+            
+            formData.append('id', document.querySelector('input[name="id"]').value);
+            formData.append('title', document.querySelector('input[name="title"]').value);
+            formData.append('content', document.querySelector('textarea[name="content"]').value);
+            formData.append('image', document.querySelector('input[name="image"]').files[0]);
+            formData.append('allow_publish',allow_publish);
+
+            // Create FormData object
             const token = localStorage.getItem('authToken');
+
+
+
             // Include current image if it exists
             const currentImage = document.getElementById('currentImage');
             if (currentImage.src && currentImage.src.length > 0) {

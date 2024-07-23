@@ -73,6 +73,21 @@
                 <label for="image" class="form-label">ภาพสินค้า</label>
                 <input type="file" class="form-control" name="image" accept="image/*" >
             </div>
+            <fieldset class="mb-3">
+                <legend class="form-label">กำหนด</legend>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="is_main_admin" id="is_main_admin_yes" value="0" required>
+                    <label class="form-check-label" for="is_main_admin_yes">
+                        ไม่เผยเเพร่
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="is_main_admin" id="is_main_admin_no" value="1" required>
+                    <label class="form-check-label" for="is_main_admin_no">
+                        เผยเเพร่
+                    </label>
+                </div>
+            </fieldset>
             <div>
                 <button type="submit" id="submitForm" class="btn btn-primary">บันทึก</button>
             </div>
@@ -93,10 +108,13 @@ function goBackAndReset() {
         document.getElementById("addProductForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
 
+            const allow_publish_= document.querySelector('input[name="is_main_admin"]:checked').value;
+            const allow_publish= allow_publish_ === '0' ? 0 : 1; 
             const formData = new FormData(); // Create FormData object
             formData.append('title', document.querySelector('input[name="title"]').value);
             formData.append('content', document.querySelector('textarea[name="content"]').value);
             formData.append('image', document.querySelector('input[name="image"]').files[0]);
+            formData.append('allow_publish',allow_publish);
 
             const url = 'http://localhost:8000/products'; // Replace with your API endpoint
             const token =localStorage.getItem('authToken');
