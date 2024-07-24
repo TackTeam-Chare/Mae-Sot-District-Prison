@@ -14,11 +14,11 @@
 <body>
     <?php include_once('../layout/navbar.php') ?>
     <div class="container my-5">
-        <h1 class="text-center mb-4 fw-bold">การจัดการข้อมูลสินค้า</h1>
+        <h1 class="text-center mb-4 fw-bold">การจัดการข้อมูลฝ่ายบริหาร</h1>
         <hr>
         <div class="row gy-5 justify-content-center">
             <div class="d-flex justify-content-end align-items-center mb-3">
-                <button class="btn btn-primary"><a href="../add/add_product.php" class="text-white text-decoration-none">เพิ่มรายกการสินค้า</a></button>
+                <button class="btn btn-primary"><a href="../add/add_prisoner.php" class="text-white text-decoration-none">เพิ่มข้อมูลผู้บริหาร</a></button>
             </div>
             <div class="col-lg-12 events-section" id="products-container">
                 <!-- Products will be dynamically added here -->
@@ -29,7 +29,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const token =localStorage.getItem('authToken');
-            fetch('http://localhost:8000/stuffview_products',{
+            fetch('http://localhost:8000/stuffview_prisoners',{
                 medthod:"GET",
                 headers:{
                     'Authorization':`Bearer ${token}`
@@ -37,43 +37,42 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    const productsContainer = document.getElementById('products-container');
+                    const employeeContainer = document.getElementById('products-container');
 
-                    data.forEach(product => {
-                        const productCard = document.createElement('div');
-                        productCard.classList.add('card', 'mb-3');
+                    data.forEach(employee => {
+                        const employeeCard = document.createElement('div');
+                        employeeCard.classList.add('card', 'mb-3');
 
                         // Check if product.image exists and use it, otherwise use a default icon
-                        const imageUrl = product.image ? `../../uploads/${product.image}` : '../../img/no_image.png';
+                        const imageUrl = employee.image ? `../../uploads/${employee.image}` : '../../img/no_image.png';
 
-                        productCard.innerHTML = `
+                        employeeCard.innerHTML = `
                             <div class="card-body">
                                    <img src="${imageUrl}" alt="product image" class="img-fluid mb-3">
-                                <h5 class="card-title">${product.title}</h5>
-                                <p class="card-text">${product.content}</p>
-                                <p class="card-text">${product.allow_publish==0?"ยังไม่เผยเเพร่":"กำลังเผยเเพร่"}</p>
+                                <h5 class="card-title">${employee.name}</h5>
+                                <p class="card-text">${employee.gender==0?"ชาย":"หญิง"}</p>
                                 <div class="d-flex justify-content-end">
-                                    <a href="../edit/edit_product.php?id=${product.id}" class="btn btn-success me-2">Edit</a>
-                                    <button class="btn btn-danger" onclick="confirmDelete(${product.id})">Delete</button>
+                                    <a href="../edit/edit_prisoner.php?id=${employee.id}" class="btn btn-success me-2">Edit</a>
+                                    <button class="btn btn-danger" onclick="confirmDelete(${employee.id})">Delete</button>
                                 </div>
                             </div>
                         `;
 
-                        productsContainer.appendChild(productCard);
+                        employeeContainer.appendChild(employeeCard);
                     });
                 })
                 .catch(error => console.error('Error fetching products:', error));
         });
 
-        function confirmDelete(productId) {
+        function confirmDelete(employeeId) {
             if (confirm('Are you sure you want to delete this product?')) {
-                deleteProduct(productId);
+                deleteProduct(employeeId);
             }
         }
 
-        function deleteProduct(productId) {
+        function deleteProduct(employeeId) {
             const token =localStorage.getItem('authToken');
-            fetch(`http://localhost:8000/product_delete?id=${productId}`, {
+            fetch(`http://localhost:8000/prisoner_delete?id=${employeeId}`, {
                     method: 'GET',
                     headers: {
                         'Authorization':`Bearer ${token}`,

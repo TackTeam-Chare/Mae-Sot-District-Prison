@@ -132,18 +132,19 @@
                     <a href="/admin/edit/edit_prison_history.php" class="d-block"><i class="fa fa-history"></i> ประวัติเรือนจำ</a>
                     <a href="#" class="d-block" onclick="toggleSubMenu('personnelSubMenu')"><i class="fa fa-users"></i> ทำเนียบบุคลากร <i class="fa fa-caret-down ms-auto"></i></a>
                     <div id="personnelSubMenu" class="sidebar-submenu">
-                        <a href="staff_information.php" class="d-block">ฝ่ายผู้บริหาร</a>
-                        <a href="staff_information.php" class="d-block">ฝ่ายบริหารทั่วไป</a>
-                        <a href="staff_information.php" class="d-block">ฝ่ายทัณฑปฎิบัติ</a>
-                        <a href="staff_information.php" class="d-block">ฝ่ายฝึกวิชาชีพ</a>
-                        <a href="staff_information.php" class="d-block">ฝ่ายควบคุมเเละรักษาการณ์</a>
-                        <a href="staff_information.php" class="d-block">ฝ่ายสวัสดิการผู้ต้องขังเเละสงเคราะห์ผู้ต้องขัง</a>
-                        <a href="staff_information.php" class="d-block">ฝ่ายการศึกษา</a>
-                        <a href="staff_information.php" class="d-block">ฝ่ายสภานพยาบาลเรือนจำ</a>
-                        <a href="staff_information.php" class="d-block">ฝ่ายควบคุมเเดนหญิง</a>
-                        <a href="staff_information.php" class="d-block">ฝ่ายรักษาการณ์</a>
-                        <a href="staff_information.php" class="d-block">ฝ่ายควบคุม</a>
+                        <a href="/admin/manage/manage_employees_1.php" class="d-block">ฝ่ายผู้บริหาร</a>
+                        <a href="/admin/manage/manage_employees_2.php" class="d-block">ฝ่ายผู้บริหารทั่วไป</a>
+                        <a href="/admin/manage/manage_employees_3.php" class="d-block">ฝ่ายทัณฑปฎิบัติ</a>
+                        <a href="/admin/manage/manage_employees_4.php" class="d-block">ฝ่ายฝึกวิชาชีพ</a>
+                        <a href="/admin/manage/manage_employees_5.php" class="d-block">ฝ่ายควบคุมเเละรักษาการณ์</a>
+                        <a href="/admin/manage/manage_employees_6.php" class="d-block">ฝ่ายสวัสดิการผู้ต้องขังเเละสงเคราะห์ผู้ต้องขัง</a>
+                        <a href="/admin/manage/manage_employees_7.php" class="d-block">ฝ่ายการศึกษา</a>
+                        <a href="/admin/manage/manage_employees_8.php" class="d-block">ฝ่ายสภานพยาบาลเรือนจำ</a>
+                        <a href="/admin/manage/manage_employees_9.php" class="d-block">ฝ่ายควบคุมเเดนหญิง</a>
+                        <a href="/admin/manage/manage_employees_10.php" class="d-block">ฝ่ายรักษาการณ์</a>
+                        <a href="/admin/manage/manage_employees_11.php" class="d-block">ฝ่ายควบคุม</a>
                     </div>
+                    <a href="/admin/manage/manage_prisoner.php" class="d-block"><i class="fa fa-users"></i>นักโทษ</a>
                     <a href="/admin/manage/manage_product.php" class="d-block"><i class="fa fa-box"></i> ผลิตภัณฑ์</a>
                     <a href="/admin/manage/manage_events.php" class="d-block"><i class="fa fa-bullhorn"></i> ข่าวประชาสัมพันธ์</a>
                     <a href="/admin/edit/edit_duty.php" class="d-block"><i class="fa fa-tasks"></i> พันธกิจ</a>
