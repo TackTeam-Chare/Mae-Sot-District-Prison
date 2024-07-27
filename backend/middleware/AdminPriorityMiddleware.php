@@ -31,6 +31,10 @@ class AdminPriorityMiddleware implements MiddlewareInterface {
                 }
                 
                 $userId = $decodedToken->sub; // Assuming token contains user ID in 'sub' property
+
+                error_log($userId);
+                error_log($_GET['id']);
+                
                 // Fetch user data to check is_main_priority
                 $db = (new Database())->getConnection();
                 $stmt = $db->prepare("SELECT is_main_priority FROM users WHERE id = :id");
@@ -42,9 +46,9 @@ class AdminPriorityMiddleware implements MiddlewareInterface {
                     $_POST['allow_publish'] = 0;
                 }
 
-                if  ($user['is_main_priority'] !== 1 && isset($_POST['id'] ) || isset($_GET['id'])) {
+                if  ($user['is_main_priority'] !== 1 &&( isset($_POST['id'] ) || isset($_GET['id']))) {
                     header("HTTP/1.1 403 Forbidden");
-                    echo json_encode(['message' => 'You do not have sufficient permissions.']);
+                    echo json_encode(['message' => 'You do not have sufficient permissions11.']);
                     exit();
                 }
 
