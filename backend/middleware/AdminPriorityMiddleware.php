@@ -32,8 +32,8 @@ class AdminPriorityMiddleware implements MiddlewareInterface {
                 
                 $userId = $decodedToken->sub; // Assuming token contains user ID in 'sub' property
 
-                error_log($userId);
-                error_log($_GET['id']);
+                // error_log($userId);
+                // error_log($_GET['id']);
                 
                 // Fetch user data to check is_main_priority
                 $db = (new Database())->getConnection();
