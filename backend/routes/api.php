@@ -10,6 +10,7 @@ require_once '../backend/middleware/MiddlewareStack.php';
 require_once '../backend/middleware/CORSMiddleware.php';
 require_once '../backend/middleware/JWTMiddleware.php';
 require_once '../backend/middleware/AdminPriorityMiddleware.php';
+require_once '../backend/middleware/OnlyMainAdminMiddleware.php';
 
 // Database
 require_once '../backend/config/database.php';
@@ -68,7 +69,13 @@ $finalHandler = function ($request) use (
     // Determine the action based on URI and HTTP method
     switch ($uri[1]) {
             //route for user 
-        case 'viewEvents':
+        case 'is_main_admin':
+            if ($requestMethod == 'GET') {
+                return Response::send(['message'=>'pass'],200);
+            }
+                break;
+
+            case 'viewEvents':
             if ($requestMethod == 'GET' && isset($_GET['id'])) {
                 return $eventController->getEventsWithID();
             } elseif ($requestMethod == 'GET') {
@@ -333,6 +340,7 @@ $finalHandler = function ($request) use (
 
 // Apply JWTMiddleware where needed
 $routesWithAuth = [
+    'is_main_admin',
     'logout',
     'event_delete',
     'events',
@@ -360,7 +368,7 @@ $routesWithAuth = [
 
 ];
 
-$onlyMainPriorityRoot = [
+$verify_perrmission_routes = [
     'event_delete',
     'events',
 
@@ -385,15 +393,25 @@ $onlyMainPriorityRoot = [
 ];
 
 
+$only_main_permission_routes = [
+    'is_main_admin',
+    'admin_delete',
+    'admins',
+];
+
+
 $request = $_POST; // Or use a more appropriate method for handling request data
 
 if (in_array(explode('/', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))[1], $routesWithAuth)) {
     $middlewareStack->addMiddleware(new JWTMiddleware()); // Apply JWT middleware
 }
-if (in_array(explode('/', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))[1], $onlyMainPriorityRoot)) {
+if (in_array(explode('/', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))[1], $verify_perrmission_routes)) {
     $middlewareStack->addMiddleware(new AdminPriorityMiddleware()); // Apply JWT middleware
 }
 
+if (in_array(explode('/', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))[1], $only_main_permission_routes)) {
+    $middlewareStack->addMiddleware(new OnlyMainAdminMiddleware()); // Apply JWT middleware
+}
 $response = $middlewareStack->handle($request, $finalHandler);
 
 // Output the response

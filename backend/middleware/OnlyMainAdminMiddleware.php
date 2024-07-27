@@ -1,5 +1,5 @@
 <?php
-class AdminPriorityMiddleware implements MiddlewareInterface {
+class OnlyMainAdminMiddleware implements MiddlewareInterface {
     private $jwtHandler;
 
     public function __construct() {
@@ -41,18 +41,13 @@ class AdminPriorityMiddleware implements MiddlewareInterface {
                 $stmt->bindParam(':id', $userId);
                 $stmt->execute();
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                //echo "check main admin  user:".$user['is_main_priority'].'with id'.$userId;
 
                 if (!$user || $user['is_main_priority'] !== 1) {
-                    $_POST['allow_publish'] = 0;
-                }
-
-                if  ($user['is_main_priority'] !== 1 &&( isset($_POST['id'] ) || isset($_GET['id']))) {
                     header("HTTP/1.1 403 Forbidden");
-                    echo json_encode(['message' => 'You do not have sufficient permissions11.']);
+                    echo json_encode(['message' => 'You do not have sufficient permissions for main admin.']);
                     exit();
                 }
-
-            
                 // Proceed to the next middleware or handler
                 return $next($request);
                 

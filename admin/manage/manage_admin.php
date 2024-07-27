@@ -8,6 +8,8 @@
     <title>การจัดการข้อมูลผู้ดูแลระบบ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/admin/css/style.css">
+
+      
 </head>
 
 <body>
@@ -26,27 +28,51 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const token = localStorage.getItem("authToken");
-            fetch('http://localhost:8000/stuffview_admins', {
+          const token = localStorage.getItem("authToken");
+        fetch(`http://localhost:8000/is_main_admin`, {
+                method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 }
             })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    throw new Error('คุณไม่มีสิทธิในการจัดการหน้านี้');
+                history.back();
                 }
                 return response.json();
             })
             .then(data => {
-                const adminsContainer = document.getElementById('admins-container');
 
-                data.forEach(admin => {
-                    const adminCard = document.createElement('div');
-                    adminCard.classList.add('card', 'mb-3');
+            })
+            .catch(error => {
+                console.error(error);
+                alert(error.message);
+                history.back()
+            });
+    
+        document.addEventListener("DOMContentLoaded", function() {
+            const token = localStorage.getItem("authToken");
+            fetch('http://localhost:8000/stuffview_admins', {
+                    headers: {
+                        'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const adminsContainer = document.getElementById('admins-container');
 
-                    adminCard.innerHTML = `
+                    data.forEach(admin => {
+                        const adminCard = document.createElement('div');
+                        adminCard.classList.add('card', 'mb-3');
+
+                        adminCard.innerHTML = `
                         <div class="card-body">
                             <h5 class="card-title">${admin.name}</h5>
                             <p class="card-text">${admin.email}</p>
@@ -58,12 +84,12 @@
                         </div>
                     `;
 
-                    adminsContainer.appendChild(adminCard);
+                        adminsContainer.appendChild(adminCard);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching admins:', error);
                 });
-            })
-            .catch(error => {
-                console.error('Error fetching admins:', error);
-            });
         });
 
         function confirmDelete(adminId) {
@@ -75,26 +101,26 @@
         function deleteAdmin(adminId) {
             const token = localStorage.getItem("authToken");
             fetch(`http://localhost:8000/admin_delete?id=${adminId}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                alert('Admin deleted successfully!');
-                location.reload(); // Reload the page to reflect the changes
-            })
-            .catch(error => {
-                console.error('Error deleting admin:', error);
-                alert('Failed to delete admin: ' + error.message);
-            });
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert('Admin deleted successfully!');
+                    location.reload(); // Reload the page to reflect the changes
+                })
+                .catch(error => {
+                    console.error('Error deleting admin:', error);
+                    alert('Failed to delete admin: ' + error.message);
+                });
         }
     </script>
 
