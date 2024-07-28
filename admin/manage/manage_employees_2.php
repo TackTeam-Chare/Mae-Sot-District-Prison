@@ -5,10 +5,9 @@
     <link rel="icon" type="image/x-icon" href="./assets/icons/admin.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>การจัดการข้อมูลสินค้า</title>
+    <title>การจัดการข้อมูลฝ่ายบริหาร</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-  
 </head>
 
 <body>
@@ -20,65 +19,74 @@
             <div class="d-flex justify-content-end align-items-center mb-3">
                 <button class="btn btn-primary"><a href="../add/add_employee.php" class="text-white text-decoration-none">เพิ่มข้อมูลผู้บริหาร</a></button>
             </div>
-            <div class="col-lg-12 events-section" id="products-container">
-                <!-- Products will be dynamically added here -->
+            <div class="col-lg-12 events-section" id="employees-container">
+                <!-- Employees will be dynamically added here -->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Department</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employees-table-body">
+                        <!-- Dynamic rows will be inserted here -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const token =localStorage.getItem('authToken');
-            fetch('http://localhost:8000/stuffview_employees?dep_id=2',{
-                medthod:"GET",
-                headers:{
-                    'Authorization':`Bearer ${token}`
+            const token = localStorage.getItem('authToken');
+            fetch('http://localhost:8000/stuffview_employees?dep_id=2', {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${token}`
                 }
             })
                 .then(response => response.json())
                 .then(data => {
-                    const employeeContainer = document.getElementById('products-container');
+                    const employeesTableBody = document.getElementById('employees-table-body');
 
                     data.forEach(employee => {
-                        const employeeCard = document.createElement('div');
-                        employeeCard.classList.add('card', 'mb-3');
-
-                        // Check if product.image exists and use it, otherwise use a default icon
                         const imageUrl = employee.image ? `../../uploads/${employee.image}` : '../../img/no_image.png';
 
-                        employeeCard.innerHTML = `
-                            <div class="card-body">
-                                   <img src="${imageUrl}" alt="product image" class="img-fluid mb-3">
-                                <h5 class="card-title">${employee.name}</h5>
-                                <p class="card-text">${employee.pos_name}</p>
-                                <p class="card-text">${employee.dep_name}</p>
-                                <div class="d-flex justify-content-end">
-                                    <a href="../edit/edit_employee.php?id=${employee.id}" class="btn btn-success me-2">Edit</a>
-                                    <button class="btn btn-danger" onclick="confirmDelete(${employee.id})">Delete</button>
-                                </div>
-                            </div>
-                        `;
+                        const employeeRow = document.createElement('tr');
 
-                        employeeContainer.appendChild(employeeCard);
+                        employeeRow.innerHTML = `
+                            <td><img src="${imageUrl}" alt="employee image" class="img-fluid" style="max-width: 100px;"></td>
+                            <td>${employee.name}</td>
+                            <td>${employee.pos_name}</td>
+                            <td>${employee.dep_name}</td>
+                            <td class="d-flex gap-2">
+                                <a href="../edit/edit_employee.php?id=${employee.id}" class="btn btn-success">Edit</a>
+                                <button class="btn btn-danger" onclick="confirmDelete(${employee.id})">Delete</button>
+                            </td>
+                        `;
+                        employeesTableBody.appendChild(employeeRow);
                     });
                 })
-                .catch(error => console.error('Error fetching products:', error));
+                .catch(error => console.error('Error fetching employees:', error));
         });
 
         function confirmDelete(employeeId) {
-            if (confirm('Are you sure you want to delete this product?')) {
-                deleteProduct(employeeId);
+            if (confirm('Are you sure you want to delete this employee?')) {
+                deleteEmployee(employeeId);
             }
         }
 
-        function deleteProduct(employeeId) {
-            const token =localStorage.getItem('authToken');
+        function deleteEmployee(employeeId) {
+            const token = localStorage.getItem('authToken');
             fetch(`http://localhost:8000/employee_delete?id=${employeeId}`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization':`Bearer ${token}`,
-                    }
-                })
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                }
+            })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -86,12 +94,12 @@
                     return response.json();
                 })
                 .then(data => {
-                    alert('Product deleted successfully!');
+                    alert('Employee deleted successfully!');
                     location.reload(); // Reload the page to reflect the changes
                 })
                 .catch(error => {
-                    console.error('Error deleting product:', error);
-                    alert('Failed to delete product: ' + error.message);
+                    console.error('Error deleting employee:', error);
+                    alert('Failed to delete employee: ' + error.message);
                 });
         }
     </script>

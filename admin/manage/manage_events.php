@@ -21,6 +21,20 @@
             </div>
             <div class="col-lg-12 events-section" id="events-container">
                 <!-- Events will be dynamically added here -->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="events-table-body">
+                        <!-- Dynamic rows will be inserted here -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -35,27 +49,24 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    const eventsContainer = document.getElementById('events-container');
+                    const eventsTableBody = document.getElementById('events-table-body');
 
                     data.forEach(event => {
-                        const eventCard = document.createElement('div');
-                        eventCard.classList.add('card', 'mb-3');
-
                         const imageUrl = event.image ? `../../uploads/${event.image}` : '../../img/no_image.png';
 
-                        eventCard.innerHTML = `
-                            <div class="card-body">
-                                     <img src="${imageUrl}" alt="event image" class="img-fluid mb-3">
-                                <h5 class="card-title">${event.title}</h5>
-                                <p class="card-text">${event.content}</p>
-                                <p class="card-text">${event.allow_publish==0?"ยังไม่เผยเเพร่":"กำลังเผยเเพร่"}</p>
-                                <div class="d-flex justify-content-end">
-                                    <a href="../edit/edit_event.php?id=${event.id}" class="btn btn-success me-2">Edit</a>
-                                    <button class="btn btn-danger" onclick="confirmDelete(${event.id})">Delete</button>
-                                </div>
-                            </div>
+                        const eventRow = document.createElement('tr');
+
+                        eventRow.innerHTML = `
+                            <td><img src="${imageUrl}" alt="event image" class="img-fluid" style="max-width: 100px;"></td>
+                            <td>${event.title}</td>
+                            <td>${event.content}</td>
+                            <td>${event.allow_publish == 0 ? "ยังไม่เผยเเพร่" : "กำลังเผยเเพร่"}</td>
+                            <td class="d-flex gap-2">
+                                <a href="../edit/edit_event.php?id=${event.id}" class="btn btn-success">Edit</a>
+                                <button class="btn btn-danger" onclick="confirmDelete(${event.id})">Delete</button>
+                            </td>
                         `;
-                        eventsContainer.appendChild(eventCard);
+                        eventsTableBody.appendChild(eventRow);
                     });
                 })
                 .catch(error => console.error('Error fetching events:', error));

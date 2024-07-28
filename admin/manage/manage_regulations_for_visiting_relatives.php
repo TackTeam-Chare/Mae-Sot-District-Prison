@@ -5,10 +5,9 @@
     <link rel="icon" type="image/x-icon" href="./assets/icons/admin.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>การจัดการข้อมูลกิจกรรม</title>
+    <title>การจัดการข้อมูลระเบียบการเข้าเยี่ยมญาติ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-
 </head>
 
 <body>
@@ -22,45 +21,50 @@
             </div>
             <div class="col-lg-12 events-section" id="events-container">
                 <!-- Events will be dynamically added here -->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="events-table-body">
+                        <!-- Dynamic rows will be inserted here -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const token =localStorage.getItem('authToken');
-            fetch('http://localhost:8000/stuffview_visiting_rules',{
-                headers:{
-                        'Authorization':`Bearer ${token}`
+            const token = localStorage.getItem('authToken');
+            fetch('http://localhost:8000/stuffview_visiting_rules', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
                 }
             })
                 .then(response => response.json())
                 .then(data => {
-                    const eventsContainer = document.getElementById('events-container');
+                    const eventsTableBody = document.getElementById('events-table-body');
 
                     data.forEach(event => {
-                        const eventCard = document.createElement('div');
-                        eventCard.classList.add('card', 'mb-3');
-
-                        // Check if event.image exists and use it, otherwise use a default icon
-                        
                         const imageUrl = event.image ? `../../uploads/${event.image}` : '../../img/no_image.png';
 
-                        eventCard.innerHTML = `
-                     
-                            <div class="card-body">
-                                <img src="../../uploads/${imageUrl}" alt="event image" class="img-fluid mb-3" >
-                                <h5 class="card-title">${event.title}</h5>
-                                <p class="card-text">${event.content}</p>
-                               
-                                <div class="d-flex justify-content-end">
-                                    <a href="../edit/edit_regulations_for_visiting_relatives.php?id=${event.id}" class="btn btn-success me-2">Edit</a>
-                                    <button class="btn btn-danger" onclick="confirmDelete(${event.id})">Delete</button>
-                                </div>
-                            </div>
-                        `;
+                        const eventRow = document.createElement('tr');
 
-                        eventsContainer.appendChild(eventCard);
+                        eventRow.innerHTML = `
+                            <td><img src="${imageUrl}" alt="event image" class="img-fluid" style="max-width: 100px;"></td>
+                            <td>${event.title}</td>
+                            <td>${event.content}</td>
+                            <td class="d-flex gap-2">
+                                <a href="../edit/edit_regulations_for_visiting_relatives.php?id=${event.id}" class="btn btn-success">Edit</a>
+                                <button class="btn btn-danger" onclick="confirmDelete(${event.id})">Delete</button>
+                            </td>
+                        `;
+                        eventsTableBody.appendChild(eventRow);
                     });
                 })
                 .catch(error => console.error('Error fetching events:', error));
@@ -73,13 +77,13 @@
         }
 
         function deleteEvent(eventId) {
-            const token =localStorage.getItem('authToken');
+            const token = localStorage.getItem('authToken');
             fetch(`http://localhost:8000/visiting_rule_delete?id=${eventId}`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization':`Bearer ${token}`
-                    }
-                })
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
