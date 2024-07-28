@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="th">
 
 <head>
   <title>เรือนจำอำเภอแม่สอด</title>
@@ -14,67 +14,22 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    div.card {
-      width: 100%;
-      height: auto;
+    body {
+      font-family: 'Noto Sans Thai', sans-serif;
+      background-color: rgb(148, 16, 16);
+      color: #333;
     }
 
-    img.card-img-top {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-top-left-radius: calc(0.25rem - 1px);
-      border-top-right-radius: calc(0.25rem - 1px);
-    }
-
-    .card-body {
-      overflow: hidden;
-      /* ป้องกันไม่ให้ข้อความล้นออกนอก card */
-      text-overflow: ellipsis;
-      /* เพิ่มจุดต่อท้ายถ้าข้อความยาวเกินไป */
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      /* จำนวนบรรทัดที่ต้องการแสดง */
-      -webkit-box-orient: vertical;
-    }
-
-    .card-title {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .card-text {
-      height: 100px;
-      /* จำกัดความสูงของ card-text */
-      overflow-y: auto;
-      /* เพิ่มการเลื่อนถ้าข้อความเกิน */
-    }
-
-    /* ปรับความกว้างของการ์ดตามขนาดหน้าจอ */
-    @media (min-width: 768px) {
-      .col-md-8 {
-        max-width: 80%;
-      }
-    }
-
-    @media (min-width: 992px) {
-      .col-lg-8 {
-        max-width: 60%;
-      }
-    }
+  
 
     .card {
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      margin: 1rem;
+      width: calc(33.333% - 2rem); /* 3 columns layout with 1rem margin */
       display: flex;
       flex-direction: column;
-      background-color: #fff;
+      justify-content: space-between;
       border-radius: 5px;
-      margin: 1rem;
-      padding: 0;
-      width: 100%;
-      max-width: 300px;
-      height: auto;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     }
 
     .card:hover {
@@ -82,59 +37,51 @@
       box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     }
 
-
-    .card-title {
-      font-size: 1.25rem;
-      margin-top: 15px;
-      color: #333;
-    }
-
-    .card-text {
-      font-size: 1rem;
-      flex-grow: 1;
-      color: #666;
-    }
-
-    .card-img-top {
-      height: 200px;
+    .card img {
+      height: 150px;
       object-fit: cover;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
     }
 
+    .card-body {
+      padding: 1rem;
+      text-overflow: ellipsis;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-text {
+      flex-grow: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 100px;
+      overflow-y: auto;
+    }
+
     h1,
-    h3 {
-      color: #333;
-    }
-
-    .container {
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 100%;
-    }
-
-    .row {
+   
+    .product-card-container {
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     /* Media queries for responsiveness */
-    @media only screen and (max-width: 768px) {
+    @media (max-width: 1200px) {
       .card {
-        width: 100%;
-        max-width: 400px;
+        width: calc(50% - 2rem); /* 2 columns layout with 1rem margin */
       }
     }
 
-    @media only screen and (max-width: 480px) {
-      .card-title {
-        font-size: 1rem;
-      }
-
-      .site-title {
-        font-size: 25px;
+    @media (max-width: 768px) {
+      .card {
+        width: calc(100% - 2rem); /* 1 column layout with 1rem margin */
       }
     }
   </style>
@@ -144,10 +91,10 @@
   <?php include('./layout/navbar.php'); ?>
 
   <div class="container my-5">
-    <h1 class="text-center text-light">ผลิตภัณฑ์ของฝ่ายฝึกวิชาชีพ</h1>
-    <p class="text-center text-light">ติดต่อสอบถามได้ที่<br>เบอร์ 055 531226 ต่อ 108</p>
+    <h1 class="text-center text-white">ผลิตภัณฑ์ของฝ่ายฝึกวิชาชีพ</h1>
+    <p class="text-center text-white">ติดต่อสอบถามได้ที่<br>เบอร์ 055 531226 ต่อ 108</p>
 
-    <div class="d-flex flex-wrap justify-content-center" id="products-container">
+    <div class="product-card-container" id="products-container">
       <!-- Product cards will be dynamically generated here -->
     </div>
   </div>
@@ -176,14 +123,13 @@
             const imageUrl = product.image ? `uploads/${product.image}` : '../uploads/no_image.png';
 
             productCard.innerHTML = `
-                            <div class="card-body" data-bs-toggle="modal" data-bs-target="#productModal"
-                                    data-title="${product.title}"  data-image="${imageUrl}" data-content="${product.content}">
-                                <img src="${imageUrl}" alt="product image" class="img-fluid mb-3" >
-                                <h5 class="card-title">${product.title}</h5>
-                                <p class="card-text">${product.content}</p>
-                            
-                            </div>
-                        `;
+              <div class="card-body" data-bs-toggle="modal" data-bs-target="#productModal"
+                  data-title="${product.title}" data-image="${imageUrl}" data-content="${product.content}">
+                <img src="${imageUrl}" alt="product image" class="img-fluid mb-3">
+                <h5 class="card-title">${product.title}</h5>
+                <p class="card-text">${product.content}</p>
+              </div>
+            `;
 
             productsContainer.appendChild(productCard);
           });
@@ -201,12 +147,12 @@
         const content = button.data('content');
 
         productModalBody.innerHTML = `
-                        <div class="text-center">
-                        <img src="${image}" alt="product image" class="img-fluid">
-                    </div>
-                    <h5 class="modal-title mt-3">${title}</h5>
-                    <p>${content}</p>
-                `;
+          <div class="text-center">
+            <img src="${image}" alt="product image" class="img-fluid">
+          </div>
+          <h5 class="modal-title mt-3">${title}</h5>
+          <p>${content}</p>
+        `;
       });
     });
   </script>
@@ -216,7 +162,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="productModalLabel">ข้อมูลผลิตภันฑ์</h5>
+          <h5 class="modal-title" id="productModalLabel">ข้อมูลผลิตภัณฑ์</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" id="productModalBody">
@@ -225,7 +171,6 @@
       </div>
     </div>
   </div>
-
 </body>
 
 </html>
