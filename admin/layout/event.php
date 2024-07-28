@@ -10,48 +10,70 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
 
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
         h1 {
             font-size: 2rem;
             margin-bottom: 1rem;
             font-weight: 900;
         }
 
-        .display--box_sum{
-            padding:20px 10px ;
-            display:flex;
-            flex-direction:column;
-            background-color:chartreuse;
-            border:2px solid none;
+        .display--box_sum {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            border: 2px solid #ddd;
             border-radius: 20px;
-            color:white;
-            transition:0.3s
+            color: #333;
+            transition: box-shadow 0.3s;
         }
-        .display--box_sum:hover{
-            box-shadow: 0 0 20px rgba(50,50,50,.4);
+
+        .display--box_sum:hover {
+            box-shadow: 0 0 20px rgba(50, 50, 50, 0.1);
         }
-        #nav--button{
+
+        #nav--button {
             align-self: center;
         }
 
+        .container {
+            margin-top: 50px;
+        }
 
-        
+        hr {
+            border: 0;
+            height: 1px;
+            background: #333;
+            background-image: linear-gradient(to right, #ccc, #333, #ccc);
+        }
+
+        .event-count {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #28a745;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <hr>
-      <div class ='display--box_sum'>
-      <h1  id="event-count">
-            <!-- Total event count will be dynamically added here -->
-    </h1>
-        <h1>ข่าวประชาสัมพันธ์</h1>
-        <hr style="height:5px;border-width:0;color:gray;background-color:black">
-        <div id="nav--button">
-        <a  style=' text-decoration: none; color:white;' href="/admin/manage/manage_events.php"><h5>More Info ></h5></a>
+        <div class="display--box_sum">
+            <h1 id="event-count" class="event-count">
+                <!-- Total event count will be dynamically added here -->
+            </h1>
+            <h1>ข่าวประชาสัมพันธ์</h1>
+            <hr>
+            <div id="nav--button">
+                <a href="/admin/manage/manage_events.php" class="btn btn-primary">
+                    More Info >
+                </a>
+            </div>
         </div>
-      </div>
-      
     </div>
 
     <script>
@@ -75,8 +97,8 @@
                 return response.json();
             })
             .then(data => {
-                const count = data.total_events; // Assuming the API returns { total_events: <count> }
-                document.getElementById('event-count').textContent = `${count}`;
+                const count = data.total_events;
+                document.getElementById('event-count').textContent = `${count} กิจกรรม`;
             })
             .catch(error => {
                 console.error('Error fetching event count:', error);

@@ -10,48 +10,70 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
 
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
         h1 {
             font-size: 2rem;
             margin-bottom: 1rem;
             font-weight: 900;
         }
 
-        .display--box_sums{
-            padding:20px 10px ;
-            display:flex;
-            flex-direction:column;
-            background-color:darkblue;
-            border:2px solid none;
+        .display--box_sums {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            border: 2px solid #ddd;
             border-radius: 20px;
-            color:white;
-            transition:0.3s
+            color: #333;
+            transition: box-shadow 0.3s;
         }
-        .display--box_sums:hover{
-            box-shadow: 0 0 20px rgba(50,50,50,.4);
+
+        .display--box_sums:hover {
+            box-shadow: 0 0 20px rgba(50, 50, 50, 0.1);
         }
-        #nav--button{
+
+        #nav--button {
             align-self: center;
         }
 
+        .container {
+            margin-top: 50px;
+        }
 
-        
+        hr {
+            border: 0;
+            height: 1px;
+            background: #333;
+            background-image: linear-gradient(to right, #ccc, #333, #ccc);
+        }
+
+        .product-count {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #0056b3;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <hr>
-      <div class ='display--box_sums'>
-      <h1  id="product-count">
-            <!-- Total event count will be dynamically added here -->
-    </h1>
-        <h1>ผลิตภัณท์</h1>
-        <hr style="height:5px;border-width:0;color:gray;background-color:white">
-        <div id="nav--button">
-        <a  style=' text-decoration: none; color:white;' href="/admin/manage/manage_product.php"><h5>More Info ></h5></a>
+        <div class="display--box_sums">
+            <h1 id="product-count" class="product-count">
+                <!-- Total event count will be dynamically added here -->
+            </h1>
+            <h1>ผลิตภัณฑ์</h1>
+            <hr>
+            <div id="nav--button">
+                <a href="/admin/manage/manage_product.php" class="btn btn-primary">
+                    More Info >
+                </a>
+            </div>
         </div>
-      </div>
-      
     </div>
 
     <script>
@@ -75,12 +97,12 @@
                 return response.json();
             })
             .then(data => {
-                const count = data.total_events; // Assuming the API returns { total_events: <count> }
-                document.getElementById('product-count').textContent = `${count}`;
+                const count = data.total_events;
+                document.getElementById('product-count').textContent = `${count} ผลิตภัณฑ์`;
             })
             .catch(error => {
-                console.error('Error fetching event count:', error);
-                alert('Error fetching event count: ' + error.message);
+                console.error('Error fetching product count:', error);
+                alert('Error fetching product count: ' + error.message);
             });
         });
     </script>
