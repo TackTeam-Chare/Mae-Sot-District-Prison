@@ -8,7 +8,6 @@
     <title>การจัดการข้อมูลสินค้า</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-  
 </head>
 
 <body>
@@ -22,44 +21,53 @@
             </div>
             <div class="col-lg-12 events-section" id="products-container">
                 <!-- Products will be dynamically added here -->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table-body">
+                        <!-- Dynamic rows will be inserted here -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const token =localStorage.getItem('authToken');
-            fetch('http://localhost:8000/stuffview_products',{
-                medthod:"GET",
-                headers:{
-                    'Authorization':`Bearer ${token}`
+            const token = localStorage.getItem('authToken');
+            fetch('http://localhost:8000/stuffview_products', {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${token}`
                 }
             })
                 .then(response => response.json())
                 .then(data => {
-                    const productsContainer = document.getElementById('products-container');
+                    const productsTableBody = document.getElementById('products-table-body');
 
                     data.forEach(product => {
-                        const productCard = document.createElement('div');
-                        productCard.classList.add('card', 'mb-3');
-
-                        // Check if product.image exists and use it, otherwise use a default icon
                         const imageUrl = product.image ? `../../uploads/${product.image}` : '../../img/no_image.png';
 
-                        productCard.innerHTML = `
-                            <div class="card-body">
-                                   <img src="${imageUrl}" alt="product image" class="img-fluid mb-3">
-                                <h5 class="card-title">${product.title}</h5>
-                                <p class="card-text">${product.content}</p>
-                                <p class="card-text">${product.allow_publish==0?"ยังไม่เผยเเพร่":"กำลังเผยเเพร่"}</p>
-                                <div class="d-flex justify-content-end">
-                                    <a href="../edit/edit_product.php?id=${product.id}" class="btn btn-success me-2">Edit</a>
-                                    <button class="btn btn-danger" onclick="confirmDelete(${product.id})">Delete</button>
-                                </div>
-                            </div>
-                        `;
+                        const productRow = document.createElement('tr');
 
-                        productsContainer.appendChild(productCard);
+                        productRow.innerHTML = `
+                            <td><img src="${imageUrl}" alt="product image" class="img-fluid" style="max-width: 100px;"></td>
+                            <td>${product.title}</td>
+                            <td>${product.content}</td>
+                            <td>${product.allow_publish == 0 ? "ยังไม่เผยเเพร่" : "กำลังเผยเเพร่"}</td>
+                            <td class="d-flex gap-2">
+                                <a href="../edit/edit_product.php?id=${product.id}" class="btn btn-success">Edit</a>
+                                <button class="btn btn-danger" onclick="confirmDelete(${product.id})">Delete</button>
+                            </td>
+                        `;
+                        productsTableBody.appendChild(productRow);
                     });
                 })
                 .catch(error => console.error('Error fetching products:', error));
@@ -72,13 +80,13 @@
         }
 
         function deleteProduct(productId) {
-            const token =localStorage.getItem('authToken');
+            const token = localStorage.getItem('authToken');
             fetch(`http://localhost:8000/product_delete?id=${productId}`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization':`Bearer ${token}`,
-                    }
-                })
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                }
+            })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');

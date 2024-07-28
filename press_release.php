@@ -1,73 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ข่าวประชาสัมพันธ์</title>
     <link rel="icon" type="image/x-icon" href="img/spd_20150704164759_b.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
+     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
 
-        .container {
-            font-family: 'Noto Sans Thai', sans-serif;
-        }
+body {
+    font-family: 'Noto Sans Thai', sans-serif;
+    background-color: rgb(148, 16, 16);
+    color: #333;
+    text-align: center;
+}
 
-        .card.mb-3 {
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 730px;
-        }
 
-        .card-body {
-            width: 100%;
-        }
 
-        .events-section {
-            margin-bottom: 2rem;
-        }
+.card {
+    margin-bottom: 1rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 900;
-        }
+.card img {
+    height: 200px;
+    object-fit: cover;
+}
 
-        .card-body .img-fluid {
-            width: 100%;
-            height: 330px;
-            object-fit: cover;
-            border-top-left-radius: calc(0.25rem - 1px);
-            border-top-right-radius: calc(0.25rem - 1px);
-        }
-        div.card.mb-3 {
-            margin-left: auto;
-            margin-right: auto;
-            width: 800px;
-        }
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
 
-        .card-body{
-            width: 100%;
-            height: auto;
-        }
+.card-text {
+    flex-grow: 1;
+}
 
-        .events-section {
-            margin-bottom: 2rem;
-        }
+.pagination {
+    margin-top: 2rem;
+}
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 900;
-        }
+.col-md-4 {
+    margin-bottom: 2rem;
+    display: flex;
+}
 
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
     </style>
 </head>
 
@@ -77,10 +69,8 @@
     <div class="container">
         <h1 class="text-center mb-4 fw-bold text-white mt-3">ข่าวประชาสัมพันธ์</h1>
         <hr>
-        <div class="row gy-5 justify-content-center">
-            <div class="col-lg-12 events-section" id="events-container">
-                <!-- Events will be dynamically added here -->
-            </div>
+        <div class="row" id="events-container">
+            <!-- Events will be dynamically added here -->
         </div>
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center" id="pagination">
@@ -110,7 +100,7 @@
 
     <script>
         let currentPage = 1;
-        const eventsPerPage = 20;
+        const eventsPerPage = 6;
         let totalEvents = 0;
         let allEvents = [];
 
@@ -136,18 +126,20 @@
 
             eventsToDisplay.forEach(event => {
                 const eventCard = document.createElement('div');
-                eventCard.classList.add('card', 'mb-3');
+                eventCard.classList.add('col-md-4');
 
                 const imageUrl = event.image ? `./uploads/${event.image}` : './uploads/no_image.png';
 
                 eventCard.innerHTML = `
-                    <div class="card-body">
-                        <img src="${imageUrl}" alt="event image" class="img-fluid mb-3">
-                        <h5 class="card-title">${event.title}</h5>
-                        <p class="card-text">${event.content}</p>
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#eventModal" onclick="loadEventDetails(${event.id})">
-                            ดูรายละเอียด
-                        </button>
+                    <div class="card">
+                        <img src="${imageUrl}" alt="event image" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">${event.title}</h5>
+                            <p class="card-text">${event.content}</p>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#eventModal" onclick="loadEventDetails(${event.id})">
+                                ดูรายละเอียด
+                            </button>
+                        </div>
                     </div>
                 `;
 
