@@ -40,7 +40,7 @@
         }
 
         .custom-table {
-            background-color: #e8f0ff;
+            background-color: white;
             border: 1px solid #dee2e6;
             font-size: 0.9rem;
         }
@@ -50,11 +50,11 @@
             padding: 0.5rem;
         }
         .table-header {
-            background-color: #a0c4ff;
+            background-color: #e64e4e;
             color: #fff;
         }
         .total-row {
-            background-color: #dee2e6;
+            background-color: #f2f2f2;
             font-weight: bold;
         }
         .table-container {
@@ -74,44 +74,43 @@
 </head>
 <body>
     <main class="main-content">
-        <div class="container py-4">
-            <h2>ทำเนียบบุคลากร</h2>
-            <hr class="bg-white my-4" style="height: 3px;">
-            <div class="container mt-5">
-                <h2 class="text-center mb-4">ข้อมูลเจ้าหน้าที่</h2>
-                <div class="table-responsive table-container">
-                    <table class="table table-bordered custom-table">
-                        <thead>
-                            <tr class="table-header">
-                                <th scope="col">ประเภท</th>
-                                <th scope="col">จำนวน</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>ข้าราชการ</td>
-                                <td>51</td>
-                            </tr>
-                            <tr>
-                                <td>พนักงานราชการ</td>
-                                <td>14</td>
-                            </tr>
-                            <tr>
-                                <td>พนักงานจ้างเหมา</td>
+       
+<!-- Additional Content -->
+<div class="container mt-5">
+    <h2 style="color: aliceblue;">ยอดผู้ต้องขัง</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped custom-table">
+            <thead>
+                <tr>
+                    <th>ประเภท</th>
+                    <th>จำนวน</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>ข้าราชการ</td>
+                <td>51</td>
+                </tr>
+                <tr>
+                <td>พนักงานราชการ</td>
+                <td>14</td>
+                </tr>
+                <tr>
+                <td>พนักงานจ้างเหมา</td>
+                <td>2</td>
+                </tr>
+                <tr>
+                <td>พนักงานรักษาความปลอดภัย</td>
                                 <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>พนักงานรักษาความปลอดภัย</td>
-                                <td>2</td>
-                            </tr>
-                            <tr class="total-row">
+                </tr>
+                <tr class="total-row">
                                 <td>รวม</td>
                                 <td>71</td>
                             </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="text-center">
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
                     <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายผู้บริหาร</a>
                     <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายบริหารทั่วไป</a>
                     <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายทัณฑปฎิบัติ</a>
@@ -124,8 +123,42 @@
                     <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายรักษาการณ์</a>
                     <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายควบคุม</a>
                 </div>
-            </div>
-        </div>
+</div>
+
+<style>
+    .custom-table {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: white;
+    }
+
+    .custom-table th, .custom-table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .custom-table thead th {
+        background-color: #d9534f;
+        color: white;
+    }
+
+    .custom-table tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .custom-table tbody tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+
+    .custom-table tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .custom-table tbody td {
+        padding: 10px;
+    }
+</style>
+
     </main>
 </body>
 </html>

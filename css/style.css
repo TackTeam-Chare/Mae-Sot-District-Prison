@@ -20,6 +20,7 @@ body {
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .card:hover {
@@ -32,24 +33,25 @@ body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  justify-content: space-between;
 }
 
 .card-title {
   font-size: 1.25rem;
-  color: #ffffff; 
+  color: #ffffff;
   margin-top: 15px;
 }
 
 .card-subtitle {
   font-size: 0.875rem;
-  color: white; 
+  color: white;
   font-weight: bold;
 }
 
 .card-text {
   font-size: 1rem;
   flex-grow: 1;
-  color: #ffffff; 
+  color: #ffffff;
 }
 
 .container {
@@ -61,7 +63,13 @@ body {
 .row {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.col {
+  display: flex;
+  margin-bottom: 20px;
 }
 
 h1, h3 {
@@ -124,8 +132,3 @@ h1, h3 {
   transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
-.btn-primary:hover {
-  background-color: red; 
-  color: #e97171;
-  box-shadow: -8px 2px 53px 0px rgba(185, 29, 29, 0.55);
-}

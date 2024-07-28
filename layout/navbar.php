@@ -40,6 +40,9 @@
                             <a class="dropdown-item @@blog" href="prison.php">ผลิตภัณฑ์</a>
                         </li>
                         <li>
+                            <a class="dropdown-item @@blog" href="download.php">ดาวน์โหลดเอกสาร</a>
+                        </li>
+                        <li>
                             <a class="dropdown-item @@blogSingle" href="press_release.php">ข่าวประชาสัมพันธ์</a>
                         </li>
                         <li>
