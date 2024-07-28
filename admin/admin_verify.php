@@ -4,7 +4,7 @@
     <title>เรือนจำอำเภอแม่สอด</title>
     <link rel="icon" type="image/x-icon" href="img/spd_20150704164759_b.png">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
@@ -41,13 +41,27 @@
         .input-group-text {
             background-color: #e9ecef;
         }
+        
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            max-width: 100px;
+            height: auto;
+        }
+
+        .text-center {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="card">
+            <img src="./public/assets/images/logo.png" alt="Logo" class="logo">
             <h3 class="text-center mb-4">Admin Login</h3>
-            <div id="alertPlaceholder"></div> <!-- Alert placeholder -->
+            <div id="alertPlaceholder"></div> 
             <form id="loginForm" method="post">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
