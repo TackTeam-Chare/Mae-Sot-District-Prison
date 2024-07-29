@@ -26,6 +26,8 @@ require_once '../backend/controllers/ScreenContentController.php';
 require_once '../backend/controllers/VisitingRuleController.php';
 require_once '../backend/controllers/EmployeeController.php';
 require_once '../backend/controllers/PrisonerController.php';
+require_once '../backend/controllers/DocController.php';
+
 require_once '../backend/utils/Response.php';
 
 // Initialize database connection
@@ -43,6 +45,7 @@ $screenController = new ScreenContentController($db);
 $visitingRule = new VisitingRuleController($db);
 $employeeController = new EmployeeController($db);
 $prisonerController = new PrisonerController($db);
+$docController = new DocController($db);
 
 // Initialize middleware stack
 $middlewareStack = new MiddlewareStack();
@@ -59,8 +62,9 @@ $finalHandler = function ($request) use (
     $screenController,
     $visitingRule,
     $employeeController,
-    $prisonerController
-) {
+    $prisonerController,
+    $docController
+    ) {
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $uri = explode('/', $uri);
 
@@ -214,6 +218,31 @@ $finalHandler = function ($request) use (
                 }
             break;
     
+
+     
+            case 'doc_delete':
+                if ($requestMethod == 'GET') {
+                    return $docController->deleteDocument();
+                }
+                break;
+    
+            case 'stuffview_docs':
+                if ($requestMethod == 'GET' && isset($_GET['id'])) {
+                    return $docController->getDocumentWithID();
+                } elseif ($requestMethod == 'GET') {
+                    return $docController->getDocuments();
+                }
+                break;
+    
+            case 'docs':
+                if ($requestMethod == 'POST' && isset($_POST['id'])) {
+                    return $docController->updateDocument();
+                } elseif ($requestMethod == 'POST') {
+                    return $docController->createDocument();
+                }
+            break;
+
+
 
             
             case 'prisoner_delete':
@@ -380,7 +409,8 @@ $routesWithAuth = [
 
     'prisoners',
     'prisoner_delete',
-    
+    'docs',
+    'doc_delete',
 ];
 
 $verify_perrmission_routes = [

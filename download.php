@@ -78,22 +78,50 @@
 
     <div class="container mt-5">
         <h1 class="mb-4">ดาวน์โหลด</h1>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">เอกสารสำหรับดาวน์โหลด</h5>
-                <p class="card-text">คุณสามารถดาวน์โหลดเอกสารต่างๆ ได้จากลิงก์ด้านล่างนี้:</p>
-                <a href="path/to/your/document.pdf" class="btn btn-primary">
-                    <i class="fas fa-file-pdf"></i> ดาวน์โหลดเอกสาร PDF
-                </a>
-            </div>
-        </div>
+        <div id="documents-container" class="row"></div>
     </div>
+
     <?php include('./layout/footer.php'); ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const token = localStorage.getItem('authToken');
+            fetch('http://localhost:8000/stuffview_docs', {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(docs => {
+                const documentsContainer = document.getElementById('documents-container');
+                docs.forEach(doc => {
+                    const cardHTML = `
+                        <div class="col-lg-4 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">${doc.title}</h5>
+                                    <p class="card-text">${doc.content}</p>
+                                    <a href="../../uploads/${doc.document}" class="btn btn-primary" download>
+                                        <i class="fas fa-file-pdf"></i> ดาวน์โหลดเอกสาร
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    documentsContainer.innerHTML += cardHTML;
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching documents:', error);
+                alert('Failed to fetch documents');
+            });
+        });
+    </script>
 </body>
 
 </html>

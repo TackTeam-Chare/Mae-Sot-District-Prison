@@ -148,11 +148,13 @@
                         <a href="/admin/manage/manage_employees_11.php" class="d-block">ฝ่ายควบคุม</a>
                     </div>
                     <a href="/admin/manage/manage_prisoner.php" class="d-block"><i class="fa fa-users"></i>นักโทษ</a>
+           
                     <a href="/admin/manage/manage_product.php" class="d-block"><i class="fa fa-box"></i> ผลิตภัณฑ์</a>
                     <a href="/admin/manage/manage_events.php" class="d-block"><i class="fa fa-bullhorn"></i> ข่าวประชาสัมพันธ์</a>
                     <a href="/admin/edit/edit_duty.php" class="d-block"><i class="fa fa-tasks"></i> พันธกิจ</a>
                     <a href="/admin/edit/edit_mission.php" class="d-block"><i class="fa fa-flag"></i> ภารกิจ</a>
                 </div>
+                <a href="/admin/manage/manage_doc.php" class="d-block"><i class="fa fa-box"></i> เอกสาร</a>
                 <a href="/admin/manage/manage_admin.php" class="d-block"><i class="fa fa-user-shield"></i> ผู้ดูแลระบบ</a>
                 <a href="/admin/manage/manage_regulations_for_visiting_relatives.php" class="d-block"><i class="fa fa-handshake"></i> ระเบียบการเยี่ยมญาติ</a>
                 <a href="/admin/edit/edit_contact.php" class="d-block"><i class="fa fa-phone"></i> ติดต่อ</a>
