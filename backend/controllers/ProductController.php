@@ -20,6 +20,13 @@ class ProductController
         Response::send($events);
     }
 
+    public function getProductsOnly()
+    {
+        $stmt = $this->product->read_only();
+        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        Response::send($events);
+    }
+
     public function getProductsSum() {
     
         // Call the read_sum method

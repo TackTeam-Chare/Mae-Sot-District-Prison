@@ -59,6 +59,30 @@ class Employee {
         return $stmt;
     }
 
+    public function read_emOnPositon(){
+        $query = "SELECT employees.id,employees.name, employees.pos_id,employees.dep_id,employees.image,departments.dep_name,job_positions.controll FROM employees join job_positions on job_positions.id = employees.pos_id join departments on departments.id = employees.dep_id where employees.dep_id = :dep_id and employees.pos_id=:pos_id";
+        $stmt = $this->conn->prepare($query);
+        $this->dep_id = htmlspecialchars(strip_tags($this->dep_id));
+        $this->pos_id = htmlspecialchars(strip_tags($this->pos_id));
+
+        $stmt->bindParam(':dep_id',$this->dep_id);
+        $stmt->bindParam(':pos_id',$this->pos_id);
+        $stmt->execute();
+        return $stmt;
+    }
+
+
+    public function read_id_with_position(){
+        $query = "SELECT employees.id,employees.name, employees.pos_id,employees.dep_id,employees.image,departments.dep_name,job_positions.controll FROM employees join job_positions on job_positions.id = employees.pos_id join departments on departments.id = employees.dep_id where dep_id = :dep_id";
+        $stmt = $this->conn->prepare($query);
+        $this->dep_id = htmlspecialchars(strip_tags($this->dep_id));
+        // $this->pos_id = htmlspecialchars(strip_tags($this->pos_id));
+
+        $stmt->bindParam(':dep_id',$this->dep_id);
+        // $stmt->bindParam(':pos_id',$this->pos_id);
+        $stmt->execute();
+        return $stmt;
+    }
 
     // public function read_sum() {
     //     $query = "SELECT  COUNT(*) as total FROM " . $this->table_name.';';

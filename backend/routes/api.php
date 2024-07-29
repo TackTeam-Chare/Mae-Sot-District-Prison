@@ -79,7 +79,7 @@ $finalHandler = function ($request) use (
             if ($requestMethod == 'GET' && isset($_GET['id'])) {
                 return $eventController->getEventsWithID();
             } elseif ($requestMethod == 'GET') {
-                return $eventController->getEvents();
+                return $eventController->getEventsOnly();
             }
             break;
 
@@ -87,7 +87,7 @@ $finalHandler = function ($request) use (
             if ($requestMethod == 'GET' && isset($_GET['id'])) {
                 return $productController->getProductWithID();
             } elseif ($requestMethod == 'GET') {
-                return $productController->getProducts();
+                return $productController->getProductsOnly();
             }
             break;
 
@@ -330,6 +330,21 @@ $finalHandler = function ($request) use (
                 return $visitingRule->createVisitingRule();
             }
             break;
+
+        case 'employeeOnDepartment':
+                if ($requestMethod == 'GET' && isset($_GET['dep_id'])) {
+                
+                    return $employeeController->getEmployeeInPosition();
+                }             
+            break;
+    
+        case 'employeeOnDepartmentAndPos':
+                if ($requestMethod == 'GET' && isset($_GET['dep_id'])) {
+                
+                    return $employeeController->getEmployeeWithIDAndPosition();
+                }             
+            break;
+
         default:
             header("HTTP/1.1 404 Not Found");
             exit();
@@ -358,7 +373,7 @@ $routesWithAuth = [
     'stuffview_visiting_rules',
     'stuffview_admins',
 
-    'stuffview_employees',
+    // 'stuffview_employees',
 
     'employees',
     'employee_delete',

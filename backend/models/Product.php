@@ -35,7 +35,12 @@ class Product {
         $stmt->execute();
         return $stmt;
     }
-
+    public function read_only() {
+        $query = "SELECT id, title, content, image,allow_publish FROM " . $this->table_name.' where allow_publish order by id desc;';
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt;
+    }
     public function create() {
         $query = "INSERT INTO " . $this->table_name . " SET title=:title, content=:content, image=:image ,allow_publish=:allow_publish";
         $stmt = $this->conn->prepare($query);
