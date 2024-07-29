@@ -123,7 +123,7 @@ $finalHandler = function ($request) use (
             break;
 
         case 'logout':
-            if ($requestMethod == 'POST') {
+            if ($requestMethod == 'GET') {
                 return $authController->logout();
             }
             break;
@@ -365,7 +365,7 @@ $routesWithAuth = [
 
     'prisoners',
     'prisoner_delete',
-
+    
 ];
 
 $verify_perrmission_routes = [
