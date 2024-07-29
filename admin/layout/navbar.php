@@ -156,12 +156,38 @@
                 <a href="/admin/manage/manage_admin.php" class="d-block"><i class="fa fa-user-shield"></i> ผู้ดูแลระบบ</a>
                 <a href="/admin/manage/manage_regulations_for_visiting_relatives.php" class="d-block"><i class="fa fa-handshake"></i> ระเบียบการเยี่ยมญาติ</a>
                 <a href="/admin/edit/edit_contact.php" class="d-block"><i class="fa fa-phone"></i> ติดต่อ</a>
-                <a href="/admin/admin_verify.php" class="d-block"><i class="fa fa-sign-out-alt"></i> ออกจากระบบ</a>
+                <a onclick=" toggleLogout()" class="d-block"><i class="fa fa-sign-out-alt"></i> ออกจากระบบ</a>
             </div>
         </div>
     </div>
 
     <script>
+
+        function toggleLogout(){
+// alert('logout')
+const token =localStorage.getItem('authToken');
+fetch('http://localhost:8000/logout',{
+    headers:{
+        'Authorization':`Bearer ${token}`,
+    }
+})  .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    localStorage.removeItem("authToken");
+                    alert('logout successfully!');
+                    window.location.replace('/admin/admin_verify.php');
+                })
+                .catch(error => {
+                    console.error('Error logout:', error);
+                    alert('Failed to logout: ' + error.message);
+                });
+        }
+
+
         function toggleSidebar() {
             const sidebar = document.getElementById("sidebar");
             const content = document.getElementById("content");
