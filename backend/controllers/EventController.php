@@ -19,7 +19,12 @@ class EventController
         $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
         Response::send($events);
     }
-
+    public function getEventsOnly()
+    {
+        $stmt = $this->event->read_only();
+        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        Response::send($events);
+    }
 
     public function getEventsWithID()
     {

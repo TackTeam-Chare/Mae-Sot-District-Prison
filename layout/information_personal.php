@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>information_personal</title>
+    <title>Information Personal</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -44,19 +45,23 @@
             border: 1px solid #dee2e6;
             font-size: 0.9rem;
         }
+
         .custom-table th, .custom-table td {
             text-align: center;
             vertical-align: middle;
             padding: 0.5rem;
         }
+
         .table-header {
             background-color: #e64e4e;
             color: #fff;
         }
+
         .total-row {
             background-color: #f2f2f2;
             font-weight: bold;
         }
+
         .table-container {
             max-width: 600px;
             margin: auto;
@@ -67,98 +72,94 @@
             font-weight: bold;
             margin: 0.3rem;
         }
+
         .btn-outline-light:hover {
             color: #000;
         }
     </style>
 </head>
+
 <body>
     <main class="main-content">
-       
-<!-- Additional Content -->
-<div class="container mt-5">
-    <h2 style="color: aliceblue;">ยอดผู้ต้องขัง</h2>
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped custom-table">
-            <thead>
-                <tr>
-                    <th>ประเภท</th>
-                    <th>จำนวน</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td>ข้าราชการ</td>
-                <td>51</td>
-                </tr>
-                <tr>
-                <td>พนักงานราชการ</td>
-                <td>14</td>
-                </tr>
-                <tr>
-                <td>พนักงานจ้างเหมา</td>
-                <td>2</td>
-                </tr>
-                <tr>
-                <td>พนักงานรักษาความปลอดภัย</td>
-                                <td>2</td>
-                </tr>
-                <tr class="total-row">
-                                <td>รวม</td>
-                                <td>71</td>
-                            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="text-center">
-                    <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายผู้บริหาร</a>
-                    <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายบริหารทั่วไป</a>
-                    <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายทัณฑปฎิบัติ</a>
-                    <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายฝึกวิชาชีพ</a>
-                    <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายควบคุมเเละรักษาการณ์</a>
-                    <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายสวัสดิการผู้ต้องขังเเละสงเคราะห์ผู้ต้องขัง</a>
-                    <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายการศึกษา</a>
-                    <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายสภานพยาบาลเรือนจำ</a>
-                    <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายควบคุมเเดนหญิง</a>
-                    <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายรักษาการณ์</a>
-                    <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายควบคุม</a>
-                </div>
-</div>
-
-<style>
-    .custom-table {
-        max-width: 600px;
-        margin: 0 auto;
-        background-color: white;
-    }
-
-    .custom-table th, .custom-table td {
-        text-align: center;
-        vertical-align: middle;
-    }
-
-    .custom-table thead th {
-        background-color: #d9534f;
-        color: white;
-    }
-
-    .custom-table tbody tr:nth-child(odd) {
-        background-color: #f9f9f9;
-    }
-
-    .custom-table tbody tr:nth-child(even) {
-        background-color: #ffffff;
-    }
-
-    .custom-table tbody tr:hover {
-        background-color: #f1f1f1;
-    }
-
-    .custom-table tbody td {
-        padding: 10px;
-    }
-</style>
-
+        <!-- Additional Content -->
+        <div class="container mt-5">
+            <h2 style="color: aliceblue;">ยอดผู้ต้องขัง</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped custom-table">
+                    <thead>
+                        <tr>
+                            <th>ประเภท</th>
+                            <th>จำนวน</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employeeCounts">
+                        <!-- Data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center">
+                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายผู้บริหาร</a>
+                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายบริหารทั่วไป</a>
+                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายทัณฑปฎิบัติ</a>
+                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายฝึกวิชาชีพ</a>
+                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายควบคุมเเละรักษาการณ์</a>
+                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายสวัสดิการผู้ต้องขังเเละสงเคราะห์ผู้ต้องขัง</a>
+                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายการศึกษา</a>
+                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายสภานพยาบาลเรือนจำ</a>
+                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายควบคุมเแดนหญิง</a>
+                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายรักษาการณ์</a>
+                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายควบคุม</a>
+            </div>
+        </div>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const token = localStorage.getItem('authToken');
+
+            // Fetch employee counts
+            fetch('http://localhost:8000/countDepartmentsEach', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('employeeCounts');
+                let total = 0;
+
+                data.forEach(item => {
+                    const type = item.dep_name || 'Unknown'; // Default type if not specified
+                    const count = item.countDep || 0;
+
+                    // Create a new row for each item
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${type}</td>
+                        <td>${count}</td>
+                    `;
+                    tableBody.appendChild(row);
+
+                    total += count;
+                });
+
+                // Add total row
+                const totalRow = document.createElement('tr');
+                totalRow.classList.add('total-row');
+                totalRow.innerHTML = `
+                    <td>รวม</td>
+                    <td>${total}</td>
+                `;
+                tableBody.appendChild(totalRow);
+            })
+            .catch(error => {
+                console.error('Error fetching employee counts:', error);
+                alert('Failed to fetch employee counts');
+            });
+        });
+    </script>
 </body>
+
 </html>

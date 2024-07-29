@@ -13,7 +13,7 @@
 <body>
     <?php include_once('../layout/navbar.php') ?>
     <div class="container my-5">
-        <h1 class="text-center mb-4 fw-bold">การจัดการข้อมูลฝ่ายบริหาร</h1>
+        <h1 class="text-center mb-4 fw-bold">การจัดการข้อมูลฝ่ายสวัสดิการผู้ต้องขังเเละสงเคราะห์ผู้ต้องขัง</h1>
         <hr>
         <div class="row gy-5 justify-content-center">
             <div class="d-flex justify-content-end align-items-center mb-3">

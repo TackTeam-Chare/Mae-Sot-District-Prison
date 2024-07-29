@@ -45,6 +45,31 @@ class EmployeeController
     //     }
     // }
 
+    
+    public function getEmployeeInPosition()
+    {
+        if (!isset($_GET['pos_id'])) {
+            Response::send(['message' => 'ต้องใช้ ID '], 400);
+        }
+        $this->employee->dep_id = $_GET['dep_id'];
+        $this->employee->pos_id = $_GET['pos_id'];
+        
+        $stmt = $this->employee->read_emOnPositon();
+        $Employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        Response::send($Employees);
+    }
+    public function getEmployeeWithIDAndPosition()
+    {
+        if (!isset($_GET['dep_id'])) {
+            Response::send(['message' => 'ต้องใช้ ID '], 400);
+        }
+        $this->employee->dep_id = $_GET['dep_id'];
+        // $this->employee->pos_id = $_GET['pos_id'];
+        
+        $stmt = $this->employee->read_id_with_position();
+        $Employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        Response::send($Employees);
+    }
     public function getEmployeeWithID()
     {
         if (!isset($_GET['id'])) {
