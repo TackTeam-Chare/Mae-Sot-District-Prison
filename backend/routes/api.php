@@ -360,16 +360,17 @@ $finalHandler = function ($request) use (
             }
             break;
 
-        case 'employeeOnDepartment':
-                if ($requestMethod == 'GET' && isset($_GET['dep_id'])) {
+        case 'getsubordinate':
+                if ($requestMethod == 'GET' && isset($_GET['dep_id'])&& isset($_GET['pos_id'])) {
                 
                     return $employeeController->getEmployeeInPosition();
                 }             
             break;
     
-        case 'employeeOnDepartmentAndPos':
+        case 'getEmployee':
                 if ($requestMethod == 'GET' && isset($_GET['dep_id'])) {
-                
+                //read this
+                //use field "controll" from response to identify the field "pos_id" on the "getsubordinate" api
                     return $employeeController->getEmployeeWithIDAndPosition();
                 }             
             break;
