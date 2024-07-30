@@ -16,53 +16,95 @@
 
         body {
             text-align: center;
-            background-color: #ffffff; 
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #333;
+            animation: fadeIn 1s ease-in-out;
         }
 
         .map-container {
             text-align: center;
             margin-top: 20px;
+            animation: fadeInUp 1s ease-in-out;
         }
 
-        .map-container .iframe {
-            width: 80%; 
-            max-width: 100%; 
-            height: 600px; 
+        .iframe {
+            width: 100%;
+            max-width: 100%;
+            height: 600px;
             border: none;
             border-radius: 8px;
-            margin: auto; 
-            margin-bottom: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
 
         .card {
             margin-top: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: #ffffff;
-            width: 80%; 
-            max-width: 600px; 
-            margin: auto; 
-            padding: 20px; 
-            border-radius: 8px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            height: fit-content; 
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: fit-content;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
         }
 
         .card-body {
-            flex: 1; 
-            padding: 20px; 
+            flex: 1;
+            padding: 20px;
         }
 
         .card-title {
             font-size: 1.5rem;
-            color: #000; 
-            font-weight: bold; 
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 15px;
         }
 
         .card-text {
             line-height: 1.6;
-            color: #000;
+            color: #666;
+        }
+
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -93,6 +135,11 @@
                     `;
                     card.innerHTML = cardBody;
                     cardsContainer.appendChild(card);
+
+                    // Add show class to trigger animation
+                    setTimeout(() => {
+                        card.classList.add('show');
+                    }, 100);
                 })
                 .catch(error => console.error('Error fetching JSON:', error));
         });

@@ -13,60 +13,44 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        body {
-            text-align: center;
-            background-color: rgb(148, 16, 16);
-            font-family: Arial, sans-serif;
-        }
+            .custom-table {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: white;
+    }
 
+    .custom-table th, .custom-table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .custom-table thead th {
+        background-color: #d9534f;
+        color: white;
+    }
+
+    .custom-table tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .custom-table tbody tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+
+    .custom-table tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+    .custom-table tbody td {
+        padding: 10px;
+    }
         .main-content {
             margin-top: 20px;
-        }
-
-        .img-center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .img-center img {
-            max-width: 100%;
-            max-height: 300px;
-            height: auto;
         }
 
         h2 {
             font-weight: bold;
             color: white;
         }
-
-        .custom-table {
-            background-color: white;
-            border: 1px solid #dee2e6;
-            font-size: 0.9rem;
-        }
-
-        .custom-table th, .custom-table td {
-            text-align: center;
-            vertical-align: middle;
-            padding: 0.5rem;
-        }
-
-        .table-header {
-            background-color: #e64e4e;
-            color: #fff;
-        }
-
-        .total-row {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
-
-        .table-container {
-            max-width: 600px;
-            margin: auto;
-        }
-
         .btn-outline-light {
             font-size: 1rem;
             font-weight: bold;
@@ -83,7 +67,7 @@
     <main class="main-content">
         <!-- Additional Content -->
         <div class="container mt-5">
-            <h2 style="color: aliceblue;">ยอดผู้ต้องขัง</h2>
+            <h2 style="color: aliceblue;">ข้อมูลเข้าหน้าที่</h2>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped custom-table">
                     <thead>

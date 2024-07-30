@@ -113,3 +113,36 @@
         });
     });
 </script>
+<style>
+    .custom-table {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: white;
+    }
+
+    .custom-table th, .custom-table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .custom-table thead th {
+        background-color: #d9534f;
+        color: white;
+    }
+
+    .custom-table tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .custom-table tbody tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+
+    .custom-table tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .custom-table tbody td {
+        padding: 10px;
+    }
+</style>

@@ -26,12 +26,12 @@
 <body>
     <?php include_once('../layout/navbar.php') ?>
     <div class="container my-5">
-        <h1 class="text-center mb-4 fw-bold">การจัดการข้อมูลสินค้า</h1>
+        <h1 class="text-center mb-4 fw-bold">การจัดการข้อมูลเอกสาร</h1>
         <hr>
         <div class="row gy-5 justify-content-center">
             <div class="d-flex justify-content-end align-items-center mb-3">
                 <button class="btn btn-primary">
-                    <a href="../add/add_doc.php" class="text-white text-decoration-none">เพิ่มรายการสินค้า</a>
+                    <a href="../add/add_doc.php" class="text-white text-decoration-none">เพิ่มไฟล์เอกสาร</a>
                 </button>
             </div>
             <div class="col-lg-12 events-section" id="products-container">

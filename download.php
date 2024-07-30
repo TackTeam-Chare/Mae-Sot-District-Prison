@@ -22,53 +22,62 @@
 
         body {
             text-align: center;
-            background-color: #ffffff; 
+            background-color: #f8f9fa;
         }
 
-        .map-container {
-            text-align: center;
+        h1 {
             margin-top: 20px;
+            margin-bottom: 20px;
+            color: #333;
         }
 
-        .map-container .iframe {
-            width: 80%; 
-            max-width: 100%; 
-            height: 600px; 
-            border: none;
-            border-radius: 8px;
-            margin: auto; 
-            margin-bottom: 30px;
-        }
-
-        .card {
-            margin-top: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .document-row {
             background-color: #ffffff;
-            width: 80%; 
-            max-width: 600px; 
-            margin: auto; 
-            padding: 20px; 
-            border-radius: 8px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            height: fit-content; 
+            border-radius: 8px;
+            border: 2px solid #dc3545;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: transform 0.2s ease-in-out;
         }
 
-        .card-body {
-            flex: 1; 
-            padding: 20px; 
+        .document-row:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
 
-        .card-title {
-            font-size: 1.5rem;
-            color: #000; 
-            font-weight: bold; 
+        .document-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #dc3545;
+            text-align: left;
+            margin-bottom: 10px;
         }
 
-        .card-text {
-            line-height: 1.6;
-            color: #000;
+        .document-content {
+            color: #555;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .btn-download {
+            background-color: #dc3545;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-download:hover {
+            background-color: #a71d2a;
         }
     </style>
 </head>
@@ -77,8 +86,8 @@
     <?php include('./layout/navbar.php'); ?>
 
     <div class="container mt-5">
-        <h1 class="mb-4">ดาวน์โหลด</h1>
-        <div id="documents-container" class="row"></div>
+        <h1 class="mb-4">ดาวน์โหลดเอกสาร</h1>
+        <div id="documents-container"></div>
     </div>
 
     <?php include('./layout/footer.php'); ?>
@@ -100,20 +109,16 @@
             .then(docs => {
                 const documentsContainer = document.getElementById('documents-container');
                 docs.forEach(doc => {
-                    const cardHTML = `
-                        <div class="col-lg-4 mb-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">${doc.title}</h5>
-                                    <p class="card-text">${doc.content}</p>
-                                    <a href="../../uploads/${doc.document}" class="btn btn-primary" download>
-                                        <i class="fas fa-file-pdf"></i> ดาวน์โหลดเอกสาร
-                                    </a>
-                                </div>
-                            </div>
+                    const documentRow = `
+                        <div class="document-row">
+                            <div class="document-title">${doc.title}</div>
+                            <div class="document-content">${doc.content}</div>
+                            <a href="../../uploads/${doc.document}" class="btn btn-download" download>
+                                <i class="fas fa-file-pdf"></i> ดาวน์โหลดเอกสาร
+                            </a>
                         </div>
                     `;
-                    documentsContainer.innerHTML += cardHTML;
+                    documentsContainer.innerHTML += documentRow;
                 });
             })
             .catch(error => {
