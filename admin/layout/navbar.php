@@ -135,7 +135,9 @@
                     <a href="/admin/edit/edit_prison_history.php" class="d-block"><i class="fa fa-history"></i> ประวัติเรือนจำ</a>
                     <a href="#" class="d-block" onclick="toggleSubMenu('personnelSubMenu')"><i class="fa fa-users"></i> ทำเนียบบุคลากร <i class="fa fa-caret-down ms-auto"></i></a>
                     <div id="personnelSubMenu" class="sidebar-submenu">
-                        <a href="/admin/manage/manage_employees_1.php" class="d-block">ฝ่ายผู้บริหาร</a>
+                    <a href="/admin/edit/edit_leader.php?id=1" class="d-block">ผู้บังคับการ</a>
+                          
+                    <a href="/admin/manage/manage_employees_1.php" class="d-block">ฝ่ายผู้บริหาร</a>
                         <a href="/admin/manage/manage_employees_2.php" class="d-block">ฝ่ายผู้บริหารทั่วไป</a>
                         <a href="/admin/manage/manage_employees_3.php" class="d-block">ฝ่ายทัณฑปฎิบัติ</a>
                         <a href="/admin/manage/manage_employees_4.php" class="d-block">ฝ่ายฝึกวิชาชีพ</a>
