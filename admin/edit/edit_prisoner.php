@@ -86,13 +86,21 @@
                     </label>
                 </div>
             </fieldset>
-            <div class="mb-3">
-                <label for="nationality" class="form-label">สัญชาติ</label>
-                <select class="form-control" name="nationality" required>
-                    <option value="Thai">ไทย</option>
-                    <option value="Foreign">ต่างชาติ</option>
-                </select>
-            </div>
+            <fieldset class="mb-3">
+                <legend class="form-label">สัญชาติ</legend>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="is_thai" id="is_thai_yes" value="0" required>
+                    <label class="form-check-label" for="is_thai_yes">
+                        ไทย
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="is_thai" id="is_thai_no" value="1" required>
+                    <label class="form-check-label" for="is_thai_no">
+                        ต่างประเทศ
+                    </label>
+                </div>
+            </fieldset>
             <button type="submit" id="submitForm" class="btn btn-primary">บันทึก</button>
         </form>
     </div>
@@ -119,7 +127,11 @@
                 } else {
                     document.getElementById('gender_male').checked = true;
                 }
-                document.querySelector('select[name="nationality"]').value = prisoner.nationality;
+                if (employee.type == 0) {
+                    document.getElementById('is_thai_yes').checked = true;
+                } else {
+                    document.getElementById('is_thai_no').checked = true;
+                }
                 // Display current image if exists
                 if (prisoner.image) {
                     const currentImage = document.getElementById('currentImage');
@@ -149,11 +161,16 @@
         document.getElementById("updatePrisonerForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
 
+            const getGender = document.querySelector('input[name="is_main_admin"]:checked').value;
+            const getIsthai = document.querySelector('input[name="is_thai"]:checked').value;
+
+            const is_thai = getIsthai === '0' ? 0 : 1; 
+            const gender = getGender === '0' ? 0 : 1; // Convert string 'true'/'false' to 1/0
             const formData = new FormData(); // Create FormData object
             formData.append('id', document.querySelector('input[name="id"]').value);
             formData.append('name', document.querySelector('input[name="name"]').value);
-            formData.append('gender', document.querySelector('input[name="gender"]:checked').value);
-            formData.append('nationality', document.querySelector('select[name="nationality"]').value);
+            formData.append('gender', gender);
+            formData.append('type', is_thai);
             formData.append('image', document.querySelector('input[name="image"]').files[0]);
 
             const token = localStorage.getItem('authToken');

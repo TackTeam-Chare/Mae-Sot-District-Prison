@@ -10,14 +10,15 @@ class Prisoner {
     public $image;
     public $create_at;
     public $gender;
-    public $nationality; // Add this property
+    
+    public $type;
 
     public function __construct($db) {
         $this->conn = $db;
     }
 
     public function read() {
-        $query = "SELECT *  FROM ".$this->table_name." ORDER BY create_at DESC";
+        $query = "SELECT *  FROM ".$this->table_name." ORDER BY create_at ASC";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;
@@ -33,18 +34,18 @@ class Prisoner {
     }
 
     public function create() {
-        $query = "INSERT INTO " . $this->table_name . " SET name=:name, image=:image, gender=:gender, nationality=:nationality";
+        $query = "INSERT INTO " . $this->table_name . " SET name=:name, image=:image,gender=:gender , type=:type";
         $stmt = $this->conn->prepare($query);
 
         $this->name = htmlspecialchars(strip_tags($this->name));
         $this->image = htmlspecialchars(strip_tags($this->image));
         $this->gender = htmlspecialchars(strip_tags($this->gender));
-        $this->nationality = htmlspecialchars(strip_tags($this->nationality)); // Sanitize nationality
-
+        $this->type = htmlspecialchars(strip_tags($this->type));
+        
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":image", $this->image);
         $stmt->bindParam(":gender", $this->gender);
-        $stmt->bindParam(":nationality", $this->nationality); // Bind nationality
+        $stmt->bindParam(":type", $this->type);
 
         if ($stmt->execute()) {
             return true;
@@ -54,7 +55,7 @@ class Prisoner {
     }
 
     public function update() {
-        $query = "UPDATE " . $this->table_name . " SET name=:name, image=:image , gender=:gender, nationality=:nationality WHERE id=:id";
+        $query = "UPDATE " . $this->table_name . " SET name=:name, image=:image , gender=:gender,type=:type WHERE id=:id;";
         $stmt = $this->conn->prepare($query);
 
         $this->name = htmlspecialchars(strip_tags($this->name));
@@ -62,13 +63,17 @@ class Prisoner {
         $this->gender = htmlspecialchars(strip_tags($this->gender));
         $this->nationality = htmlspecialchars(strip_tags($this->nationality)); // Sanitize nationality
         $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->type = htmlspecialchars(strip_tags($this->type));
+
+        
 
         $stmt->bindParam(":id", $this->id);
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":image", $this->image);
         $stmt->bindParam(":gender", $this->gender);
-        $stmt->bindParam(":nationality", $this->nationality); // Bind nationality
-
+        $stmt->bindParam(":type", $this->type);
+        
+        
         if ($stmt->execute()) {
             return true;
         }
@@ -92,10 +97,19 @@ class Prisoner {
 
     public function count_prisoners()
     {
-        $query = "SELECT nationality, gender, COUNT(*) as countPris FROM " . $this->table_name . " GROUP BY nationality, gender";
+        $query = "select count(*) as countPris,gender from prisoners where type=0 GROUP BY gender";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;
     }
+
+    public function count_prisoners_other()
+    {
+        $query = "select count(*) as countPris,gender from prisoners where type=1 GROUP BY gender";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt;
+    }
+
 }
 ?>

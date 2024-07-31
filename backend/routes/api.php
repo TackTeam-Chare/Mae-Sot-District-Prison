@@ -271,7 +271,11 @@ $finalHandler = function ($request) use (
                     return $prisonerController->getPrisonersCount();
                 }
             break;
-    
+            case 'countPrisonersOtherEach':
+                if ($requestMethod == 'GET') {
+                    return $prisonerController->getPrisonersCountOther();
+                }
+            break;
             case 'countDepartmentsEach':
                 if ($requestMethod == 'GET') {
                     return $employeeController->getDepartmentsCount();

@@ -27,7 +27,7 @@
                             <th>Image</th>
                             <th>Name</th>
                             <th>Gender</th>
-                            <th>Nationality</th>
+                            <th>Type</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -57,11 +57,12 @@
 
                         const prisonerRow = document.createElement('tr');
 
-                        prisonerRow.innerHTML = `
-                            <td><img src="${imageUrl}" alt="prisoner image" class="img-fluid" style="max-width: 100px;"></td>
-                            <td>${prisoner.name}</td>
-                            <td>${prisoner.gender == 1 ? "ชาย" : "หญิง"}</td>
-                            <td>${prisoner.nationality == 'Thai' ? "ไทย" : "ต่างชาติ"}</td>
+                        employeeRow.innerHTML = `
+                            <td><img src="${imageUrl}" alt="employee image" class="img-fluid" style="max-width: 100px;"></td>
+                            <td>${employee.name}</td>
+                            <td>${employee.gender == 0 ? "ชาย" : "หญิง"}</td>
+                            <td>${employee.type == 0 || null? "ไทย" : "ต่างประเทศ"}</td>
+                            
                             <td class="d-flex gap-2">
                                 <a href="../edit/edit_prisoner.php?id=${prisoner.id}" class="btn btn-success">Edit</a>
                                 <button class="btn btn-danger" onclick="confirmDelete(${prisoner.id})">Delete</button>
