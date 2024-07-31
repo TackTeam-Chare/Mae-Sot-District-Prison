@@ -61,7 +61,7 @@ class Prisoner {
         $this->name = htmlspecialchars(strip_tags($this->name));
         $this->image = htmlspecialchars(strip_tags($this->image));
         $this->gender = htmlspecialchars(strip_tags($this->gender));
-        $this->nationality = htmlspecialchars(strip_tags($this->nationality)); // Sanitize nationality
+        $this->type = htmlspecialchars(strip_tags($this->type)); // Sanitize nationality
         $this->id = htmlspecialchars(strip_tags($this->id));
         $this->type = htmlspecialchars(strip_tags($this->type));
 
