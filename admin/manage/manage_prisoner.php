@@ -5,7 +5,7 @@
     <link rel="icon" type="image/x-icon" href="./assets/icons/admin.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>การจัดการข้อมูลฝ่ายบริหาร</title>
+    <title>การจัดการข้อมูลผู้ต้องขัง</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -13,14 +13,14 @@
 <body>
     <?php include_once('../layout/navbar.php') ?>
     <div class="container my-5">
-        <h1 class="text-center mb-4 fw-bold">การจัดการข้อมูลฝ่ายบริหาร</h1>
+        <h1 class="text-center mb-4 fw-bold">การจัดการข้อมูลผู้ต้องขัง</h1>
         <hr>
         <div class="row gy-5 justify-content-center">
             <div class="d-flex justify-content-end align-items-center mb-3">
-                <button class="btn btn-primary"><a href="../add/add_prisoner.php" class="text-white text-decoration-none">เพิ่มข้อมูลผู้บริหาร</a></button>
+                <button class="btn btn-primary"><a href="../add/add_prisoner.php" class="text-white text-decoration-none">เพิ่มข้อมูลผู้ต้องขัง</a></button>
             </div>
-            <div class="col-lg-12 events-section" id="employees-container">
-                <!-- Employees will be dynamically added here -->
+            <div class="col-lg-12 events-section" id="prisoners-container">
+                <!-- Prisoners will be dynamically added here -->
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -31,7 +31,7 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="employees-table-body">
+                    <tbody id="prisoners-table-body">
                         <!-- Dynamic rows will be inserted here -->
                     </tbody>
                 </table>
@@ -50,12 +50,12 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    const employeesTableBody = document.getElementById('employees-table-body');
+                    const prisonersTableBody = document.getElementById('prisoners-table-body');
 
-                    data.forEach(employee => {
-                        const imageUrl = employee.image ? `../../uploads/${employee.image}` : '../../img/no_image.png';
+                    data.forEach(prisoner => {
+                        const imageUrl = prisoner.image ? `../../uploads/${prisoner.image}` : '../../img/no_image.png';
 
-                        const employeeRow = document.createElement('tr');
+                        const prisonerRow = document.createElement('tr');
 
                         employeeRow.innerHTML = `
                             <td><img src="${imageUrl}" alt="employee image" class="img-fluid" style="max-width: 100px;"></td>
@@ -64,25 +64,25 @@
                             <td>${employee.type == 0 || null? "ไทย" : "ต่างประเทศ"}</td>
                             
                             <td class="d-flex gap-2">
-                                <a href="../edit/edit_prisoner.php?id=${employee.id}" class="btn btn-success">Edit</a>
-                                <button class="btn btn-danger" onclick="confirmDelete(${employee.id})">Delete</button>
+                                <a href="../edit/edit_prisoner.php?id=${prisoner.id}" class="btn btn-success">Edit</a>
+                                <button class="btn btn-danger" onclick="confirmDelete(${prisoner.id})">Delete</button>
                             </td>
                         `;
-                        employeesTableBody.appendChild(employeeRow);
+                        prisonersTableBody.appendChild(prisonerRow);
                     });
                 })
-                .catch(error => console.error('Error fetching employees:', error));
+                .catch(error => console.error('Error fetching prisoners:', error));
         });
 
-        function confirmDelete(employeeId) {
-            if (confirm('Are you sure you want to delete this employee?')) {
-                deleteEmployee(employeeId);
+        function confirmDelete(prisonerId) {
+            if (confirm('Are you sure you want to delete this prisoner?')) {
+                deletePrisoner(prisonerId);
             }
         }
 
-        function deleteEmployee(employeeId) {
+        function deletePrisoner(prisonerId) {
             const token = localStorage.getItem('authToken');
-            fetch(`http://localhost:8000/prisoner_delete?id=${employeeId}`, {
+            fetch(`http://localhost:8000/prisoner_delete?id=${prisonerId}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -95,12 +95,12 @@
                     return response.json();
                 })
                 .then(data => {
-                    alert('Employee deleted successfully!');
+                    alert('Prisoner deleted successfully!');
                     location.reload(); // Reload the page to reflect the changes
                 })
                 .catch(error => {
-                    console.error('Error deleting employee:', error);
-                    alert('Failed to delete employee: ' + error.message);
+                    console.error('Error deleting prisoner:', error);
+                    alert('Failed to delete prisoner: ' + error.message);
                 });
         }
     </script>

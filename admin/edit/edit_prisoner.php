@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แก้ไขบุคคลากร</title>
+    <title>แก้ไขผู้ต้องขัง</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -57,31 +57,31 @@
     <?php include_once('../layout/navbar.php') ?>
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1>แก้ไขบุคคลากร</h1>
+            <h1>แก้ไขผู้ต้องขัง</h1>
             <button onclick="window.history.back()" class="btn btn-secondary">กลับ</button>
         </div>
-        <form id="updateProductForm" enctype="multipart/form-data">
+        <form id="updatePrisonerForm" enctype="multipart/form-data">
             <input type="hidden" value="<?php echo $_GET['id']; ?>" name="id">    
             <div class="mb-3">
-                <label for="name" class="form-label">ชื่อบุคคลากร</label>
-                <input type="text" class="form-control" placeholder="ชื่อบุคคลากร" name="name" required>
+                <label for="name" class="form-label">ชื่อผู้ต้องขัง</label>
+                <input type="text" class="form-control" placeholder="ชื่อผู้ต้องขัง" name="name" required>
             </div>
             <div class="mb-3">
-                <label for="image" class="form-label">ภาพบุคคลากร</label>
+                <label for="image" class="form-label">ภาพผู้ต้องขัง</label>
                 <input type="file" class="form-control" name="image" accept="image/*" onchange="previewImage(event)">
                 <img id="currentImage" style="display: none; max-width: 200px; margin-top: 10px;" />
             </div>
             <fieldset class="mb-3">
                 <legend class="form-label">เพศ</legend>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_main_admin" id="is_main_admin_yes" value="0" required>
-                    <label class="form-check-label" for="is_main_admin_yes">
+                    <input class="form-check-input" type="radio" name="gender" id="gender_male" value="1" required>
+                    <label class="form-check-label" for="gender_male">
                         ชาย
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_main_admin" id="is_main_admin_no" value="1" required>
-                    <label class="form-check-label" for="is_main_admin_no">
+                    <input class="form-check-input" type="radio" name="gender" id="gender_female" value="0" required>
+                    <label class="form-check-label" for="gender_female">
                         หญิง
                     </label>
                 </div>
@@ -109,24 +109,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const eventId = <?php echo $_GET['id']; ?>; // Get event ID from URL parameter
+            const prisonerId = <?php echo $_GET['id']; ?>; // Get prisoner ID from URL parameter
             const token = localStorage.getItem('authToken');
 
-       
-            // Fetch employee details
-            fetch(`http://localhost:8000/stuffview_prisoners?id=${eventId}`, {
+            // Fetch prisoner details
+            fetch(`http://localhost:8000/stuffview_prisoners?id=${prisonerId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             })
             .then(response => response.json())
-            .then(employee => {
+            .then(prisoner => {
                 // Populate form fields with existing data
-                document.querySelector('input[name="name"]').value = employee.name;
-                if (employee.gender == 0) {
-                    document.getElementById('is_main_admin_yes').checked = true;
+                document.querySelector('input[name="name"]').value = prisoner.name;
+                if (prisoner.gender == 0) {
+                    document.getElementById('gender_female').checked = true;
                 } else {
-                    document.getElementById('is_main_admin_no').checked = true;
+                    document.getElementById('gender_male').checked = true;
                 }
                 if (employee.type == 0) {
                     document.getElementById('is_thai_yes').checked = true;
@@ -134,15 +133,15 @@
                     document.getElementById('is_thai_no').checked = true;
                 }
                 // Display current image if exists
-                if (employee.image) {
+                if (prisoner.image) {
                     const currentImage = document.getElementById('currentImage');
-                    currentImage.src = `../../uploads/${employee.image}`;
+                    currentImage.src = `../../uploads/${prisoner.image}`;
                     currentImage.style.display = 'block';
                 }
             })
             .catch(error => {
-                console.error('Error fetching employee:', error);
-                alert('Failed to fetch employee details');
+                console.error('Error fetching prisoner:', error);
+                alert('Failed to fetch prisoner details');
             });
         });
 
@@ -159,7 +158,7 @@
             }
         }
 
-        document.getElementById("updateProductForm").addEventListener("submit", function(event) {
+        document.getElementById("updatePrisonerForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
 
             const getGender = document.querySelector('input[name="is_main_admin"]:checked').value;
@@ -174,11 +173,7 @@
             formData.append('type', is_thai);
             formData.append('image', document.querySelector('input[name="image"]').files[0]);
 
-
-            
             const token = localStorage.getItem('authToken');
-
-
             const url = 'http://localhost:8000/prisoners'; // Replace with your API endpoint
 
             fetch(url, {
@@ -197,14 +192,14 @@
             .then(data => {
                 // Handle success response
                 console.log('Success:', data);
-                alert('Employee updated successfully!');
+                alert('Prisoner updated successfully!');
                 // Optionally redirect to another page
                 history.back();
             })
             .catch(error => {
                 // Handle error
                 console.error('Error:', error);
-                alert('Failed to update employee: ' + error.message);
+                alert('Failed to update prisoner: ' + error.message);
             });
         });
     </script>

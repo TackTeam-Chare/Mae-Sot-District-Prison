@@ -23,6 +23,7 @@ class Prisoner {
         $stmt->execute();
         return $stmt;
     }
+
     public function read_id(){
         $query = "SELECT * FROM " . $this->table_name.' where id=:id';
         $stmt = $this->conn->prepare($query);
@@ -31,14 +32,6 @@ class Prisoner {
         $stmt->execute();
         return $stmt;
     }
-
-
-    // public function read_sum() {
-    //     $query = "SELECT  COUNT(*) as total FROM " . $this->table_name.';';
-    //     $stmt = $this->conn->prepare($query);
-    //     $stmt->execute();
-    //     return $stmt;
-    // }
 
     public function create() {
         $query = "INSERT INTO " . $this->table_name . " SET name=:name, image=:image,gender=:gender , type=:type";
@@ -68,6 +61,7 @@ class Prisoner {
         $this->name = htmlspecialchars(strip_tags($this->name));
         $this->image = htmlspecialchars(strip_tags($this->image));
         $this->gender = htmlspecialchars(strip_tags($this->gender));
+        $this->nationality = htmlspecialchars(strip_tags($this->nationality)); // Sanitize nationality
         $this->id = htmlspecialchars(strip_tags($this->id));
         $this->type = htmlspecialchars(strip_tags($this->type));
 
@@ -101,7 +95,6 @@ class Prisoner {
         return false;
     }
 
-
     public function count_prisoners()
     {
         $query = "select count(*) as countPris,gender from prisoners where type=0 GROUP BY gender";
@@ -119,3 +112,4 @@ class Prisoner {
     }
 
 }
+?>

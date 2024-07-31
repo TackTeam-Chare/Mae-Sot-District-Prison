@@ -161,14 +161,13 @@ DROP TABLE IF EXISTS `prisoners`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prisoners` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `gender` int DEFAULT NULL,
-  `create_at` timestamp NULL DEFAULT (now()),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `gender` int(11) DEFAULT NULL,
+  `create_at` timestamp NULL DEFAULT current_timestamp(),
+  `nationality` varchar(50) NOT NULL DEFAULT 'Thai'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `prisoners`
