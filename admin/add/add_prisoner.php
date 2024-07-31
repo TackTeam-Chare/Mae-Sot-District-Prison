@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เพิ่มผู้ดูเเลระบบ</title>
+    <title>เพิ่มผู้ต้องขัง</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -57,51 +57,54 @@
     <?php include_once('../layout/navbar.php') ?>
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1>เพิ่มบุคคลากร</h1>
+            <h1>เพิ่มผู้ต้องขัง</h1>
             <button class="btn btn-secondary" onclick="window.history.back();">กลับ</button>
         </div>
-        <form id="addAdminForm" method="post" enctype="multipart/form-data">
+        <form id="addPrisonerForm" method="post" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="name" class="form-label">ชื่อบุคคลากร</label>
-                <input type="text" class="form-control" placeholder="ชื่อบุคคลากร" name="name" required>
+                <label for="name" class="form-label">ชื่อผู้ต้องขัง</label>
+                <input type="text" class="form-control" placeholder="ชื่อผู้ต้องขัง" name="name" required>
             </div>
             <div class="mb-3">
-                <label for="image" class="form-label">ภาพบุคคลากร</label>
-                <input type="file" class="form-control" name="image" accept="image/*" >
+                <label for="image" class="form-label">ภาพผู้ต้องขัง</label>
+                <input type="file" class="form-control" name="image" accept="image/*">
             </div>
             <fieldset class="mb-3">
                 <legend class="form-label">เพศ</legend>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_main_admin" id="is_main_admin_yes" value="0" required>
-                    <label class="form-check-label" for="is_main_admin_yes">
+                    <input class="form-check-input" type="radio" name="gender" id="gender_male" value="1" required>
+                    <label class="form-check-label" for="gender_male">
                         ชาย
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_main_admin" id="is_main_admin_no" value="1" required>
-                    <label class="form-check-label" for="is_main_admin_no">
+                    <input class="form-check-input" type="radio" name="gender" id="gender_female" value="0" required>
+                    <label class="form-check-label" for="gender_female">
                         หญิง
                     </label>
                 </div>
             </fieldset>
-
+            <div class="mb-3">
+                <label for="nationality" class="form-label">สัญชาติ</label>
+                <select class="form-control" name="nationality" required>
+                    <option value="Thai">ไทย</option>
+                    <option value="Foreign">ต่างชาติ</option>
+                </select>
+            </div>
             <button type="submit" id="submitForm" class="btn btn-primary">บันทึก</button>
-    </div>
-    </form>
+        </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script>
-    
-        document.getElementById("addAdminForm").addEventListener("submit", function(event) {
+        document.getElementById("addPrisonerForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
 
-            const getGender = document.querySelector('input[name="is_main_admin"]:checked').value;
-            const gender = getGender === '0' ? 0 : 1; 
             const formData = new FormData(); // Create FormData object
             formData.append('name', document.querySelector('input[name="name"]').value);
-            formData.append('gender',gender);
+            formData.append('gender', document.querySelector('input[name="gender"]:checked').value);
+            formData.append('nationality', document.querySelector('select[name="nationality"]').value);
             formData.append('image', document.querySelector('input[name="image"]').files[0]);
 
             const url = 'http://localhost:8000/prisoners'; // Replace with your API endpoint
@@ -122,14 +125,14 @@
                 .then(data => {
                     // Handle success response
                     console.log('Success:', data);
-                    alert('Event add successfully!');
+                    alert('Prisoner added successfully!');
                     goBackAndReset();
                     // Optionally redirect to another page
                 })
                 .catch(error => {
                     // Handle error
                     console.error('Error:', error);
-                    alert('Failed to add event: ' + error.message);
+                    alert('Failed to add prisoner: ' + error.message);
                 });
         });
 
