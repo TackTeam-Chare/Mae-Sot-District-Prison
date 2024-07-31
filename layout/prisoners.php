@@ -5,6 +5,7 @@
         <table class="table table-bordered table-striped custom-table">
             <thead>
                 <tr>
+                    <th>สัญชาติ</th>
                     <th>ชาย</th>
                     <th>หญิง</th>
                     <th>รวม</th>
@@ -12,6 +13,19 @@
             </thead>
             <tbody>
                 <tr id="prisonerCounts">
+                    <td>ไทย</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr id="prisonerCountsOther">
+                    <td>ต่างประเทศ</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr id="totalCounts">
+                    <td>ทั้งหมด</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
@@ -25,9 +39,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+
+        var thai_m = 0;
+        var thai_f = 0;
+        var other_m = 0;
+        var other_f = 0;
+
         const token = localStorage.getItem('authToken');
 
-        // Fetch prisoner counts
+        // Fetch Thai prisoner counts
         fetch('http://localhost:8000/countPrisonersEach', {
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -35,31 +55,75 @@
         })
         .then(response => response.json())
         .then(data => {
-            // Calculate counts based on gender
-            let maleCount = 0;
-            let femaleCount = 0;
-
             data.forEach(item => {
                 if (item.gender === 1) {
-                    maleCount = item.countPris;
+                    thai_m = item.countPris;
                 } else if (item.gender === 0) {
-                    femaleCount = item.countPris;
+                    thai_f = item.countPris;
                 }
             });
 
-            const totalCount = maleCount + femaleCount;
-
+            const totalCount = thai_m + thai_f;
             const row = document.getElementById('prisonerCounts');
             row.innerHTML = `
-                <td>${maleCount}</td>
-                <td>${femaleCount}</td>
+                <td>ไทย</td>
+                <td>${thai_m}</td>
+                <td>${thai_f}</td>
                 <td>${totalCount}</td>
             `;
+
+            updateTotalCounts();
         })
         .catch(error => {
-            console.error('Error fetching prisoner counts:', error);
-            alert('Failed to fetch prisoner counts');
+            console.error('Error fetching Thai prisoner counts:', error);
+            alert('Failed to fetch Thai prisoner counts');
         });
+
+        // Fetch foreign prisoner counts
+        fetch('http://localhost:8000/countPrisonersOtherEach', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(item => {
+                if (item.gender === 1) {
+                    other_m = item.countPris;
+                } else if (item.gender === 0) {
+                    other_f = item.countPris;
+                }
+            });
+
+            const totalCount_ = other_m + other_f;
+            const row = document.getElementById('prisonerCountsOther');
+            row.innerHTML = `
+                <td>ต่างประเทศ</td>
+                <td>${other_m}</td>
+                <td>${other_f}</td>
+                <td>${totalCount_}</td>
+            `;
+
+            updateTotalCounts();
+        })
+        .catch(error => {
+            console.error('Error fetching foreign prisoner counts:', error);
+            alert('Failed to fetch foreign prisoner counts');
+        });
+
+        function updateTotalCounts() {
+            const totalmale = thai_m + other_m;
+            const totalfemale = thai_f + other_f;
+            const allTotal = totalmale + totalfemale;
+
+            const row = document.getElementById('totalCounts');
+            row.innerHTML = `
+                <td>ทั้งหมด</td>
+                <td>${totalmale}</td>
+                <td>${totalfemale}</td>
+                <td>${allTotal}</td>
+            `;
+        }
     });
 
     function previewImage(event) {

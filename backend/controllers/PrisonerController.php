@@ -49,6 +49,12 @@ class PrisonerController
         $Employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
         Response::send($Employees[0]);
     }
+    public function getPrisonersCountOther()
+    {
+        $stmt = $this->prisoner->count_prisoners_other();
+        $Employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        Response::send($Employees);
+    }
     public function getPrisonersCount()
     {
         $stmt = $this->prisoner->count_prisoners();
@@ -63,6 +69,7 @@ class PrisonerController
         }
         $this->prisoner->name = $_POST['name'];
         $this->prisoner->gender = $_POST['gender'];
+        $this->prisoner->type = $_POST['type'];
 
         if (isset($_FILES['image'])) {
                 // Handle file upload
@@ -124,6 +131,8 @@ class PrisonerController
         $this->prisoner->id = $_POST['id'];
         $this->prisoner->name = $_POST['name'];
         $this->prisoner->gender = $_POST['gender'];
+        
+        $this->prisoner->type = $_POST['type'];
         
     
         // Check if an image file is uploaded

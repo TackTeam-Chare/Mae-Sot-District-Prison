@@ -11,12 +11,14 @@ class Prisoner {
     public $create_at;
     public $gender;
     
+    public $type;
+
     public function __construct($db) {
         $this->conn = $db;
     }
 
     public function read() {
-        $query = "SELECT *  FROM ".$this->table_name." ORDER BY create_at DESC";
+        $query = "SELECT *  FROM ".$this->table_name." ORDER BY create_at ASC";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;
@@ -39,15 +41,18 @@ class Prisoner {
     // }
 
     public function create() {
-        $query = "INSERT INTO " . $this->table_name . " SET name=:name, image=:image,gender=:gender";
+        $query = "INSERT INTO " . $this->table_name . " SET name=:name, image=:image,gender=:gender , type=:type";
         $stmt = $this->conn->prepare($query);
 
         $this->name = htmlspecialchars(strip_tags($this->name));
         $this->image = htmlspecialchars(strip_tags($this->image));
         $this->gender = htmlspecialchars(strip_tags($this->gender));
+        $this->type = htmlspecialchars(strip_tags($this->type));
+        
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":image", $this->image);
         $stmt->bindParam(":gender", $this->gender);
+        $stmt->bindParam(":type", $this->type);
 
         if ($stmt->execute()) {
             return true;
@@ -57,13 +62,14 @@ class Prisoner {
     }
 
     public function update() {
-        $query = "UPDATE " . $this->table_name . " SET name=:name, image=:image , gender=:gender WHERE id=:id;";
+        $query = "UPDATE " . $this->table_name . " SET name=:name, image=:image , gender=:gender,type=:type WHERE id=:id;";
         $stmt = $this->conn->prepare($query);
 
         $this->name = htmlspecialchars(strip_tags($this->name));
         $this->image = htmlspecialchars(strip_tags($this->image));
         $this->gender = htmlspecialchars(strip_tags($this->gender));
         $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->type = htmlspecialchars(strip_tags($this->type));
 
         
 
@@ -71,6 +77,8 @@ class Prisoner {
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":image", $this->image);
         $stmt->bindParam(":gender", $this->gender);
+        $stmt->bindParam(":type", $this->type);
+        
         
         if ($stmt->execute()) {
             return true;
@@ -96,9 +104,18 @@ class Prisoner {
 
     public function count_prisoners()
     {
-        $query = "select count(*) as countPris,gender from prisoners  GROUP BY gender";
+        $query = "select count(*) as countPris,gender from prisoners where type=0 GROUP BY gender";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;
     }
+
+    public function count_prisoners_other()
+    {
+        $query = "select count(*) as countPris,gender from prisoners where type=1 GROUP BY gender";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt;
+    }
+
 }

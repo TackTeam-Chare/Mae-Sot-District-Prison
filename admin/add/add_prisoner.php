@@ -84,7 +84,21 @@
                     </label>
                 </div>
             </fieldset>
-
+            <fieldset class="mb-3">
+                <legend class="form-label">สัญชาติ</legend>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="is_thai" id="is_thai_yes" value="0" required>
+                    <label class="form-check-label" for="is_thai_yes">
+                        ไทย
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="is_thai" id="is_thai_no" value="1" required>
+                    <label class="form-check-label" for="is_thai_no">
+                        ต่างประเทศ
+                    </label>
+                </div>
+            </fieldset>
             <button type="submit" id="submitForm" class="btn btn-primary">บันทึก</button>
     </div>
     </form>
@@ -98,10 +112,15 @@
             event.preventDefault(); // Prevent the form from submitting normally
 
             const getGender = document.querySelector('input[name="is_main_admin"]:checked').value;
+            const getIsThai = document.querySelector('input[name="is_thai"]:checked').value;
+            
             const gender = getGender === '0' ? 0 : 1; 
+            const is_thai = getIsThai === '0' ? 0 : 1; 
+            
             const formData = new FormData(); // Create FormData object
             formData.append('name', document.querySelector('input[name="name"]').value);
             formData.append('gender',gender);
+            formData.append('type',getIsThai);
             formData.append('image', document.querySelector('input[name="image"]').files[0]);
 
             const url = 'http://localhost:8000/prisoners'; // Replace with your API endpoint

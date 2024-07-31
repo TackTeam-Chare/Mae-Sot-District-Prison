@@ -85,6 +85,16 @@
                 </div>
             </div>
             <div class="col-md-6">
+            <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">ยอดผู้ต้องขังต่างประเทศ</h5>
+                        <div id="chart_other"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">ยอดพนักงาน</h5>
@@ -138,6 +148,46 @@
             })
             .catch(error => console.error('Error fetching prisoners:', error));
 
+
+            const xArrays_ = [];
+            const yArrays_ = [];
+
+
+            fetch('http://localhost:8000/countPrisonersOtherEach', {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(employee => {
+                    xArrays_.push(employee.gender == 0 ? "ชาย" : "หญิง");
+                    yArrays_.push(employee.countPris);
+                });
+
+                const datasets_ = [{
+                    x: xArrays_,
+                    y: yArrays_,
+                    type: "bar",
+                    marker: {
+                        color: "rgba(0,150,255,0.7)"
+                    }
+                }];
+
+                const layout__ = {
+                    title: "จำแนกตามเพศสภาพ",
+                    xaxis: {
+                        title: "เพศ"
+                    },
+                    yaxis: {
+                        title: "จำนวน"
+                    }
+                };
+                Plotly.newPlot("chart_other", datasets_, layout__);
+            })
+            .catch(error => console.error('Error fetching prisoners:', error));
+
         fetch('http://localhost:8000/countDepartmentsEach', {
                 method: "GET",
                 headers: {
@@ -156,7 +206,7 @@
                     y: yArray,
                     type: "bar",
                     marker: {
-                        color: "rgba(0,0,255,0.7)"
+                        color: "rgba(255,50,50,0.7)"
                     }
                 }];
 
