@@ -57,11 +57,11 @@
 
                         const prisonerRow = document.createElement('tr');
 
-                        employeeRow.innerHTML = `
+                        prisonerRow.innerHTML = `
                             <td><img src="${imageUrl}" alt="employee image" class="img-fluid" style="max-width: 100px;"></td>
-                            <td>${employee.name}</td>
-                            <td>${employee.gender == 0 ? "ชาย" : "หญิง"}</td>
-                            <td>${employee.type == 0 || null? "ไทย" : "ต่างประเทศ"}</td>
+                            <td>${prisoner.name}</td>
+                            <td>${prisoner.gender == 0 || null? "ชาย" : "หญิง"}</td>
+                            <td>${prisoner.type == 0 || null? "ไทย" : "ต่างประเทศ"}</td>
                             
                             <td class="d-flex gap-2">
                                 <a href="../edit/edit_prisoner.php?id=${prisoner.id}" class="btn btn-success">Edit</a>

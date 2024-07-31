@@ -74,13 +74,13 @@
             <fieldset class="mb-3">
                 <legend class="form-label">เพศ</legend>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gender" id="gender_male" value="1" required>
+                    <input class="form-check-input" type="radio" name="gender" id="gender_male" value="0" required>
                     <label class="form-check-label" for="gender_male">
                         ชาย
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gender" id="gender_female" value="0" required>
+                    <input class="form-check-input" type="radio" name="gender" id="gender_female" value="1" required>
                     <label class="form-check-label" for="gender_female">
                         หญิง
                     </label>
@@ -123,11 +123,11 @@
                 // Populate form fields with existing data
                 document.querySelector('input[name="name"]').value = prisoner.name;
                 if (prisoner.gender == 0) {
-                    document.getElementById('gender_female').checked = true;
-                } else {
                     document.getElementById('gender_male').checked = true;
+                } else {
+                    document.getElementById('gender_female').checked = true;
                 }
-                if (employee.type == 0) {
+                if (prisoner.type == 0) {
                     document.getElementById('is_thai_yes').checked = true;
                 } else {
                     document.getElementById('is_thai_no').checked = true;
@@ -161,7 +161,7 @@
         document.getElementById("updatePrisonerForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
 
-            const getGender = document.querySelector('input[name="is_main_admin"]:checked').value;
+            const getGender = document.querySelector('input[name="gender"]:checked').value;
             const getIsthai = document.querySelector('input[name="is_thai"]:checked').value;
 
             const is_thai = getIsthai === '0' ? 0 : 1; 

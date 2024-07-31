@@ -63,8 +63,7 @@ class Prisoner {
         $this->gender = htmlspecialchars(strip_tags($this->gender));
         $this->type = htmlspecialchars(strip_tags($this->type)); // Sanitize nationality
         $this->id = htmlspecialchars(strip_tags($this->id));
-        $this->type = htmlspecialchars(strip_tags($this->type));
-
+ 
         
 
         $stmt->bindParam(":id", $this->id);
