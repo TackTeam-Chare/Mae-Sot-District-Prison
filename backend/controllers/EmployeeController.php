@@ -166,7 +166,7 @@ class EmployeeController
     public function updateEmployee()
     {
         // Validate required inputs
-        if (!isset($_POST['id']) || !isset($_POST['name']) || !isset($_POST['dep_id'])|| !isset($_POST['dep_id'])) {
+        if (!isset($_POST['id']) || !isset($_POST['name']) || !isset($_POST['dep_id'])|| !isset($_POST['pos_id'])) {
             Response::send(['message' => 'Invalid input'], 400);
             return;
         }

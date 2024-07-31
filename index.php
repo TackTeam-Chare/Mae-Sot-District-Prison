@@ -166,6 +166,7 @@
                                 <h2 class="mb-0">
                                     <span class="float-left">
                                         <i class="fas fa-star fa-sm fa-fw"></i>
+                                        
                                         <span style="color: aliceblue;">ผู้บัญชาการ</span>
                                     </span>
                                 </h2>
@@ -174,12 +175,12 @@
                             </div>
                             <div class="row justify-content-center aos-init aos-animate" data-aos="fade-up">
                                 <div class="col-12 col-md-12 text-center">
-                                    <img src="img/boss.jpg"
+                                    <img id ='director-image' src="img/boss.jpg"
                                         style="max-height: 200px; max-width:240px;" class="img-fluid  mx-auto" onclick="showImageModal(this.src)">
                                 </div>
                                 <div class="col-12 col-md-12 text-center mt-4 mt-md-4">
                                     <p class="font-weight-bold mb-0" style="font-size:110%;">
-                                        <span style="color: aliceblue;">นายศุภชัย ศรีกอง</span>
+                                        <span id ='director-name' style="color: aliceblue;">นายศุภชัย ศรีกอง</span>
                                     </p>
                                     <p class="text-muted">
                                         <span style="color: aliceblue;">ผู้บัญชาการเรือนจำอำเภอแม่สอด</span>
@@ -189,9 +190,16 @@
                                             <span style="color: aliceblue;">เรือนจำชั่วคราวห้วยหินฝน</span>
                                         </h4>
                                         <br>
+                                     
+                                     
+                                     
                                         <a href="https://www.facebook.com/%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%99%E0%B8%88%E0%B8%B3%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%A7%E0%B8%84%E0%B8%A3%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%AB%E0%B8%B4%E0%B8%99%E0%B8%9D%E0%B8%99-138969522037726/">
                                             <img src="img/เรือนจำห้วย.jpg" height="150" width="255" class="img-fluid ">
                                         </a>
+                                     
+                                     
+                                     
+                                     
                                         <br>
                                         <br>
                                     </aside>
@@ -290,11 +298,40 @@
     </div>
 
     <script>
+
+
+
+
         function showImageModal(src) {
             document.getElementById('modalImage').src = src;
             const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
             imageModal.show();
         }
+
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const token = localStorage.getItem('authToken');
+            fetch('http://localhost:8000/stuffview_employees?id=1', {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    document.getElementById('director-image').src = `../../uploads/${data.image}`;
+                    document.getElementById('director-name').textContent = data.name;
+         
+                } else {
+                    console.error('No data found for the director.');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching director data:', error);
+            });
+        });
     </script>
 </body>
 
