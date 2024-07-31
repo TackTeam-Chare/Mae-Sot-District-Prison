@@ -45,7 +45,7 @@ class PrisonerController
 
     public function createPrisoner()
     {
-        if (!isset($_POST['name']) || !isset($_POST['gender']) || !isset($_POST['nationality'])) {
+        if (!isset($_POST['name']) || !isset($_POST['gender']) || !isset($_POST['type'])) {
             Response::send(['message' => 'Invalid input'], 400);
             return;
         }
@@ -94,7 +94,7 @@ class PrisonerController
     public function updatePrisoner()
     {
         // Validate required inputs
-        if (!isset($_POST['id']) || !isset($_POST['name']) || !isset($_POST['gender']) || !isset($_POST['nationality'])) {
+        if (!isset($_POST['id']) || !isset($_POST['name']) || !isset($_POST['gender']) || !isset($_POST['type'])) {
             Response::send(['message' => 'Invalid input'], 400);
             return;
         }

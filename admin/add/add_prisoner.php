@@ -72,13 +72,13 @@
             <fieldset class="mb-3">
                 <legend class="form-label">เพศ</legend>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gender" id="gender_male" value="1" required>
+                    <input class="form-check-input" type="radio" name="gender" id="gender_male" value="0" required>
                     <label class="form-check-label" for="gender_male">
                         ชาย
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gender" id="gender_female" value="0" required>
+                    <input class="form-check-input" type="radio" name="gender" id="gender_female" value="1" required>
                     <label class="form-check-label" for="gender_female">
                         หญิง
                     </label>
@@ -109,7 +109,7 @@
         document.getElementById("addPrisonerForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
 
-            const getGender = document.querySelector('input[name="is_main_admin"]:checked').value;
+            const getGender = document.querySelector('input[name="gender"]:checked').value;
             const getIsThai = document.querySelector('input[name="is_thai"]:checked').value;
             
             const gender = getGender === '0' ? 0 : 1; 
@@ -118,7 +118,7 @@
             const formData = new FormData(); // Create FormData object
             formData.append('name', document.querySelector('input[name="name"]').value);
             formData.append('gender',gender);
-            formData.append('type',getIsThai);
+            formData.append('type',is_thai);
             formData.append('image', document.querySelector('input[name="image"]').files[0]);
 
             const url = 'http://localhost:8000/prisoners'; // Replace with your API endpoint
