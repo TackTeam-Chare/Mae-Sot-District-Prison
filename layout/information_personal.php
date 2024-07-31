@@ -82,17 +82,17 @@
                 </table>
             </div>
             <div class="text-center">
-                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายผู้บริหาร</a>
-                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายบริหารทั่วไป</a>
-                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายทัณฑปฎิบัติ</a>
-                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายฝึกวิชาชีพ</a>
-                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายควบคุมเเละรักษาการณ์</a>
-                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายสวัสดิการผู้ต้องขังเเละสงเคราะห์ผู้ต้องขัง</a>
-                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายการศึกษา</a>
-                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายสภานพยาบาลเรือนจำ</a>
-                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายควบคุมเแดนหญิง</a>
-                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายรักษาการณ์</a>
-                <a href="staff_information.php" class="btn btn-outline-light btn-sm">ฝ่ายควบคุม</a>
+                <a href="employees_1.php" class="btn btn-outline-light btn-sm">ฝ่ายผู้บริหาร</a>
+                <a href="employees_2.php" class="btn btn-outline-light btn-sm">ฝ่ายบริหารทั่วไป</a>
+                <a href="employees_3.php" class="btn btn-outline-light btn-sm">ฝ่ายทัณฑปฎิบัติ</a>
+                <a href="employees_4.php" class="btn btn-outline-light btn-sm">ฝ่ายฝึกวิชาชีพ</a>
+                <a href="employees_5.php" class="btn btn-outline-light btn-sm">ฝ่ายควบคุมเเละรักษาการณ์</a>
+                <a href="employees_6.php" class="btn btn-outline-light btn-sm">ฝ่ายสวัสดิการผู้ต้องขังเเละสงเคราะห์ผู้ต้องขัง</a>
+                <a href="employees_7.php" class="btn btn-outline-light btn-sm">ฝ่ายการศึกษา</a>
+                <a href="employees_8.php" class="btn btn-outline-light btn-sm">ฝ่ายสภานพยาบาลเรือนจำ</a>
+                <a href="employees_9.php" class="btn btn-outline-light btn-sm">ฝ่ายควบคุมเแดนหญิง</a>
+                <a href="employees_10.php" class="btn btn-outline-light btn-sm">ฝ่ายรักษาการณ์</a>
+                <a href="employees_11.php" class="btn btn-outline-light btn-sm">ฝ่ายควบคุม</a>
             </div>
         </div>
     </main>

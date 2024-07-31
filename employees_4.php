@@ -77,9 +77,7 @@
 
         .node img {
             width: 150px;
-            /* Increased size */
             height: 150px;
-            /* Increased size */
             border: 3px solid #ddd;
         }
 
@@ -95,44 +93,8 @@
     <div class="container my-5">
         <h2 class="text-white mb-4">แผนผังฝ่ายการศึกษา</h2>
         <hr class="bg-white my-4" style="height: 3px;">
-        <div class="tree">
-            <div class="node" data-bs-toggle="modal" data-bs-target="#productModal">
-                <img src="img/02.jpg" alt="นายกุหลาบ บุญเลิศ">
-                <div>นายกุหลาบ บุญเลิศ</div>
-                <div>ผู้กำกับการฝ่ายการศึกษาและพัฒนาจิตใจ</div>
-            </div>
-            <div class="node" data-bs-toggle="modal" data-bs-target="#productModal">
-                <img src="img/02.jpg" alt="นายชูพันธ์ วรเจริญ">
-                <div>นายชูพันธ์ วรเจริญ</div>
-                <div>หัวหน้าโครงการศึกษาและพัฒนาจิตใจ</div>
-            </div>
-            <div class="children">
-                <div class="node" data-bs-toggle="modal" data-bs-target="#productModal">
-                    <img src="img/02.jpg" alt="นายวิทยา ก้านลำ">
-                    <div>นายวิทยา ก้านลำ</div>
-                    <div>หัวหน้าฝ่ายการศึกษา</div>
-                </div>
-                <div class="node" data-bs-toggle="modal" data-bs-target="#productModal">
-                    <img src="img/04.jpg" alt="นายอนันทร์ สิงหิการ">
-                    <div>นายอนันทร์ สิงหิการ</div>
-                    <div>หัวหน้าฝ่ายงานอบรมจิตบำบัด</div>
-                </div>
-                <div class="node" data-bs-toggle="modal" data-bs-target="#productModal">
-                    <img src="img/04.jpg" alt="นายอนันทร์ สิงหิการ">
-                    <div>นายอนันทร์ สิงหิการ</div>
-                    <div>หัวหน้าฝ่ายงานอบรมจิตบำบัด</div>
-                </div>
-                <div class="node" data-bs-toggle="modal" data-bs-target="#productModal">
-                    <img src="img/04.jpg" alt="นายอนันทร์ สิงหิการ">
-                    <div>นายอนันทร์ สิงหิการ</div>
-                    <div>หัวหน้าฝ่ายงานอบรมจิตบำบัด</div>
-                </div>
-                <div class="node" data-bs-toggle="modal" data-bs-target="#productModal">
-                    <img src="img/04.jpg" alt="นายอนันทร์ สิงหิการ">
-                    <div>นายอนันทร์ สิงหิการ</div>
-                    <div>หัวหน้าฝ่ายงานอบรมจิตบำบัด</div>
-                </div>
-            </div>
+        <div class="tree" id="tree">
+            <!-- Nodes will be dynamically added here -->
         </div>
     </div>
 
@@ -141,12 +103,12 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="productModalLabel">นายอนันทร์ สิงหิการ</h5>
+                    <h5 class="modal-title" id="productModalLabel">Title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <img src="./img/04.jpg" class="card-img-top mb-3" alt="...">
-                    <p>หัวหน้าฝ่ายงานอบรมจิตบำบัด</p>
+                    <p>Description</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
@@ -157,7 +119,58 @@
 
     <?php include('./layout/footer.php'); ?>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const token = localStorage.getItem('authToken');
+            fetch('http://localhost:8000/stuffview_employees?dep_id=4', {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const tree = document.getElementById('tree');
 
+                    const createNode = (name, position, image) => {
+                        const node = document.createElement('div');
+                        node.classList.add('node');
+                        node.innerHTML = `
+                            <img src="${image}" alt="${name}">
+                            <div>${name}</div>
+                            <div>${position}</div>
+                        `;
+                        node.addEventListener('click', () => {
+                            document.getElementById('productModalLabel').innerText = name;
+                            document.querySelector('#productModal .card-img-top').src = image;
+                            document.querySelector('#productModal .card-img-top').alt = name;
+                            document.querySelector('#productModal .modal-body p').innerText = position;
+                            new bootstrap.Modal(document.getElementById('productModal')).show();
+                        });
+                        return node;
+                    };
+
+                    data.forEach((employee, index) => {
+                        const imageUrl = employee.image ? `../../uploads/${employee.image}` : '../../img/no_image.png';
+                        const node = createNode(employee.name, employee.pos_name, imageUrl);
+                        
+                        // Add the node to the tree
+                        if (index < 2) {
+                            tree.appendChild(node);
+                        } else if (index < 7) {
+                            let childrenContainer = tree.querySelector('.children');
+                            if (!childrenContainer) {
+                                childrenContainer = document.createElement('div');
+                                childrenContainer.classList.add('children');
+                                tree.appendChild(childrenContainer);
+                            }
+                            childrenContainer.appendChild(node);
+                        }
+                    });
+                })
+                .catch(error => console.error('Error fetching employees:', error));
+        });
+    </script>
 </body>
 
 </html>
