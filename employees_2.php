@@ -141,8 +141,8 @@
                         const node = document.createElement('div');
                         node.classList.add('node');
                         node.innerHTML = `
-                            <img src="${image}" alt="${name}">
-                            <div>${name}</div>
+                           <img src="${image}" alt="${name}">
+                            <div style="white-space: pre-line;">${name}</div>
                         `;
                         node.addEventListener('click', () => {
                             document.getElementById('productModalLabel').innerText = name;

@@ -143,9 +143,10 @@
                         const node = document.createElement('div');
                         node.classList.add('node');
                         node.innerHTML = `
-                    <img src="${image}" alt="${name}">
-                    <div>${name}</div>
-                `;
+                            <img src="${image}" alt="${name}">
+                            <div style="white-space: pre-line;">${name}</div>
+                            <div>${position}</div>
+                        `;
                         return node;
                     };
 
@@ -175,45 +176,6 @@
                 })
                 .catch(error => console.error('Error fetching employees:', error));
         });
-
-
-        // document.addEventListener("DOMContentLoaded", function () {
-        //     fetch('http://localhost:8000/stuffview_employees?dep_id=1')
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             const tree = document.getElementById('tree');
-
-        //             const createNode = (name, position, image) => {
-        //                 const node = document.createElement('div');
-        //                 node.classList.add('node');
-        //                 node.innerHTML = `
-        //                     <img src="${image}" alt="${name}">
-        //                     <div>${name}</div>
-        //                     <div>${position}</div>
-        //                 `;
-        //                 return node;
-        //             };
-
-        //             data.forEach((employee, index) => {
-        //                 const imageUrl = employee.image ? `../../uploads/${employee.image}` : '../../img/no_image.png';
-        //                 const node = createNode(employee.name, employee.pos_name, imageUrl);
-
-        //                 // Add the node to the tree
-        //                 if (index < 2) {
-        //                     tree.appendChild(node);
-        //                 } else if (index < 7) {
-        //                     let childrenContainer = tree.querySelector('.children');
-        //                     if (!childrenContainer) {
-        //                         childrenContainer = document.createElement('div');
-        //                         childrenContainer.classList.add('children');
-        //                         tree.appendChild(childrenContainer);
-        //                     }
-        //                     childrenContainer.appendChild(node);
-        //                 }
-        //             });
-        //         })
-        //         .catch(error => console.error('Error fetching employees:', error));
-        // });
     </script>
 </body>
 
