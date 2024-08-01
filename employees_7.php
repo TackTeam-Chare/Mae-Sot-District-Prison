@@ -7,15 +7,13 @@
     <title>แผนผังฝ่ายการศึกษา</title>
     <link rel="icon" type="image/x-icon" href="img/spd_20150704164759_b.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <style>
         .card {
@@ -85,9 +83,14 @@
             border: 3px solid #ddd;
         }
 
-        .children {
+        .priority-row {
             display: flex;
             justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .priority-row .node {
+            margin: 0 10px;
         }
     </style>
 </head>
@@ -136,27 +139,45 @@
                 .then(data => {
                     const treeContainer = document.getElementById('tree-container');
 
+                    // Sort data by priority
+                    data.sort((a, b) => a.priority - b.priority);
+
+                    // Create rows for each priority
+                    const priorityRows = [1, 2, 3, 4].map(priority => {
+                        const row = document.createElement('div');
+                        row.classList.add('priority-row');
+                        row.dataset.priority = priority;
+                        return row;
+                    });
+
                     data.forEach(employee => {
                         const imageUrl = employee.image ? `../../uploads/${employee.image}` : '../../img/no_image.png';
-
-                        const employeeNode = document.createElement('div');
-                        employeeNode.className = 'node';
-                        employeeNode.setAttribute('data-bs-toggle', 'modal');
-                        employeeNode.setAttribute('data-bs-target', '#productModal');
-                        employeeNode.setAttribute('data-employee-id', employee.id);
-                        employeeNode.innerHTML = `
+                        const node = document.createElement('div');
+                        node.className = 'node';
+                        node.setAttribute('data-bs-toggle', 'modal');
+                        node.setAttribute('data-bs-target', '#productModal');
+                        node.setAttribute('data-employee-id', employee.id);
+                        node.innerHTML = `
                             <img src="${imageUrl}" alt="${employee.name}">
                             <div>${employee.name}</div>
-                            <div>${employee.pos_name}</div>
                         `;
 
-                        employeeNode.addEventListener('click', () => {
+                        node.addEventListener('click', () => {
                             document.getElementById('productModalLabel').textContent = employee.name;
                             document.getElementById('modal-image').src = imageUrl;
                             document.getElementById('modal-position').textContent = employee.pos_name;
                         });
 
-                        treeContainer.appendChild(employeeNode);
+                        // Append node to the correct priority row
+                        const row = priorityRows.find(row => row.dataset.priority == employee.priority);
+                        if (row) {
+                            row.appendChild(node);
+                        }
+                    });
+
+                    // Append rows to the tree container
+                    priorityRows.forEach(row => {
+                        treeContainer.appendChild(row);
                     });
                 })
                 .catch(error => console.error('Error fetching employees:', error));

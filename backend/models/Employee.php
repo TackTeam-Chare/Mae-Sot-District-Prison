@@ -42,11 +42,24 @@ class Employee {
     
 
     }
+    // public function read() {
+    //     $query = "SELECT employees.id , employees.name , employees.image, employees.dep_id , employees.pos_id ,employees.image,departments.dep_name,job_positions.pos_name  FROM ".$this->table_name." JOIN departments  on employees.dep_id = departments.id  join job_positions on employees.pos_id = job_positions.id WHERE employees.dep_id=:dep_id ORDER BY create_at DESC";
+    //     $stmt = $this->conn->prepare($query);
+    //     $this->dep_id = htmlspecialchars(strip_tags($this->dep_id));
+    //     $stmt->bindParam(':dep_id',$this->dep_id);
+    //     $stmt->execute();
+    //     return $stmt;
+    // }
     public function read() {
-        $query = "SELECT employees.id , employees.name , employees.image, employees.dep_id , employees.pos_id ,employees.image,departments.dep_name,job_positions.pos_name  FROM ".$this->table_name." JOIN departments  on employees.dep_id = departments.id  join job_positions on employees.pos_id = job_positions.id WHERE employees.dep_id=:dep_id ORDER BY create_at DESC";
+        $query = "SELECT employees.id, employees.name, employees.image, employees.dep_id, employees.pos_id, employees.image, departments.dep_name, job_positions.pos_name, job_positions.priority 
+                  FROM ".$this->table_name." 
+                  JOIN departments ON employees.dep_id = departments.id  
+                  JOIN job_positions ON employees.pos_id = job_positions.id 
+                  WHERE employees.dep_id = :dep_id 
+                  ORDER BY job_positions.priority ASC";
         $stmt = $this->conn->prepare($query);
         $this->dep_id = htmlspecialchars(strip_tags($this->dep_id));
-        $stmt->bindParam(':dep_id',$this->dep_id);
+        $stmt->bindParam(':dep_id', $this->dep_id);
         $stmt->execute();
         return $stmt;
     }

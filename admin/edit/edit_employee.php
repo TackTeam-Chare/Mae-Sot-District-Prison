@@ -64,7 +64,7 @@
             <input type="hidden" value="<?php echo $_GET['id']; ?>" name="id">    
             <div class="mb-3">
                 <label for="name" class="form-label">ชื่อบุคคลากร</label>
-                <input type="text" class="form-control" placeholder="ชื่อบุคคลากร" name="name" required>
+                <textarea class="form-control" placeholder="ชื่อบุคคลากร" name="name" required></textarea>
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">ภาพบุคคลากร</label>
@@ -140,7 +140,7 @@
             .then(response => response.json())
             .then(employee => {
                 // Populate form fields with existing data
-                document.querySelector('input[name="name"]').value = employee.name;
+                document.querySelector('textarea[name="name"]').value = employee.name;
                 document.getElementById('department').value = employee.dep_id;
                 document.getElementById('job_position').value = employee.pos_id;
 
@@ -175,15 +175,12 @@
 
             const formData = new FormData(); // Create FormData object
             formData.append('id', document.querySelector('input[name="id"]').value);
-            formData.append('name', document.querySelector('input[name="name"]').value);
+            formData.append('name', document.querySelector('textarea[name="name"]').value);
             formData.append('dep_id', document.getElementById('department').value);
             formData.append('pos_id', document.getElementById('job_position').value);
             formData.append('image', document.querySelector('input[name="image"]').files[0]);
 
-
-            
             const token = localStorage.getItem('authToken');
-
 
             const url = 'http://localhost:8000/employees'; // Replace with your API endpoint
 

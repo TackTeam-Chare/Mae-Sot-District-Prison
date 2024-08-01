@@ -63,11 +63,11 @@
         <form id="addAdminForm" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="name" class="form-label">ชื่อบุคคลากร</label>
-                <input type="text" class="form-control" placeholder="ชื่อบุคคลากร" name="name" required>
+                <textarea class="form-control" placeholder="ชื่อบุคคลากร" name="name" required></textarea>
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">ภาพบุคคลากร</label>
-                <input type="file" class="form-control" name="image" accept="image/*" >
+                <input type="file" class="form-control" name="image" accept="image/*">
             </div>
             <div class="mb-3">
                 <label for="department" class="form-label">ฝ่ายบุคลากร</label>
@@ -83,8 +83,7 @@
             </div>
 
             <button type="submit" id="submitForm" class="btn btn-primary">บันทึก</button>
-    </div>
-    </form>
+        </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
@@ -103,7 +102,7 @@
                         option.value = department.id;
                         option.textContent = department.dep_name;
                         departmentSelect.appendChild(option);
-                    })
+                    });
                 })
                 .catch(error => console.error('Error fetching departments:', error));
 
@@ -111,11 +110,10 @@
             fetch('http://localhost:8000/viewJobPositions')
                 .then(response => response.json())
                 .then(data => {
-                    data.forEach(jobPositon => {
-
+                    data.forEach(jobPosition => {
                         const option = document.createElement('option');
-                        option.value = jobPositon.id;
-                        option.textContent = jobPositon.pos_name;
+                        option.value = jobPosition.id;
+                        option.textContent = jobPosition.pos_name;
                         jobPositionSelect.appendChild(option);
                     });
                 })
@@ -126,7 +124,7 @@
             event.preventDefault(); // Prevent the form from submitting normally
 
             const formData = new FormData(); // Create FormData object
-            formData.append('name', document.querySelector('input[name="name"]').value);
+            formData.append('name', document.querySelector('textarea[name="name"]').value);
             formData.append('dep_id', document.getElementById('department').value);
             formData.append('pos_id', document.getElementById('job_position').value);
             formData.append('image', document.querySelector('input[name="image"]').files[0]);
@@ -149,14 +147,14 @@
                 .then(data => {
                     // Handle success response
                     console.log('Success:', data);
-                    alert('Event add successfully!');
+                    alert('Employee added successfully!');
                     goBackAndReset();
                     // Optionally redirect to another page
                 })
                 .catch(error => {
                     // Handle error
                     console.error('Error:', error);
-                    alert('Failed to add event: ' + error.message);
+                    alert('Failed to add employee: ' + error.message);
                 });
         });
 

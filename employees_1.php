@@ -85,6 +85,16 @@
             display: flex;
             justify-content: center;
         }
+
+        .priority-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .priority-row .node {
+            margin: 0 10px;
+        }
     </style>
 </head>
 
@@ -120,43 +130,90 @@
     <?php include('./layout/footer.php'); ?>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             fetch('http://localhost:8000/stuffview_employees?dep_id=1')
                 .then(response => response.json())
                 .then(data => {
+                    // Sort data by priority
+                    data.sort((a, b) => a.priority - b.priority);
+
                     const tree = document.getElementById('tree');
 
                     const createNode = (name, position, image) => {
                         const node = document.createElement('div');
                         node.classList.add('node');
                         node.innerHTML = `
-                            <img src="${image}" alt="${name}">
-                            <div>${name}</div>
-                            <div>${position}</div>
-                        `;
+                    <img src="${image}" alt="${name}">
+                    <div>${name}</div>
+                `;
                         return node;
                     };
 
-                    data.forEach((employee, index) => {
+                    // Create rows for each priority
+                    const priorityRows = [1, 2, 3, 4].map(priority => {
+                        const row = document.createElement('div');
+                        row.classList.add('priority-row');
+                        row.dataset.priority = priority;
+                        return row;
+                    });
+
+                    data.forEach(employee => {
                         const imageUrl = employee.image ? `../../uploads/${employee.image}` : '../../img/no_image.png';
                         const node = createNode(employee.name, employee.pos_name, imageUrl);
-                        
-                        // Add the node to the tree
-                        if (index < 2) {
-                            tree.appendChild(node);
-                        } else if (index < 7) {
-                            let childrenContainer = tree.querySelector('.children');
-                            if (!childrenContainer) {
-                                childrenContainer = document.createElement('div');
-                                childrenContainer.classList.add('children');
-                                tree.appendChild(childrenContainer);
-                            }
-                            childrenContainer.appendChild(node);
+
+                        // Append node to the correct priority row
+                        const row = priorityRows.find(row => row.dataset.priority == employee.priority);
+                        if (row) {
+                            row.appendChild(node);
                         }
+                    });
+
+                    // Append rows to the tree
+                    priorityRows.forEach(row => {
+                        tree.appendChild(row);
                     });
                 })
                 .catch(error => console.error('Error fetching employees:', error));
         });
+
+
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     fetch('http://localhost:8000/stuffview_employees?dep_id=1')
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             const tree = document.getElementById('tree');
+
+        //             const createNode = (name, position, image) => {
+        //                 const node = document.createElement('div');
+        //                 node.classList.add('node');
+        //                 node.innerHTML = `
+        //                     <img src="${image}" alt="${name}">
+        //                     <div>${name}</div>
+        //                     <div>${position}</div>
+        //                 `;
+        //                 return node;
+        //             };
+
+        //             data.forEach((employee, index) => {
+        //                 const imageUrl = employee.image ? `../../uploads/${employee.image}` : '../../img/no_image.png';
+        //                 const node = createNode(employee.name, employee.pos_name, imageUrl);
+
+        //                 // Add the node to the tree
+        //                 if (index < 2) {
+        //                     tree.appendChild(node);
+        //                 } else if (index < 7) {
+        //                     let childrenContainer = tree.querySelector('.children');
+        //                     if (!childrenContainer) {
+        //                         childrenContainer = document.createElement('div');
+        //                         childrenContainer.classList.add('children');
+        //                         tree.appendChild(childrenContainer);
+        //                     }
+        //                     childrenContainer.appendChild(node);
+        //                 }
+        //             });
+        //         })
+        //         .catch(error => console.error('Error fetching employees:', error));
+        // });
     </script>
 </body>
 
