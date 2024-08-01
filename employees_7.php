@@ -159,7 +159,7 @@
                         node.setAttribute('data-employee-id', employee.id);
                         node.innerHTML = `
                             <img src="${imageUrl}" alt="${employee.name}">
-                            <div>${employee.name}</div>
+                            <div style="white-space: pre-line;">${employee.name}</div>
                         `;
 
                         node.addEventListener('click', () => {
