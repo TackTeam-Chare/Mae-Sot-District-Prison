@@ -81,9 +81,14 @@
             border: 3px solid #ddd;
         }
 
-        .children {
+        .priority-row {
             display: flex;
             justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .priority-row .node {
+            margin: 0 10px;
         }
     </style>
 </head>
@@ -107,8 +112,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="./img/04.jpg" class="card-img-top mb-3" alt="...">
-                    <p>Description</p>
+                    <img src="./img/04.jpg" id="modal-image" class="card-img-top mb-3" alt="...">
+                    <p id="modal-position"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
@@ -138,34 +143,42 @@
                         node.innerHTML = `
                             <img src="${image}" alt="${name}">
                             <div>${name}</div>
-                            <div>${position}</div>
                         `;
                         node.addEventListener('click', () => {
                             document.getElementById('productModalLabel').innerText = name;
-                            document.querySelector('#productModal .card-img-top').src = image;
-                            document.querySelector('#productModal .card-img-top').alt = name;
-                            document.querySelector('#productModal .modal-body p').innerText = position;
+                            document.getElementById('modal-image').src = image;
+                            document.getElementById('modal-image').alt = name;
+                            document.getElementById('modal-position').innerText = position;
                             new bootstrap.Modal(document.getElementById('productModal')).show();
                         });
                         return node;
                     };
 
-                    data.forEach((employee, index) => {
+                    // Sort data by priority
+                    data.sort((a, b) => a.priority - b.priority);
+
+                    // Create rows for each priority
+                    const priorityRows = [1, 2, 3, 4].map(priority => {
+                        const row = document.createElement('div');
+                        row.classList.add('priority-row');
+                        row.dataset.priority = priority;
+                        return row;
+                    });
+
+                    data.forEach(employee => {
                         const imageUrl = employee.image ? `../../uploads/${employee.image}` : '../../img/no_image.png';
                         const node = createNode(employee.name, employee.pos_name, imageUrl);
-                        
-                        // Add the node to the tree
-                        if (index < 2) {
-                            tree.appendChild(node);
-                        } else if (index < 7) {
-                            let childrenContainer = tree.querySelector('.children');
-                            if (!childrenContainer) {
-                                childrenContainer = document.createElement('div');
-                                childrenContainer.classList.add('children');
-                                tree.appendChild(childrenContainer);
-                            }
-                            childrenContainer.appendChild(node);
+
+                        // Append node to the correct priority row
+                        const row = priorityRows.find(row => row.dataset.priority == employee.priority);
+                        if (row) {
+                            row.appendChild(node);
                         }
+                    });
+
+                    // Append rows to the tree
+                    priorityRows.forEach(row => {
+                        tree.appendChild(row);
                     });
                 })
                 .catch(error => console.error('Error fetching employees:', error));
